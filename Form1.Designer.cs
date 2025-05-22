@@ -72,17 +72,17 @@
             label1 = new Label();
             pictureBox1 = new PictureBox();
             statistics = new TabPage();
-            label11 = new Label();
-            label12 = new Label();
-            label10 = new Label();
-            label9 = new Label();
-            label8 = new Label();
-            label7 = new Label();
-            label6 = new Label();
-            label5 = new Label();
-            label4 = new Label();
-            label3 = new Label();
-            label2 = new Label();
+            recievedmoney = new Label();
+            spentmoney = new Label();
+            skill5 = new Label();
+            skill4 = new Label();
+            skill3 = new Label();
+            skill2 = new Label();
+            skill1 = new Label();
+            skill0 = new Label();
+            boughtcars = new Label();
+            skillslabel = new Label();
+            soldcars = new Label();
             stattitle = new Label();
             labelmoney = new Label();
             tabs.SuspendLayout();
@@ -313,7 +313,7 @@
             // Stepanichbutton
             // 
             Stepanichbutton.Font = new Font("Segoe UI", 10F);
-            Stepanichbutton.Location = new Point(352, 77);
+            Stepanichbutton.Location = new Point(347, 63);
             Stepanichbutton.Name = "Stepanichbutton";
             Stepanichbutton.Size = new Size(83, 27);
             Stepanichbutton.TabIndex = 3;
@@ -323,7 +323,7 @@
             // Fitservicebutton
             // 
             Fitservicebutton.Font = new Font("Segoe UI", 10F);
-            Fitservicebutton.Location = new Point(634, 196);
+            Fitservicebutton.Location = new Point(633, 180);
             Fitservicebutton.Name = "Fitservicebutton";
             Fitservicebutton.Size = new Size(77, 27);
             Fitservicebutton.TabIndex = 2;
@@ -333,7 +333,7 @@
             // Vasiliybutton
             // 
             Vasiliybutton.Font = new Font("Segoe UI", 10F);
-            Vasiliybutton.Location = new Point(72, 259);
+            Vasiliybutton.Location = new Point(73, 282);
             Vasiliybutton.Name = "Vasiliybutton";
             Vasiliybutton.Size = new Size(73, 26);
             Vasiliybutton.TabIndex = 1;
@@ -347,7 +347,7 @@
             citypicture.InitialImage = null;
             citypicture.Location = new Point(0, 0);
             citypicture.Name = "citypicture";
-            citypicture.Size = new Size(786, 428);
+            citypicture.Size = new Size(786, 443);
             citypicture.SizeMode = PictureBoxSizeMode.StretchImage;
             citypicture.TabIndex = 0;
             citypicture.TabStop = false;
@@ -589,17 +589,17 @@
             // 
             // statistics
             // 
-            statistics.Controls.Add(label11);
-            statistics.Controls.Add(label12);
-            statistics.Controls.Add(label10);
-            statistics.Controls.Add(label9);
-            statistics.Controls.Add(label8);
-            statistics.Controls.Add(label7);
-            statistics.Controls.Add(label6);
-            statistics.Controls.Add(label5);
-            statistics.Controls.Add(label4);
-            statistics.Controls.Add(label3);
-            statistics.Controls.Add(label2);
+            statistics.Controls.Add(recievedmoney);
+            statistics.Controls.Add(spentmoney);
+            statistics.Controls.Add(skill5);
+            statistics.Controls.Add(skill4);
+            statistics.Controls.Add(skill3);
+            statistics.Controls.Add(skill2);
+            statistics.Controls.Add(skill1);
+            statistics.Controls.Add(skill0);
+            statistics.Controls.Add(boughtcars);
+            statistics.Controls.Add(skillslabel);
+            statistics.Controls.Add(soldcars);
             statistics.Controls.Add(stattitle);
             statistics.Location = new Point(4, 34);
             statistics.Name = "statistics";
@@ -609,100 +609,104 @@
             statistics.Text = "Статистика";
             statistics.UseVisualStyleBackColor = true;
             // 
-            // label11
+            // recievedmoney
             // 
-            label11.Location = new Point(12, 79);
-            label11.Name = "label11";
-            label11.Size = new Size(358, 29);
-            label11.TabIndex = 11;
-            label11.Text = "Получено денег: 0₽";
+            recievedmoney.Location = new Point(12, 79);
+            recievedmoney.Name = "recievedmoney";
+            recievedmoney.Size = new Size(358, 29);
+            recievedmoney.TabIndex = 11;
+            recievedmoney.Text = "Получено денег: 0₽";
+            recievedmoney.TextAlign = ContentAlignment.TopCenter;
             // 
-            // label12
+            // spentmoney
             // 
-            label12.Location = new Point(12, 50);
-            label12.Name = "label12";
-            label12.Size = new Size(358, 29);
-            label12.TabIndex = 10;
-            label12.Text = "Потрачено денег: 0₽";
+            spentmoney.Location = new Point(12, 50);
+            spentmoney.Name = "spentmoney";
+            spentmoney.Size = new Size(358, 29);
+            spentmoney.TabIndex = 10;
+            spentmoney.Text = "Потрачено денег: 0₽";
+            spentmoney.TextAlign = ContentAlignment.TopCenter;
             // 
-            // label10
+            // skill5
             // 
-            label10.Location = new Point(418, 228);
-            label10.Name = "label10";
-            label10.Size = new Size(358, 29);
-            label10.TabIndex = 9;
-            label10.Text = "Название: 0 уровень";
-            label10.TextAlign = ContentAlignment.TopRight;
+            skill5.Location = new Point(433, 228);
+            skill5.Name = "skill5";
+            skill5.Size = new Size(343, 29);
+            skill5.TabIndex = 9;
+            skill5.Text = "Название: 0 уровень";
+            skill5.TextAlign = ContentAlignment.TopCenter;
             // 
-            // label9
+            // skill4
             // 
-            label9.Location = new Point(418, 199);
-            label9.Name = "label9";
-            label9.Size = new Size(358, 29);
-            label9.TabIndex = 8;
-            label9.Text = "Название: 0 уровень";
-            label9.TextAlign = ContentAlignment.TopRight;
+            skill4.Location = new Point(433, 199);
+            skill4.Name = "skill4";
+            skill4.Size = new Size(343, 29);
+            skill4.TabIndex = 8;
+            skill4.Text = "Название: 0 уровень";
+            skill4.TextAlign = ContentAlignment.TopCenter;
             // 
-            // label8
+            // skill3
             // 
-            label8.Location = new Point(418, 170);
-            label8.Name = "label8";
-            label8.Size = new Size(358, 29);
-            label8.TabIndex = 7;
-            label8.Text = "Название: 0 уровень";
-            label8.TextAlign = ContentAlignment.TopRight;
+            skill3.Location = new Point(433, 170);
+            skill3.Name = "skill3";
+            skill3.Size = new Size(343, 29);
+            skill3.TabIndex = 7;
+            skill3.Text = "Название: 0 уровень";
+            skill3.TextAlign = ContentAlignment.TopCenter;
             // 
-            // label7
+            // skill2
             // 
-            label7.Location = new Point(418, 141);
-            label7.Name = "label7";
-            label7.Size = new Size(358, 29);
-            label7.TabIndex = 6;
-            label7.Text = "Название: 0 уровень";
-            label7.TextAlign = ContentAlignment.TopRight;
+            skill2.Location = new Point(433, 141);
+            skill2.Name = "skill2";
+            skill2.Size = new Size(343, 29);
+            skill2.TabIndex = 6;
+            skill2.Text = "Название: 0 уровень";
+            skill2.TextAlign = ContentAlignment.TopCenter;
             // 
-            // label6
+            // skill1
             // 
-            label6.Location = new Point(418, 112);
-            label6.Name = "label6";
-            label6.Size = new Size(358, 29);
-            label6.TabIndex = 5;
-            label6.Text = "Название: 0 уровень";
-            label6.TextAlign = ContentAlignment.TopRight;
+            skill1.Location = new Point(433, 112);
+            skill1.Name = "skill1";
+            skill1.Size = new Size(343, 29);
+            skill1.TabIndex = 5;
+            skill1.Text = "Название: 0 уровень";
+            skill1.TextAlign = ContentAlignment.TopCenter;
             // 
-            // label5
+            // skill0
             // 
-            label5.Location = new Point(418, 83);
-            label5.Name = "label5";
-            label5.Size = new Size(358, 29);
-            label5.TabIndex = 4;
-            label5.Text = "Название: 0 уровень";
-            label5.TextAlign = ContentAlignment.TopRight;
+            skill0.Location = new Point(433, 83);
+            skill0.Name = "skill0";
+            skill0.Size = new Size(343, 29);
+            skill0.TabIndex = 4;
+            skill0.Text = "Название: 0 уровень";
+            skill0.TextAlign = ContentAlignment.TopCenter;
             // 
-            // label4
+            // boughtcars
             // 
-            label4.Location = new Point(12, 143);
-            label4.Name = "label4";
-            label4.Size = new Size(358, 29);
-            label4.TabIndex = 3;
-            label4.Text = "Куплено машин: 0";
+            boughtcars.Location = new Point(12, 143);
+            boughtcars.Name = "boughtcars";
+            boughtcars.Size = new Size(358, 29);
+            boughtcars.TabIndex = 3;
+            boughtcars.Text = "Куплено машин: 0";
+            boughtcars.TextAlign = ContentAlignment.TopCenter;
             // 
-            // label3
+            // skillslabel
             // 
-            label3.Location = new Point(418, 50);
-            label3.Name = "label3";
-            label3.Size = new Size(358, 29);
-            label3.TabIndex = 2;
-            label3.Text = "Навыки:";
-            label3.TextAlign = ContentAlignment.TopRight;
+            skillslabel.Location = new Point(433, 50);
+            skillslabel.Name = "skillslabel";
+            skillslabel.Size = new Size(343, 29);
+            skillslabel.TabIndex = 2;
+            skillslabel.Text = "Навыки:";
+            skillslabel.TextAlign = ContentAlignment.TopCenter;
             // 
-            // label2
+            // soldcars
             // 
-            label2.Location = new Point(12, 114);
-            label2.Name = "label2";
-            label2.Size = new Size(358, 29);
-            label2.TabIndex = 1;
-            label2.Text = "Продано машин: 0";
+            soldcars.Location = new Point(12, 114);
+            soldcars.Name = "soldcars";
+            soldcars.Size = new Size(358, 29);
+            soldcars.TabIndex = 1;
+            soldcars.Text = "Продано машин: 0";
+            soldcars.TextAlign = ContentAlignment.TopCenter;
             // 
             // stattitle
             // 
@@ -806,16 +810,16 @@
         private Label avitocar1price;
         private Label labelmoney;
         private Label stattitle;
-        private Label label3;
-        private Label label2;
-        private Label label10;
-        private Label label9;
-        private Label label8;
-        private Label label7;
-        private Label label6;
-        private Label label5;
-        private Label label4;
-        private Label label11;
-        private Label label12;
+        private Label skillslabel;
+        private Label soldcars;
+        private Label skill5;
+        private Label skill4;
+        private Label skill3;
+        private Label skill2;
+        private Label skill1;
+        private Label skill0;
+        private Label boughtcars;
+        private Label recievedmoney;
+        private Label spentmoney;
     }
 }

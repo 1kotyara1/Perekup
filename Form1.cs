@@ -13,6 +13,8 @@ namespace ProjectPerekup
         private long money;
         private int sold;
         private int bought;
+        private long spent;
+        private long recieved;
         private int[] skills;
 
 
@@ -20,10 +22,11 @@ namespace ProjectPerekup
 
         public perekup()
         {
-            Filework.Load(out cars, out money, out sold, out bought, out skills, skillsname);
+            Filework.Load(out cars, out money, out sold, out bought, out spent, out recieved, out skills, skillsname);
             InitializeComponent();
             InitializeGarage();
             InitializeBrowser();
+            InitializeStatistics();
             reLoadGarage();
             updMoney();
         }
@@ -160,27 +163,27 @@ namespace ProjectPerekup
         {
             car0img.MouseEnter += (sender, e) => car0text.Visible = true;
             car0img.MouseLeave += (sender, e) => hideCarText(0);
-            car0img.Click += (sender, e) => { if (cars[0].img != 0) { selectedcar = 0; buttoneditcar.Visible = true; } };
+            car0img.Click += (sender, e) => { if (cars[0].img != 0) { hideOtherCarText(); selectedcar = 0; buttoneditcar.Visible = true; } };
 
             car1img.MouseEnter += (sender, e) => car1text.Visible = true;
             car1img.MouseLeave += (sender, e) => hideCarText(1);
-            car1img.Click += (sender, e) => { if (cars[1].img != 0) { selectedcar = 1; buttoneditcar.Visible = true; } };
+            car1img.Click += (sender, e) => { if (cars[1].img != 0) { hideOtherCarText(); selectedcar = 1; buttoneditcar.Visible = true; } };
 
             car2img.MouseEnter += (sender, e) => car2text.Visible = true;
             car2img.MouseLeave += (sender, e) => hideCarText(2);
-            car2img.Click += (sender, e) => { if (cars[2].img != 0) { selectedcar = 2; buttoneditcar.Visible = true; } };
+            car2img.Click += (sender, e) => { if (cars[2].img != 0) { hideOtherCarText(); selectedcar = 2; buttoneditcar.Visible = true; } };
 
             car3img.MouseEnter += (sender, e) => car3text.Visible = true;
             car3img.MouseLeave += (sender, e) => hideCarText(3);
-            car3img.Click += (sender, e) => { if (cars[3].img != 0) { selectedcar = 3; buttoneditcar.Visible = true; } };
+            car3img.Click += (sender, e) => { if (cars[3].img != 0) { hideOtherCarText(); selectedcar = 3; buttoneditcar.Visible = true; } };
 
             car4img.MouseEnter += (sender, e) => car4text.Visible = true;
             car4img.MouseLeave += (sender, e) => hideCarText(4);
-            car4img.Click += (sender, e) => { if (cars[4].img != 0) { selectedcar = 4; buttoneditcar.Visible = true; } };
+            car4img.Click += (sender, e) => { if (cars[4].img != 0) { hideOtherCarText(); selectedcar = 4; buttoneditcar.Visible = true; } };
 
             car5img.MouseEnter += (sender, e) => car5text.Visible = true;
             car5img.MouseLeave += (sender, e) => hideCarText(5);
-            car5img.Click += (sender, e) => { if (cars[5].img != 0) { selectedcar = 5; buttoneditcar.Visible = true; } };
+            car5img.Click += (sender, e) => { if (cars[5].img != 0) { hideOtherCarText(); selectedcar = 5; buttoneditcar.Visible = true; } };
 
 
         }
@@ -203,6 +206,21 @@ namespace ProjectPerekup
             reLoadBrowser();
 
             combosort.SelectedIndexChanged += reloadcars_Click;
+        }
+        private void InitializeStatistics()
+        {
+            spentmoney.Text = $"Потрачено денег: {spent}₽";
+            recievedmoney.Text = $"Получено денег: {recieved}₽";
+
+            soldcars.Text = $"Потрачено денег: {sold}₽";
+            boughtcars.Text = $"Потрачено денег: {bought}₽";
+
+            skill0.Text = $"{skillsname[0]}: {skills[0]}";
+            skill1.Text = $"{skillsname[1]}: {skills[1]}";
+            skill2.Text = $"{skillsname[2]}: {skills[2]}";
+            skill3.Text = $"{skillsname[3]}: {skills[3]}";
+            skill4.Text = $"{skillsname[4]}: {skills[4]}";
+            skill5.Text = $"{skillsname[5]}: {skills[5]}";
         }
         private void reLoadGarage()
         {
@@ -276,32 +294,58 @@ namespace ProjectPerekup
         {
             if (carnum != selectedcar)
             {
-                if(selectedcar == 0)
+                if(carnum == 0)
                 {
                     car0text.Visible = false;
                 }
-                else if (selectedcar == 1)
+                else if (carnum == 1)
                 {
                     car1text.Visible = false;
                 }
-                else if (selectedcar == 2)
+                else if (carnum == 2)
                 {
                     car2text.Visible = false;
                 }
-                else if (selectedcar == 3)
+                else if (carnum == 3)
                 {
                     car3text.Visible = false;
                 }
-                else if (selectedcar == 4)
+                else if (carnum == 4)
                 {
                     car4text.Visible = false;
                 }
-                else if (selectedcar == 5)
+                else if (carnum == 5)
                 {
                     car5text.Visible = false;
                 }
             }
-            
+        }
+        private void hideOtherCarText()
+        {
+            if(selectedcar == 0)
+            {
+                car0text.Visible = false;
+            }
+            else if (selectedcar == 1)
+            {
+                car1text.Visible = false;
+            }
+            else if (selectedcar == 2)
+            {
+                car2text.Visible = false;
+            }
+            else if (selectedcar == 3)
+            {
+                car3text.Visible = false;
+            }
+            else if (selectedcar == 4)
+            {
+                car4text.Visible = false;
+            }
+            else if (selectedcar == 5)
+            {
+                car5text.Visible = false;
+            }
         }
 
 
@@ -309,7 +353,18 @@ namespace ProjectPerekup
         private void Form1_Resize(object sender, EventArgs e)
         { Transform(); }
         private void tabs_SelectedIndexChanged(object sender, EventArgs e)
-        { Transform(); selectedcar = -1; buttoneditcar.Visible = false; }
+        { 
+            if(tabs.SelectedIndex == 0)
+            {
+                selectedcar = -1; 
+                buttoneditcar.Visible = false; 
+            }
+            else if(tabs.SelectedIndex == 3)
+            {
+                InitializeStatistics(); 
+            }
+            Transform(); 
+        }
 
         private void buttoneditcar_Click(object sender, EventArgs e)
         {
@@ -317,7 +372,7 @@ namespace ProjectPerekup
 
 
             buttoneditcar.Visible = false;
-            Filework.Save(cars, money, sold, bought, skills, skillsname);
+            Filework.Save(cars, money, sold, bought, spent, recieved, skills, skillsname);
             reLoadGarage();
         }
 
@@ -358,11 +413,12 @@ namespace ProjectPerekup
                 int i = findZero();
                 if (i != -1)
                 {
-                    money -= avitocars[0].price;
                     cars[i] = avitocars[0];
+                    money -= avitocars[0].price;
+                    spent -= avitocars[0].price;
                     avitocars[0] = null;
                     avitocar0buy.Text = "Куплено";
-                    Filework.Save(cars, money, sold, bought, skills, skillsname);
+                    Filework.Save(cars, money, sold, bought, spent, recieved, skills, skillsname);
                     updMoney();
                     reLoadGarage();
                 }
@@ -385,9 +441,10 @@ namespace ProjectPerekup
                 {
                     cars[i] = avitocars[1];
                     money -= avitocars[1].price;
+                    spent -= avitocars[1].price;
                     avitocars[1] = null;
                     avitocar1buy.Text = "Куплено";
-                    Filework.Save(cars, money, sold, bought, skills, skillsname);
+                    Filework.Save(cars, money, sold, bought, spent, recieved, skills, skillsname);
                     updMoney();
                     reLoadGarage();
                 }
@@ -410,9 +467,10 @@ namespace ProjectPerekup
                 {
                     cars[i] = avitocars[2];
                     money -= avitocars[2].price;
+                    spent -= avitocars[2].price;
                     avitocars[2] = null;
                     avitocar2buy.Text = "Куплено";
-                    Filework.Save(cars, money, sold, bought, skills, skillsname);
+                    Filework.Save(cars, money, sold, bought, spent, recieved, skills, skillsname);
                     updMoney();
                     reLoadGarage();
                 }
