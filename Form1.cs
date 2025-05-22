@@ -176,6 +176,14 @@ namespace ProjectPerekup
                 skill3.Location = new Point(skillslabel.Location.X, skill2.Location.Y + skillslabel.Height);
                 skill4.Location = new Point(skillslabel.Location.X, skill3.Location.Y + skillslabel.Height);
                 skill5.Location = new Point(skillslabel.Location.X, skill4.Location.Y + skillslabel.Height);
+            
+                skillslabel.Width = spentmoney.Width;
+                skill0.Width = spentmoney.Width;
+                skill1.Width = spentmoney.Width;
+                skill2.Width = spentmoney.Width;
+                skill3.Width = spentmoney.Width;
+                skill4.Width = spentmoney.Width;
+                skill5.Width = spentmoney.Width;
             }
         }
         private void InitializeGarage()
@@ -228,7 +236,7 @@ namespace ProjectPerekup
         }
         private void InitializeStatistics()
         {
-            spentmoney.Text = $"Потрачено денег: {spent}₽";
+            spentmoney.Text = $"Потрачено денег: {-1 * spent}₽";
             recievedmoney.Text = $"Получено денег: {recieved}₽";
 
             soldcars.Text = $"Потрачено денег: {sold}₽";
@@ -435,6 +443,7 @@ namespace ProjectPerekup
                     cars[i] = avitocars[0];
                     money -= avitocars[0].price;
                     spent -= avitocars[0].price;
+                    bought++;
                     avitocars[0] = null;
                     avitocar0buy.Text = "Куплено";
                     Filework.Save(cars, money, sold, bought, spent, recieved, skills, skillsname);
@@ -461,6 +470,7 @@ namespace ProjectPerekup
                     cars[i] = avitocars[1];
                     money -= avitocars[1].price;
                     spent -= avitocars[1].price;
+                    bought++;
                     avitocars[1] = null;
                     avitocar1buy.Text = "Куплено";
                     Filework.Save(cars, money, sold, bought, spent, recieved, skills, skillsname);
@@ -487,6 +497,7 @@ namespace ProjectPerekup
                     cars[i] = avitocars[2];
                     money -= avitocars[2].price;
                     spent -= avitocars[2].price;
+                    bought++;
                     avitocars[2] = null;
                     avitocar2buy.Text = "Куплено";
                     Filework.Save(cars, money, sold, bought, spent, recieved, skills, skillsname);

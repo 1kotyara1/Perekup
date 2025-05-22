@@ -62,21 +62,34 @@ namespace ProjectPerekup.Classes
 
 
         public int price { get; set; }
-        public int cond { get; set; }
         public int img { get; set; }
+        public int motor {  get; set; }
+        public int trans {  get; set; }
+        public int hod {  get; set; }
+        public int kusov {  get; set; }
+        public int salon {  get; set; }
         private int desc = 0;
 
         public Car() { //для создания пустого места в гараже
             img = 0;
             price = 0;
-            cond = 0;
+
+            motor = 0;
+            trans = 0;
+            hod = 0;
+            kusov = 0;
+            salon = 0;
         }
 
-        public Car(int price, int cond, int img) //для передачи машин из авито в гараж
+        public Car(int price, int img, int motor, int trans, int hod, int kusov, int salon)
         {
-            this.img = img;
             this.price = price;
-            this.cond = cond;
+            this.img = img;
+            this.motor = motor;
+            this.trans = trans;
+            this.hod = hod;
+            this.kusov = kusov;
+            this.salon = salon;
         }
 
         public Car(int rand) //для создания случайных машин
@@ -86,31 +99,270 @@ namespace ProjectPerekup.Classes
             {
                 this.img = 10 + random.Next(0, 3);
                 this.price = random.Next(100, 500); //это в тысячах
-                this.cond = 1;
+
+                for(int i = 0; i < 12; i++)
+                {
+                    int selected = random.Next(0, 5);
+
+                    if (selected == 0)
+                    {
+                        if (motor < 3)
+                        {
+                            this.motor++;
+                        }
+                        else
+                        {
+                            i--;
+                        }
+                    }
+                    else if (selected == 1)
+                    {
+                        if (trans < 3)
+                        {
+                            this.trans++;
+                        }
+                        else
+                        {
+                            i--;
+                        }
+                    }
+                    else if (selected == 2)
+                    {
+                        if (hod < 3)
+                        {
+                            this.hod++;
+                        }
+                        else
+                        {
+                            i--;
+                        }
+                    }
+                    else if (selected == 3)
+                    {
+                        if (kusov < 3)
+                        {
+                            this.kusov++;
+                        }
+                        else
+                        {
+                            i--;
+                        }
+                    }
+                    else if (selected == 4)
+                    {
+                        if (salon < 3)
+                        {
+                            this.salon++;
+                        }
+                        else
+                        {
+                            i--;
+                        }
+                    }
+                }
             }
             else if(rand >= 25)
             {
                 this.img = 20 + random.Next(0, 3);
                 this.price = random.Next(500, 2500);
-                this.cond = 2;
+
+                for (int i = 0; i < 9; i++)
+                {
+                    int selected = random.Next(0, 5);
+
+                    if (selected == 0)
+                    {
+                        if (motor < 3)
+                        {
+                            this.motor++;
+                        }
+                        else
+                        {
+                            i--;
+                        }
+                    }
+                    else if (selected == 1)
+                    {
+                        if (trans < 3)
+                        {
+                            this.trans++;
+                        }
+                        else
+                        {
+                            i--;
+                        }
+                    }
+                    else if (selected == 2)
+                    {
+                        if (hod < 3)
+                        {
+                            this.hod++;
+                        }
+                        else
+                        {
+                            i--;
+                        }
+                    }
+                    else if (selected == 3)
+                    {
+                        if (kusov < 3)
+                        {
+                            this.kusov++;
+                        }
+                        else
+                        {
+                            i--;
+                        }
+                    }
+                    else if (selected == 4)
+                    {
+                        if (salon < 3)
+                        {
+                            this.salon++;
+                        }
+                        else
+                        {
+                            i--;
+                        }
+                    }
+                }
             }
             else if(rand >= 12)
             {
                 this.img = 30 + random.Next(0, 3);
                 this.price = random.Next(2500, 12500);
-                this.cond = 3;
+
+                for (int i = 0; i < 6; i++)
+                {
+                    int selected = random.Next(0, 5);
+
+                    if (selected == 0)
+                    {
+                        if (motor < 3)
+                        {
+                            this.motor++;
+                        }
+                        else
+                        {
+                            i--;
+                        }
+                    }
+                    else if (selected == 1)
+                    {
+                        if (trans < 3)
+                        {
+                            this.trans++;
+                        }
+                        else
+                        {
+                            i--;
+                        }
+                    }
+                    else if (selected == 2)
+                    {
+                        if (hod < 3)
+                        {
+                            this.hod++;
+                        }
+                        else
+                        {
+                            i--;
+                        }
+                    }
+                    else if (selected == 3)
+                    {
+                        if (kusov < 3)
+                        {
+                            this.kusov++;
+                        }
+                        else
+                        {
+                            i--;
+                        }
+                    }
+                    else if (selected == 4)
+                    {
+                        if (salon < 3)
+                        {
+                            this.salon++;
+                        }
+                        else
+                        {
+                            i--;
+                        }
+                    }
+                }
             }
             else if(rand >= 4)
             {
                 this.img = 40 + random.Next(0, 3);
                 this.price = random.Next(12500, 62500);
-                this.cond = 4;
+
+                for (int i = 0; i < 3; i++)
+                {
+                    int selected = random.Next(0, 5);
+
+                    if (selected == 0)
+                    {
+                        if (motor < 3)
+                        {
+                            this.motor++;
+                        }
+                        else
+                        {
+                            i--;
+                        }
+                    }
+                    else if (selected == 1)
+                    {
+                        if (trans < 3)
+                        {
+                            this.trans++;
+                        }
+                        else
+                        {
+                            i--;
+                        }
+                    }
+                    else if (selected == 2)
+                    {
+                        if (hod < 3)
+                        {
+                            this.hod++;
+                        }
+                        else
+                        {
+                            i--;
+                        }
+                    }
+                    else if (selected == 3)
+                    {
+                        if (kusov < 3)
+                        {
+                            this.kusov++;
+                        }
+                        else
+                        {
+                            i--;
+                        }
+                    }
+                    else if (selected == 4)
+                    {
+                        if (salon < 3)
+                        {
+                            this.salon++;
+                        }
+                        else
+                        {
+                            i--;
+                        }
+                    }
+                }
             }
             else
             {
                 this.img = 50 + random.Next(0, 3);
                 this.price = random.Next(62500, 625000);
-                this.cond = 5;
             }
             this.price *= 1000;
         }
@@ -121,12 +373,35 @@ namespace ProjectPerekup.Classes
         public Image getImg() //будем брать из массива модели по номеру картинки
         { return cars[img/10][img%10].img; }
 
-        public string getCond()
-        { return conditions[cond]; }
+        public int getCond()
+        {
+            if(motor + trans + hod + kusov + salon > 9)
+            {
+                return 1;
+            }
+            else if(motor + trans + hod + kusov + salon > 6)
+            {
+                return 2;
+            }
+            else if(motor + trans + hod + kusov + salon > 3)
+            {
+                return 3;
+            }
+            else if(motor + trans + hod + kusov + salon > 0)
+            {
+                return 4;
+            }
+            else
+            {
+                return 5;
+            }
+        }
+        public string getCondText()
+        { return conditions[getCond()]; }
 
         public override string ToString()
         {
-            return $"{cars[img / 10][img % 10].name}\nСостояние: {conditions[cond]}";
+            return $"{cars[img / 10][img % 10].name}\nСостояние: {conditions[getCond()]}";
         }
         public string PriceToString()
         {

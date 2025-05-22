@@ -126,7 +126,6 @@
             hodlabel.Size = new Size(222, 52);
             hodlabel.TabIndex = 6;
             hodlabel.Text = "Ходовая        Повреждения: тяжелые";
-            hodlabel.Click += label2_Click;
             // 
             // kusbutton
             // 
@@ -234,21 +233,21 @@
             ClientSize = new Size(784, 561);
             Controls.Add(editprice);
             Controls.Add(editpricelabel);
-            Controls.Add(confirmbutton);
-            Controls.Add(cancelbutton);
             Controls.Add(editcond);
             Controls.Add(editname);
-            Controls.Add(salonbutton);
             Controls.Add(salonlabel);
-            Controls.Add(kusbutton);
             Controls.Add(kuslabel);
-            Controls.Add(hodbutton);
             Controls.Add(hodlabel);
-            Controls.Add(transbutton);
-            Controls.Add(translabel);
-            Controls.Add(motorbutton);
             Controls.Add(labelmoneyedit);
+            Controls.Add(translabel);
             Controls.Add(motorlabel);
+            Controls.Add(confirmbutton);
+            Controls.Add(cancelbutton);
+            Controls.Add(salonbutton);
+            Controls.Add(kusbutton);
+            Controls.Add(hodbutton);
+            Controls.Add(transbutton);
+            Controls.Add(motorbutton);
             Controls.Add(editcarimg);
             MinimumSize = new Size(800, 600);
             Name = "CarEdit";

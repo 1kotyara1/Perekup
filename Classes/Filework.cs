@@ -18,8 +18,13 @@ namespace ProjectPerekup.Classes
             foreach (Car car in cars) 
             {
                 data.Add(car.price.ToString());
-                data.Add(car.cond.ToString());
                 data.Add(car.img.ToString());
+
+                data.Add(car.motor.ToString());
+                data.Add(car.trans.ToString());
+                data.Add(car.hod.ToString());
+                data.Add(car.kusov.ToString());
+                data.Add(car.salon.ToString());
             }
 
             data.Add(money.ToString());
@@ -44,23 +49,62 @@ namespace ProjectPerekup.Classes
 
             if (File.Exists(path))
             {
-                string[] data = File.ReadAllLines(path);
-                int i = 0;
-
-                for(int j = 0; j < carslen; j++)
+                try
                 {
-                    cars.Add(new Car(Convert.ToInt32(data[i++]), Convert.ToInt32(data[i++]), Convert.ToInt32(data[i++])));
+                    string[] data = File.ReadAllLines(path);
+                    int i = 0;
+
+                    for (int j = 0; j < carslen; j++)
+                    {
+                        cars.Add(new Car(Convert.ToInt32(data[i++]), Convert.ToInt32(data[i++]), Convert.ToInt32(data[i++]), Convert.ToInt32(data[i++]), Convert.ToInt32(data[i++]), Convert.ToInt32(data[i++]), Convert.ToInt32(data[i++])));
+                    }
+
+                    money = (long)Convert.ToDouble(data[i++]);
+                    sold = Convert.ToInt32(data[i++]);
+                    bought = Convert.ToInt32(data[i++]);
+                    spent = Convert.ToInt32(data[i++]);
+                    recieved = Convert.ToInt32(data[i++]);
+
+                    for (int j = 0; j < skillsname.Length; j++)
+                    {
+                        skills[j] = Convert.ToInt32(data[i++]);
+                    }
                 }
-
-                money = (long)Convert.ToDouble(data[i++]);
-                sold = Convert.ToInt32(data[i++]);
-                bought = Convert.ToInt32(data[i++]);
-                spent = Convert.ToInt32(data[i++]);
-                recieved = Convert.ToInt32(data[i++]);
-
-                for (int j = 0;j < skillsname.Length; j++)
+                catch 
                 {
-                    skills[j] = Convert.ToInt32(data[i++]);
+                    List<string> data = new List<string>();
+
+                    for (int j = 0; j < carslen; j++)
+                    {
+                        data.Add("0");
+                        data.Add("0");
+
+                        data.Add("0");
+                        data.Add("0");
+                        data.Add("0");
+                        data.Add("0");
+                        data.Add("0");
+                        cars.Add(new Car());
+                    }
+
+                    data.Add("0");
+                    money = 0;
+                    data.Add("0");
+                    sold = 0;
+                    data.Add("0");
+                    bought = 0;
+                    data.Add("0");
+                    spent = 0;
+                    data.Add("0");
+                    recieved = 0;
+
+                    for (int j = 0; j < skillsname.Length; j++)
+                    {
+                        data.Add("0");
+                        skills[j] = 0;
+                    }
+
+                    File.WriteAllLines(path, data);
                 }
             }
             else
@@ -69,6 +113,11 @@ namespace ProjectPerekup.Classes
 
                 for(int j = 0; j < carslen; j++)
                 {
+                    data.Add("0");
+                    data.Add("0");
+
+                    data.Add("0");
+                    data.Add("0");
                     data.Add("0");
                     data.Add("0");
                     data.Add("0");
