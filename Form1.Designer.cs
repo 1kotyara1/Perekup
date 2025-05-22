@@ -631,7 +631,7 @@
             // 
             skill5.Location = new Point(433, 228);
             skill5.Name = "skill5";
-            skill5.Size = new Size(343, 29);
+            skill5.Size = new Size(337, 29);
             skill5.TabIndex = 9;
             skill5.Text = "Название: 0 уровень";
             skill5.TextAlign = ContentAlignment.TopCenter;
@@ -640,7 +640,7 @@
             // 
             skill4.Location = new Point(433, 199);
             skill4.Name = "skill4";
-            skill4.Size = new Size(343, 29);
+            skill4.Size = new Size(337, 29);
             skill4.TabIndex = 8;
             skill4.Text = "Название: 0 уровень";
             skill4.TextAlign = ContentAlignment.TopCenter;
@@ -649,7 +649,7 @@
             // 
             skill3.Location = new Point(433, 170);
             skill3.Name = "skill3";
-            skill3.Size = new Size(343, 29);
+            skill3.Size = new Size(337, 29);
             skill3.TabIndex = 7;
             skill3.Text = "Название: 0 уровень";
             skill3.TextAlign = ContentAlignment.TopCenter;
@@ -658,7 +658,7 @@
             // 
             skill2.Location = new Point(433, 141);
             skill2.Name = "skill2";
-            skill2.Size = new Size(343, 29);
+            skill2.Size = new Size(337, 29);
             skill2.TabIndex = 6;
             skill2.Text = "Название: 0 уровень";
             skill2.TextAlign = ContentAlignment.TopCenter;
@@ -667,7 +667,7 @@
             // 
             skill1.Location = new Point(433, 112);
             skill1.Name = "skill1";
-            skill1.Size = new Size(343, 29);
+            skill1.Size = new Size(337, 29);
             skill1.TabIndex = 5;
             skill1.Text = "Название: 0 уровень";
             skill1.TextAlign = ContentAlignment.TopCenter;
@@ -676,7 +676,7 @@
             // 
             skill0.Location = new Point(433, 83);
             skill0.Name = "skill0";
-            skill0.Size = new Size(343, 29);
+            skill0.Size = new Size(337, 29);
             skill0.TabIndex = 4;
             skill0.Text = "Название: 0 уровень";
             skill0.TextAlign = ContentAlignment.TopCenter;
@@ -694,7 +694,7 @@
             // 
             skillslabel.Location = new Point(433, 50);
             skillslabel.Name = "skillslabel";
-            skillslabel.Size = new Size(343, 29);
+            skillslabel.Size = new Size(337, 29);
             skillslabel.TabIndex = 2;
             skillslabel.Text = "Навыки:";
             skillslabel.TextAlign = ContentAlignment.TopCenter;

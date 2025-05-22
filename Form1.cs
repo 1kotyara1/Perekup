@@ -158,6 +158,24 @@ namespace ProjectPerekup
             {
                 stattitle.Height = statistics.Height / 10 + 8;
                 stattitle.Font = new Font("Segoe UI", stattitle.Height / 2);
+
+                spentmoney.Location = new Point(12, stattitle.Height);
+                recievedmoney.Location = new Point(12, stattitle.Height + spentmoney.Height);
+                soldcars.Location = new Point(12, recievedmoney.Location.Y + recievedmoney.Height + 6);
+                boughtcars.Location = new Point(12, soldcars.Location.Y + soldcars.Height);
+
+                spentmoney.Width = Convert.ToInt32((statistics.Width - 42) / 2);
+                recievedmoney.Width = spentmoney.Width;
+                soldcars.Width = spentmoney.Width;
+                boughtcars.Width = spentmoney.Width;
+
+                skillslabel.Location = new Point(32 + spentmoney.Width, spentmoney.Location.Y);
+                skill0.Location = new Point(skillslabel.Location.X, skillslabel.Location.Y + skillslabel.Height + 4);
+                skill1.Location = new Point(skillslabel.Location.X, skill0.Location.Y + skillslabel.Height);
+                skill2.Location = new Point(skillslabel.Location.X, skill1.Location.Y + skillslabel.Height);
+                skill3.Location = new Point(skillslabel.Location.X, skill2.Location.Y + skillslabel.Height);
+                skill4.Location = new Point(skillslabel.Location.X, skill3.Location.Y + skillslabel.Height);
+                skill5.Location = new Point(skillslabel.Location.X, skill4.Location.Y + skillslabel.Height);
             }
         }
         private void InitializeGarage()
