@@ -16,6 +16,7 @@ namespace ProjectPerekup
         private long spent;
         private long recieved;
         private int[] skills;
+        private string test;
 
 
 
