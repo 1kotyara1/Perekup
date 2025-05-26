@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProjectPerekup.Classes
 {
-    internal class Car
+    public class Car
     {
         private static List<List<(string name, Image img)>> cars = new List<List<(string, Image)>> //если хотите изменить и не наводить красоту то просто после изменения напишите яромиру об изменении этого массива
         {                            //Валерий                                        Яромир                                         Николай

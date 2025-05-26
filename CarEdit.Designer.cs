@@ -36,16 +36,14 @@
             translabel = new Label();
             hodbutton = new Button();
             hodlabel = new Label();
-            kusbutton = new Button();
-            kuslabel = new Label();
+            kusovbutton = new Button();
+            kusovlabel = new Label();
             salonbutton = new Button();
             salonlabel = new Label();
-            editname = new Label();
-            editcond = new Label();
+            editcarlabel = new Label();
             cancelbutton = new Button();
             confirmbutton = new Button();
-            editpricelabel = new Label();
-            editprice = new Label();
+            editpricesum = new Label();
             ((System.ComponentModel.ISupportInitialize)editcarimg).BeginInit();
             SuspendLayout();
             // 
@@ -88,6 +86,7 @@
             motorbutton.TabIndex = 3;
             motorbutton.Text = "Починить - 1000₽";
             motorbutton.UseVisualStyleBackColor = true;
+            motorbutton.Click += motorbutton_Click;
             // 
             // transbutton
             // 
@@ -98,6 +97,7 @@
             transbutton.TabIndex = 5;
             transbutton.Text = "Починить - 1000₽";
             transbutton.UseVisualStyleBackColor = true;
+            transbutton.Click += transbutton_Click;
             // 
             // translabel
             // 
@@ -117,6 +117,7 @@
             hodbutton.TabIndex = 7;
             hodbutton.Text = "Починить - 1000₽";
             hodbutton.UseVisualStyleBackColor = true;
+            hodbutton.Click += hodbutton_Click;
             // 
             // hodlabel
             // 
@@ -127,25 +128,26 @@
             hodlabel.TabIndex = 6;
             hodlabel.Text = "Ходовая        Повреждения: тяжелые";
             // 
-            // kusbutton
+            // kusovbutton
             // 
-            kusbutton.Font = new Font("Segoe UI", 14F);
-            kusbutton.Location = new Point(550, 67);
-            kusbutton.Name = "kusbutton";
-            kusbutton.Size = new Size(222, 40);
-            kusbutton.TabIndex = 9;
-            kusbutton.Text = "Починить - 1000₽";
-            kusbutton.UseVisualStyleBackColor = true;
+            kusovbutton.Font = new Font("Segoe UI", 14F);
+            kusovbutton.Location = new Point(550, 67);
+            kusovbutton.Name = "kusovbutton";
+            kusovbutton.Size = new Size(222, 40);
+            kusovbutton.TabIndex = 9;
+            kusovbutton.Text = "Починить - 1000₽";
+            kusovbutton.UseVisualStyleBackColor = true;
+            kusovbutton.Click += kusovbutton_Click;
             // 
-            // kuslabel
+            // kusovlabel
             // 
-            kuslabel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            kuslabel.Font = new Font("Segoe UI", 14F);
-            kuslabel.Location = new Point(550, 12);
-            kuslabel.Name = "kuslabel";
-            kuslabel.Size = new Size(222, 52);
-            kuslabel.TabIndex = 8;
-            kuslabel.Text = "Кузов        Повреждения: тяжелые";
+            kusovlabel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            kusovlabel.Font = new Font("Segoe UI", 14F);
+            kusovlabel.Location = new Point(550, 12);
+            kusovlabel.Name = "kusovlabel";
+            kusovlabel.Size = new Size(222, 52);
+            kusovlabel.TabIndex = 8;
+            kusovlabel.Text = "Кузов        Повреждения: тяжелые";
             // 
             // salonbutton
             // 
@@ -156,6 +158,7 @@
             salonbutton.TabIndex = 11;
             salonbutton.Text = "Починить - 1000₽";
             salonbutton.UseVisualStyleBackColor = true;
+            salonbutton.Click += salonbutton_Click;
             // 
             // salonlabel
             // 
@@ -166,25 +169,15 @@
             salonlabel.TabIndex = 10;
             salonlabel.Text = "Салон        Повреждения: тяжелые";
             // 
-            // editname
+            // editcarlabel
             // 
-            editname.Font = new Font("Segoe UI", 14F);
-            editname.Location = new Point(240, 315);
-            editname.Name = "editname";
-            editname.Size = new Size(300, 31);
-            editname.TabIndex = 12;
-            editname.Text = "супермашинка";
-            editname.TextAlign = ContentAlignment.TopCenter;
-            // 
-            // editcond
-            // 
-            editcond.Font = new Font("Segoe UI", 14F);
-            editcond.Location = new Point(240, 377);
-            editcond.Name = "editcond";
-            editcond.Size = new Size(300, 31);
-            editcond.TabIndex = 13;
-            editcond.Text = "Состояние: норм";
-            editcond.TextAlign = ContentAlignment.TopCenter;
+            editcarlabel.Font = new Font("Segoe UI", 14F);
+            editcarlabel.Location = new Point(240, 315);
+            editcarlabel.Name = "editcarlabel";
+            editcarlabel.Size = new Size(300, 149);
+            editcarlabel.TabIndex = 12;
+            editcarlabel.Text = "            супермашинка                         цена:миллеард           состояние: по кайфу";
+            editcarlabel.TextAlign = ContentAlignment.TopCenter;
             // 
             // cancelbutton
             // 
@@ -195,6 +188,7 @@
             cancelbutton.TabIndex = 14;
             cancelbutton.Text = "Отмена";
             cancelbutton.UseVisualStyleBackColor = true;
+            cancelbutton.Click += cancelbutton_Click;
             // 
             // confirmbutton
             // 
@@ -205,38 +199,27 @@
             confirmbutton.TabIndex = 15;
             confirmbutton.Text = "Изменить";
             confirmbutton.UseVisualStyleBackColor = true;
+            confirmbutton.Click += confirmbutton_Click;
             // 
-            // editpricelabel
+            // editpricesum
             // 
-            editpricelabel.Font = new Font("Segoe UI", 14F);
-            editpricelabel.Location = new Point(240, 464);
-            editpricelabel.Name = "editpricelabel";
-            editpricelabel.Size = new Size(300, 27);
-            editpricelabel.TabIndex = 16;
-            editpricelabel.Text = "Стоимость ремонта: 5000₽";
-            editpricelabel.TextAlign = ContentAlignment.BottomCenter;
-            // 
-            // editprice
-            // 
-            editprice.Font = new Font("Segoe UI", 14F);
-            editprice.Location = new Point(240, 346);
-            editprice.Name = "editprice";
-            editprice.Size = new Size(300, 31);
-            editprice.TabIndex = 17;
-            editprice.Text = "Стоимость машины: 3500₽";
-            editprice.TextAlign = ContentAlignment.TopCenter;
+            editpricesum.Font = new Font("Segoe UI", 14F);
+            editpricesum.Location = new Point(240, 464);
+            editpricesum.Name = "editpricesum";
+            editpricesum.Size = new Size(300, 27);
+            editpricesum.TabIndex = 16;
+            editpricesum.Text = "Стоимость ремонта: 5000₽";
+            editpricesum.TextAlign = ContentAlignment.BottomCenter;
             // 
             // CarEdit
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(784, 561);
-            Controls.Add(editprice);
-            Controls.Add(editpricelabel);
-            Controls.Add(editcond);
-            Controls.Add(editname);
+            Controls.Add(editpricesum);
+            Controls.Add(editcarlabel);
             Controls.Add(salonlabel);
-            Controls.Add(kuslabel);
+            Controls.Add(kusovlabel);
             Controls.Add(hodlabel);
             Controls.Add(labelmoneyedit);
             Controls.Add(translabel);
@@ -244,7 +227,7 @@
             Controls.Add(confirmbutton);
             Controls.Add(cancelbutton);
             Controls.Add(salonbutton);
-            Controls.Add(kusbutton);
+            Controls.Add(kusovbutton);
             Controls.Add(hodbutton);
             Controls.Add(transbutton);
             Controls.Add(motorbutton);
@@ -266,15 +249,13 @@
         private Label translabel;
         private Button hodbutton;
         private Label hodlabel;
-        private Button kusbutton;
-        private Label kuslabel;
+        private Button kusovbutton;
+        private Label kusovlabel;
         private Button salonbutton;
         private Label salonlabel;
-        private Label editname;
-        private Label editcond;
+        private Label editcarlabel;
         private Button cancelbutton;
         private Button confirmbutton;
-        private Label editpricelabel;
-        private Label editprice;
+        private Label editpricesum;
     }
 }

@@ -190,27 +190,27 @@ namespace ProjectPerekup
         {
             car0img.MouseEnter += (sender, e) => car0text.Visible = true;
             car0img.MouseLeave += (sender, e) => hideCarText(0);
-            car0img.Click += (sender, e) => { if (cars[0].img != 0) { hideOtherCarText(); selectedcar = 0; buttoneditcar.Visible = true; } };
+            car0img.Click += (sender, e) => { if (cars[0].img != 0) { if(selectedcar != 0) hideOtherCarText(); selectedcar = 0; buttoneditcar.Visible = true; } };
 
             car1img.MouseEnter += (sender, e) => car1text.Visible = true;
             car1img.MouseLeave += (sender, e) => hideCarText(1);
-            car1img.Click += (sender, e) => { if (cars[1].img != 0) { hideOtherCarText(); selectedcar = 1; buttoneditcar.Visible = true; } };
+            car1img.Click += (sender, e) => { if (cars[1].img != 0) { if (selectedcar != 1) hideOtherCarText(); selectedcar = 1; buttoneditcar.Visible = true; } };
 
             car2img.MouseEnter += (sender, e) => car2text.Visible = true;
             car2img.MouseLeave += (sender, e) => hideCarText(2);
-            car2img.Click += (sender, e) => { if (cars[2].img != 0) { hideOtherCarText(); selectedcar = 2; buttoneditcar.Visible = true; } };
+            car2img.Click += (sender, e) => { if (cars[2].img != 0) { if (selectedcar != 2) hideOtherCarText(); selectedcar = 2; buttoneditcar.Visible = true; } };
 
             car3img.MouseEnter += (sender, e) => car3text.Visible = true;
             car3img.MouseLeave += (sender, e) => hideCarText(3);
-            car3img.Click += (sender, e) => { if (cars[3].img != 0) { hideOtherCarText(); selectedcar = 3; buttoneditcar.Visible = true; } };
+            car3img.Click += (sender, e) => { if (cars[3].img != 0) { if (selectedcar != 3) hideOtherCarText(); selectedcar = 3; buttoneditcar.Visible = true; } };
 
             car4img.MouseEnter += (sender, e) => car4text.Visible = true;
             car4img.MouseLeave += (sender, e) => hideCarText(4);
-            car4img.Click += (sender, e) => { if (cars[4].img != 0) { hideOtherCarText(); selectedcar = 4; buttoneditcar.Visible = true; } };
+            car4img.Click += (sender, e) => { if (cars[4].img != 0) { if (selectedcar != 4) hideOtherCarText(); selectedcar = 4; buttoneditcar.Visible = true; } };
 
             car5img.MouseEnter += (sender, e) => car5text.Visible = true;
             car5img.MouseLeave += (sender, e) => hideCarText(5);
-            car5img.Click += (sender, e) => { if (cars[5].img != 0) { hideOtherCarText(); selectedcar = 5; buttoneditcar.Visible = true; } };
+            car5img.Click += (sender, e) => { if (cars[5].img != 0) { if (selectedcar != 5) hideOtherCarText(); selectedcar = 5; buttoneditcar.Visible = true; } };
 
 
         }
@@ -383,8 +383,9 @@ namespace ProjectPerekup
         { 
             if(tabs.SelectedIndex == 0)
             {
+                hideOtherCarText();
                 selectedcar = -1; 
-                buttoneditcar.Visible = false; 
+                buttoneditcar.Visible = false;
             }
             else if(tabs.SelectedIndex == 3)
             {
@@ -395,12 +396,27 @@ namespace ProjectPerekup
 
         private void buttoneditcar_Click(object sender, EventArgs e)
         {
-            
+            Car editcar;
+            long editbal;
 
-
+            if(money == 0)
+            {
+                MessageBox.Show("У вас нет денег", "Недостаточно средств", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            CarEdit.SendData(money, cars[selectedcar]);
+            if(CarEdit.Instance.ShowDialog() == DialogResult.OK)
+            {
+                CarEdit.RecieveData(out editbal, out editcar);
+                money = editbal;
+                cars[selectedcar] = editcar;
+                Filework.Save(cars, money, sold, bought, spent, recieved, skills, skillsname);
+                reLoadGarage();
+                updMoney();
+            }
+            hideOtherCarText();
             buttoneditcar.Visible = false;
-            Filework.Save(cars, money, sold, bought, spent, recieved, skills, skillsname);
-            reLoadGarage();
+            selectedcar = -1;
         }
 
         private void reloadcars_Click(object sender, EventArgs e)
