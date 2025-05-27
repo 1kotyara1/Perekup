@@ -41,7 +41,6 @@
             car4text = new Label();
             car5text = new Label();
             carstat0 = new Label();
-            carstat1 = new Label();
             carprice = new Label();
             cancelbutton = new Button();
             sellbutton = new Button();
@@ -115,109 +114,114 @@
             // 
             // car1text
             // 
-            car1text.BackColor = SystemColors.ControlDark;
+            car1text.BackColor = SystemColors.Control;
             car1text.Font = new Font("Segoe UI", 12F);
             car1text.Location = new Point(143, 135);
             car1text.Name = "car1text";
             car1text.Size = new Size(120, 50);
             car1text.TabIndex = 6;
             car1text.Text = "бананомобиль 666₽";
+            car1text.Visible = false;
             // 
             // car2text
             // 
-            car2text.BackColor = SystemColors.ControlDark;
+            car2text.BackColor = SystemColors.Control;
             car2text.Font = new Font("Segoe UI", 12F);
             car2text.Location = new Point(269, 135);
             car2text.Name = "car2text";
             car2text.Size = new Size(120, 50);
             car2text.TabIndex = 7;
             car2text.Text = "бананомобиль 666₽";
+            car2text.Visible = false;
             // 
             // car0text
             // 
-            car0text.BackColor = SystemColors.ControlDark;
+            car0text.BackColor = SystemColors.Control;
             car0text.Font = new Font("Segoe UI", 12F);
             car0text.Location = new Point(17, 135);
             car0text.Name = "car0text";
             car0text.Size = new Size(120, 50);
             car0text.TabIndex = 8;
             car0text.Text = "бананомобиль 666₽";
+            car0text.Visible = false;
             // 
             // car3text
             // 
-            car3text.BackColor = SystemColors.ControlDark;
+            car3text.BackColor = SystemColors.Control;
             car3text.Font = new Font("Segoe UI", 12F);
             car3text.Location = new Point(395, 135);
             car3text.Name = "car3text";
             car3text.Size = new Size(120, 50);
             car3text.TabIndex = 9;
             car3text.Text = "бананомобиль 666₽";
+            car3text.Visible = false;
             // 
             // car4text
             // 
-            car4text.BackColor = SystemColors.ControlDark;
+            car4text.BackColor = SystemColors.Control;
             car4text.Font = new Font("Segoe UI", 12F);
             car4text.Location = new Point(521, 135);
             car4text.Name = "car4text";
             car4text.Size = new Size(120, 50);
             car4text.TabIndex = 10;
             car4text.Text = "бананомобиль 666₽";
+            car4text.Visible = false;
             // 
             // car5text
             // 
-            car5text.BackColor = SystemColors.ControlDark;
+            car5text.BackColor = SystemColors.Control;
             car5text.Font = new Font("Segoe UI", 12F);
             car5text.Location = new Point(647, 135);
             car5text.Name = "car5text";
             car5text.Size = new Size(120, 50);
             car5text.TabIndex = 11;
             car5text.Text = "бананомобиль 666₽";
+            car5text.Visible = false;
             // 
             // carstat0
             // 
-            carstat0.BackColor = SystemColors.ControlDark;
-            carstat0.Location = new Point(17, 230);
+            carstat0.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            carstat0.BackColor = SystemColors.Control;
+            carstat0.Font = new Font("Segoe UI", 14F);
+            carstat0.Location = new Point(17, 210);
             carstat0.Name = "carstat0";
-            carstat0.Size = new Size(246, 100);
+            carstat0.Size = new Size(750, 129);
             carstat0.TabIndex = 12;
-            carstat0.Text = "label7";
-            // 
-            // carstat1
-            // 
-            carstat1.BackColor = SystemColors.ControlDark;
-            carstat1.Location = new Point(521, 230);
-            carstat1.Name = "carstat1";
-            carstat1.Size = new Size(246, 100);
-            carstat1.TabIndex = 13;
-            carstat1.Text = "label8";
-            carstat1.TextAlign = ContentAlignment.TopRight;
+            carstat0.Text = "aboba";
+            carstat0.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // carprice
             // 
-            carprice.BackColor = SystemColors.ControlDark;
-            carprice.Location = new Point(289, 376);
+            carprice.BackColor = SystemColors.Control;
+            carprice.Font = new Font("Segoe UI", 14F);
+            carprice.Location = new Point(269, 364);
             carprice.Name = "carprice";
-            carprice.Size = new Size(206, 35);
+            carprice.Size = new Size(246, 35);
             carprice.TabIndex = 14;
-            carprice.Text = "label9";
+            carprice.Text = "Итоговая цена: 666₽";
+            carprice.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // cancelbutton
             // 
-            cancelbutton.Location = new Point(289, 414);
+            cancelbutton.Font = new Font("Segoe UI", 14F);
+            cancelbutton.Location = new Point(269, 402);
             cancelbutton.Name = "cancelbutton";
-            cancelbutton.Size = new Size(100, 35);
+            cancelbutton.Size = new Size(120, 47);
             cancelbutton.TabIndex = 15;
-            cancelbutton.Text = "отмена";
+            cancelbutton.Text = "Отмена";
             cancelbutton.UseVisualStyleBackColor = true;
+            cancelbutton.Click += cancelbutton_Click;
             // 
             // sellbutton
             // 
-            sellbutton.Location = new Point(395, 414);
+            sellbutton.Font = new Font("Segoe UI", 14F);
+            sellbutton.Location = new Point(395, 402);
             sellbutton.Name = "sellbutton";
-            sellbutton.Size = new Size(100, 35);
+            sellbutton.Size = new Size(120, 47);
             sellbutton.TabIndex = 16;
             sellbutton.Text = "Продать";
             sellbutton.UseVisualStyleBackColor = true;
+            sellbutton.Click += sellbutton_Click;
             // 
             // CarSell
             // 
@@ -227,7 +231,6 @@
             Controls.Add(sellbutton);
             Controls.Add(cancelbutton);
             Controls.Add(carprice);
-            Controls.Add(carstat1);
             Controls.Add(carstat0);
             Controls.Add(car5text);
             Controls.Add(car4text);
@@ -269,7 +272,6 @@
         private Label car4text;
         private Label car5text;
         private Label carstat0;
-        private Label carstat1;
         private Label carprice;
         private Button cancelbutton;
         private Button sellbutton;

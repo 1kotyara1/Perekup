@@ -109,7 +109,6 @@ namespace ProjectPerekup
             labelmoneyedit.Width = cancelbutton.Location.X - 14;
             labelmoneyedit.Font = new Font("Segoe UI", 14 + Convert.ToInt32((Height + Width - 1400) / 300));
         }
-
         private void InitializeForm()
         {
             if (balance != 0)

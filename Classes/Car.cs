@@ -372,19 +372,19 @@ namespace ProjectPerekup.Classes
 
         public int getCond()
         {
-            if(motor + trans + hod + kusov + salon > 9)
+            if(getCondSum() > 9)
             {
                 return 1;
             }
-            else if(motor + trans + hod + kusov + salon > 6)
+            else if(getCondSum() > 6)
             {
                 return 2;
             }
-            else if(motor + trans + hod + kusov + salon > 3)
+            else if(getCondSum() > 3)
             {
                 return 3;
             }
-            else if(motor + trans + hod + kusov + salon > 0)
+            else if(getCondSum() > 0)
             {
                 return 4;
             }
@@ -395,10 +395,17 @@ namespace ProjectPerekup.Classes
         }
         public string getCondText()
         { return conditions[getCond()]; }
-
+        public int getCondSum()
+        {
+            return motor + trans + hod + kusov + salon;
+        }
         public override string ToString()
         {
             return $"{cars[img / 10][img % 10].name}\nСостояние: {conditions[getCond()]}";
+        }
+        public string ToString(int a)
+        {
+            return $"{cars[img / 10][img % 10].name}\n{conditions[getCond()]}";
         }
         public string PriceToString()
         {

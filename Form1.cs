@@ -423,10 +423,11 @@ namespace ProjectPerekup
             buttoneditcar.Visible = false;
             selectedcar = -1;
         }
+
         private void buttonavitosell_Click(object sender, EventArgs e)
         {
 
-            if(findCar() == -1)
+            if (findCar() == -1)
             {
                 MessageBox.Show("Нечего продавать", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -435,7 +436,7 @@ namespace ProjectPerekup
                 List<Car> editcars;
                 long editbal;
                 CarSell.SendData(money, cars);
-                if(CarSell.Instance.ShowDialog() == DialogResult.OK)
+                if (CarSell.Instance.ShowDialog() == DialogResult.OK)
                 {
                     CarSell.RecieveData(out editbal, out editcars);
                     recieved += (editbal - money);
@@ -443,11 +444,11 @@ namespace ProjectPerekup
                     money = editbal;
                     cars = editcars;
                     Filework.Save(cars, money, sold, bought, spent, recieved, skills, skillsname);
+                    updMoney();
                     reLoadGarage();
                 }
             }
         }
-
         private void reloadcars_Click(object sender, EventArgs e)
         {
             var rand = new Random();
@@ -561,5 +562,17 @@ namespace ProjectPerekup
             }
         }
 
+        private void Stepanichbutton_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void Vasiliybutton_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void Fitservicebutton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

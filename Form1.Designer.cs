@@ -319,6 +319,7 @@
             Stepanichbutton.TabIndex = 3;
             Stepanichbutton.Text = "Степаныч";
             Stepanichbutton.UseVisualStyleBackColor = true;
+            Stepanichbutton.Click += Stepanichbutton_Click;
             // 
             // Fitservicebutton
             // 
@@ -329,6 +330,7 @@
             Fitservicebutton.TabIndex = 2;
             Fitservicebutton.Text = "FitService";
             Fitservicebutton.UseVisualStyleBackColor = true;
+            Fitservicebutton.Click += Fitservicebutton_Click;
             // 
             // Vasiliybutton
             // 
@@ -339,6 +341,7 @@
             Vasiliybutton.TabIndex = 1;
             Vasiliybutton.Text = "Василий";
             Vasiliybutton.UseVisualStyleBackColor = true;
+            Vasiliybutton.Click += Vasiliybutton_Click;
             // 
             // citypicture
             // 
