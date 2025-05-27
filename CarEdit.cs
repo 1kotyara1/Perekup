@@ -54,6 +54,7 @@ namespace ProjectPerekup
         {
             balance = editbalance;
             car = editcar;
+            Instance.Text = car.getName();
             Instance.InitializeForm();
         }
         public static void RecieveData(out long sendbalance, out Car sendcar)
@@ -65,6 +66,48 @@ namespace ProjectPerekup
         public CarEdit()
         {
             InitializeComponent();
+        }
+
+        private void CarEdit_Resize(object sender, EventArgs e)
+        {
+            int width = Width - 16;
+            int height = Height - 39;
+
+            if (Convert.ToInt32((width - Height / 2 - 24) / 2) >= 230)
+            {
+                editcarimg.Height = Height / 2;
+                editcarimg.Width = editcarimg.Height;
+            }
+            else
+            {
+                editcarimg.Width = Width - (motorlabel.Width * 2) - 56;
+                editcarimg.Height = editcarimg.Width;
+            }
+            editcarlabel.Width = editcarimg.Width;
+            cancelbutton.Width = Convert.ToInt32(editcarimg.Width / 2) - 6;
+            confirmbutton.Width = cancelbutton.Width;
+            editpricesum.Width = editcarimg.Width;
+
+            editcarimg.Location = new Point(Convert.ToInt32((width - editcarimg.Width) / 2), 12);
+            editcarlabel.Location = new Point(editcarimg.Location.X, editcarimg.Location.Y + editcarimg.Height + 3);
+
+            motorlabel.Location = new Point(editcarimg.Location.X - 228, 12);
+            motorbutton.Location = new Point(motorlabel.Location.X, 67);
+            translabel.Location = new Point(motorlabel.Location.X, motorlabel.Location.Y + 95 + Convert.ToInt32((editcarimg.Height - 285) / 2));
+            transbutton.Location = new Point(motorlabel.Location.X, translabel.Location.Y + 55);
+            hodlabel.Location = new Point(motorlabel.Location.X, translabel.Location.Y + 95 + Convert.ToInt32((editcarimg.Height - 285) / 2));
+            hodbutton.Location = new Point(motorlabel.Location.X, hodlabel.Location.Y + 55);
+            kusovlabel.Location = new Point(editcarimg.Location.X + editcarimg.Width + 6, motorlabel.Location.Y);
+            kusovbutton.Location = new Point(kusovlabel.Location.X, motorbutton.Location.Y);
+            salonlabel.Location = new Point(kusovlabel.Location.X, translabel.Location.Y);
+            salonbutton.Location = new Point(kusovlabel.Location.X, transbutton.Location.Y);
+
+            cancelbutton.Location = new Point(editcarimg.Location.X, Height - 98);
+            confirmbutton.Location = new Point(cancelbutton.Location.X + cancelbutton.Width + 12, cancelbutton.Location.Y);
+            editpricesum.Location = new Point(cancelbutton.Location.X, cancelbutton.Location.Y - 38);
+
+            labelmoneyedit.Width = cancelbutton.Location.X - 14;
+            labelmoneyedit.Font = new Font("Segoe UI", 14 + Convert.ToInt32((Height + Width - 1400) / 300));
         }
 
         private void InitializeForm()

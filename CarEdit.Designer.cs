@@ -59,6 +59,7 @@
             // 
             // motorlabel
             // 
+            motorlabel.BackColor = SystemColors.Control;
             motorlabel.Font = new Font("Segoe UI", 14F);
             motorlabel.Location = new Point(12, 12);
             motorlabel.Name = "motorlabel";
@@ -91,7 +92,7 @@
             // transbutton
             // 
             transbutton.Font = new Font("Segoe UI", 14F);
-            transbutton.Location = new Point(12, 175);
+            transbutton.Location = new Point(12, 168);
             transbutton.Name = "transbutton";
             transbutton.Size = new Size(222, 40);
             transbutton.TabIndex = 5;
@@ -102,7 +103,7 @@
             // translabel
             // 
             translabel.Font = new Font("Segoe UI", 14F);
-            translabel.Location = new Point(12, 120);
+            translabel.Location = new Point(12, 113);
             translabel.Name = "translabel";
             translabel.Size = new Size(222, 52);
             translabel.TabIndex = 4;
@@ -111,7 +112,7 @@
             // hodbutton
             // 
             hodbutton.Font = new Font("Segoe UI", 14F);
-            hodbutton.Location = new Point(12, 283);
+            hodbutton.Location = new Point(12, 271);
             hodbutton.Name = "hodbutton";
             hodbutton.Size = new Size(222, 40);
             hodbutton.TabIndex = 7;
@@ -122,7 +123,7 @@
             // hodlabel
             // 
             hodlabel.Font = new Font("Segoe UI", 14F);
-            hodlabel.Location = new Point(12, 228);
+            hodlabel.Location = new Point(12, 216);
             hodlabel.Name = "hodlabel";
             hodlabel.Size = new Size(222, 52);
             hodlabel.TabIndex = 6;
@@ -131,7 +132,7 @@
             // kusovbutton
             // 
             kusovbutton.Font = new Font("Segoe UI", 14F);
-            kusovbutton.Location = new Point(550, 67);
+            kusovbutton.Location = new Point(546, 67);
             kusovbutton.Name = "kusovbutton";
             kusovbutton.Size = new Size(222, 40);
             kusovbutton.TabIndex = 9;
@@ -141,9 +142,8 @@
             // 
             // kusovlabel
             // 
-            kusovlabel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             kusovlabel.Font = new Font("Segoe UI", 14F);
-            kusovlabel.Location = new Point(550, 12);
+            kusovlabel.Location = new Point(546, 12);
             kusovlabel.Name = "kusovlabel";
             kusovlabel.Size = new Size(222, 52);
             kusovlabel.TabIndex = 8;
@@ -152,7 +152,7 @@
             // salonbutton
             // 
             salonbutton.Font = new Font("Segoe UI", 14F);
-            salonbutton.Location = new Point(550, 175);
+            salonbutton.Location = new Point(546, 169);
             salonbutton.Name = "salonbutton";
             salonbutton.Size = new Size(222, 40);
             salonbutton.TabIndex = 11;
@@ -163,7 +163,7 @@
             // salonlabel
             // 
             salonlabel.Font = new Font("Segoe UI", 14F);
-            salonlabel.Location = new Point(550, 120);
+            salonlabel.Location = new Point(546, 114);
             salonlabel.Name = "salonlabel";
             salonlabel.Size = new Size(222, 52);
             salonlabel.TabIndex = 10;
@@ -171,6 +171,7 @@
             // 
             // editcarlabel
             // 
+            editcarlabel.BackColor = SystemColors.Control;
             editcarlabel.Font = new Font("Segoe UI", 14F);
             editcarlabel.Location = new Point(240, 315);
             editcarlabel.Name = "editcarlabel";
@@ -235,6 +236,7 @@
             MinimumSize = new Size(800, 600);
             Name = "CarEdit";
             Text = "CarEdit";
+            Resize += CarEdit_Resize;
             ((System.ComponentModel.ISupportInitialize)editcarimg).EndInit();
             ResumeLayout(false);
         }

@@ -562,6 +562,7 @@
             buttonavitosell.TabIndex = 2;
             buttonavitosell.Text = "Разместить объявление";
             buttonavitosell.UseVisualStyleBackColor = false;
+            buttonavitosell.Click += buttonavitosell_Click;
             // 
             // label1
             // 

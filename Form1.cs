@@ -33,8 +33,8 @@ namespace ProjectPerekup
         }
 
         private void Transform()
-        {   
-            if(garage.Height == 0)
+        {
+            if (garage.Height == 0)
             {
                 return;
             }
@@ -96,7 +96,7 @@ namespace ProjectPerekup
 
                 car5text.Width = car0text.Width;
                 car5text.Height = car1img.Height;
-                
+
             }
             else if (tabs.SelectedIndex == 1)
             {
@@ -119,7 +119,7 @@ namespace ProjectPerekup
                 avitocar0name.Width = avitocar0.Width - avitocar0img.Width - 266;
                 avitocar0name.Height = avitocar0.Height - 11;
 
-                
+
 
                 avitocar1.Location = new Point(6, 136 + avitocar0.Height + 8);
                 avitocar1.Height = avitocar0.Height;
@@ -176,7 +176,7 @@ namespace ProjectPerekup
                 skill3.Location = new Point(skillslabel.Location.X, skill2.Location.Y + skillslabel.Height);
                 skill4.Location = new Point(skillslabel.Location.X, skill3.Location.Y + skillslabel.Height);
                 skill5.Location = new Point(skillslabel.Location.X, skill4.Location.Y + skillslabel.Height);
-            
+
                 skillslabel.Width = spentmoney.Width;
                 skill0.Width = spentmoney.Width;
                 skill1.Width = spentmoney.Width;
@@ -190,7 +190,7 @@ namespace ProjectPerekup
         {
             car0img.MouseEnter += (sender, e) => car0text.Visible = true;
             car0img.MouseLeave += (sender, e) => hideCarText(0);
-            car0img.Click += (sender, e) => { if (cars[0].img != 0) { if(selectedcar != 0) hideOtherCarText(); selectedcar = 0; buttoneditcar.Visible = true; } };
+            car0img.Click += (sender, e) => { if (cars[0].img != 0) { if (selectedcar != 0) hideOtherCarText(); selectedcar = 0; buttoneditcar.Visible = true; } };
 
             car1img.MouseEnter += (sender, e) => car1text.Visible = true;
             car1img.MouseLeave += (sender, e) => hideCarText(1);
@@ -239,8 +239,8 @@ namespace ProjectPerekup
             spentmoney.Text = $"Потрачено денег: {-1 * spent}₽";
             recievedmoney.Text = $"Получено денег: {recieved}₽";
 
-            soldcars.Text = $"Потрачено денег: {sold}₽";
-            boughtcars.Text = $"Потрачено денег: {bought}₽";
+            soldcars.Text = $"Продано машин: {sold}";
+            boughtcars.Text = $"Куплено машин: {bought}";
 
             skill0.Text = $"{skillsname[0]}: {skills[0]}";
             skill1.Text = $"{skillsname[1]}: {skills[1]}";
@@ -309,10 +309,6 @@ namespace ProjectPerekup
             avitocar2price.Text = avitocars[2].PriceToString();
             avitocar2buy.Text = "Купить";
         }
-        private int findZero()
-        {
-            return cars.FindIndex(c => c.img == 0);
-        }
         private void updMoney()
         {
             labelmoney.Text = $"Баланс: {money} ₽";
@@ -321,7 +317,7 @@ namespace ProjectPerekup
         {
             if (carnum != selectedcar)
             {
-                if(carnum == 0)
+                if (carnum == 0)
                 {
                     car0text.Visible = false;
                 }
@@ -349,7 +345,7 @@ namespace ProjectPerekup
         }
         private void hideOtherCarText()
         {
-            if(selectedcar == 0)
+            if (selectedcar == 0)
             {
                 car0text.Visible = false;
             }
@@ -374,24 +370,32 @@ namespace ProjectPerekup
                 car5text.Visible = false;
             }
         }
+        private int findZero()
+        {
+            return cars.FindIndex(c => c.img == 0);
+        }
+        private int findCar()
+        {
+            return cars.FindIndex(c => c.img != 0);
+        }
 
 
 
         private void Form1_Resize(object sender, EventArgs e)
         { Transform(); }
         private void tabs_SelectedIndexChanged(object sender, EventArgs e)
-        { 
-            if(tabs.SelectedIndex == 0)
+        {
+            if (tabs.SelectedIndex == 0)
             {
                 hideOtherCarText();
-                selectedcar = -1; 
+                selectedcar = -1;
                 buttoneditcar.Visible = false;
             }
-            else if(tabs.SelectedIndex == 3)
+            else if (tabs.SelectedIndex == 3)
             {
-                InitializeStatistics(); 
+                InitializeStatistics();
             }
-            Transform(); 
+            Transform();
         }
 
         private void buttoneditcar_Click(object sender, EventArgs e)
@@ -399,15 +403,16 @@ namespace ProjectPerekup
             Car editcar;
             long editbal;
 
-            if(money == 0)
+            if (money == 0)
             {
                 MessageBox.Show("У вас нет денег", "Недостаточно средств", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             CarEdit.SendData(money, cars[selectedcar]);
-            if(CarEdit.Instance.ShowDialog() == DialogResult.OK)
+            if (CarEdit.Instance.ShowDialog() == DialogResult.OK)
             {
                 CarEdit.RecieveData(out editbal, out editcar);
+                spent += (money - editbal);
                 money = editbal;
                 cars[selectedcar] = editcar;
                 Filework.Save(cars, money, sold, bought, spent, recieved, skills, skillsname);
@@ -418,11 +423,35 @@ namespace ProjectPerekup
             buttoneditcar.Visible = false;
             selectedcar = -1;
         }
+        private void buttonavitosell_Click(object sender, EventArgs e)
+        {
+
+            if(findCar() == -1)
+            {
+                MessageBox.Show("Нечего продавать", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                List<Car> editcars;
+                long editbal;
+                CarSell.SendData(money, cars);
+                if(CarSell.Instance.ShowDialog() == DialogResult.OK)
+                {
+                    CarSell.RecieveData(out editbal, out editcars);
+                    recieved += (editbal - money);
+                    sold++;
+                    money = editbal;
+                    cars = editcars;
+                    Filework.Save(cars, money, sold, bought, spent, recieved, skills, skillsname);
+                    reLoadGarage();
+                }
+            }
+        }
 
         private void reloadcars_Click(object sender, EventArgs e)
         {
             var rand = new Random();
-            if(combosort.SelectedIndex == 0)
+            if (combosort.SelectedIndex == 0)
             {
                 avitocars = new Car[] {
                     new Car(rand.Next(0, 100)),
@@ -430,7 +459,7 @@ namespace ProjectPerekup
                     new Car(rand.Next(0, 100))
                 };
             }
-            else if(combosort.SelectedIndex == 1)
+            else if (combosort.SelectedIndex == 1)
             {
                 avitocars = new Car[] {
                     new Car(rand.Next(0, 10)),
@@ -438,7 +467,8 @@ namespace ProjectPerekup
                     new Car(rand.Next(0, 10))
                 };
             }
-            else if(combosort.SelectedIndex == 2) { 
+            else if (combosort.SelectedIndex == 2)
+            {
                 avitocars = new Car[] {
                     new Car(99),
                     new Car(99),
@@ -530,5 +560,6 @@ namespace ProjectPerekup
                 MessageBox.Show("Машина уже куплена", "Ошибка", MessageBoxButtons.OK);
             }
         }
+
     }
 }
