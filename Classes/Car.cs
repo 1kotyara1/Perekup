@@ -12,11 +12,11 @@ namespace ProjectPerekup.Classes
         {                            //Валерий                                        Яромир                                         Николай
             new List<(string, Image)>{("zero", Properties.Resources.car00)},                                                                                                   //0-нет
                                                                             
-            new List<(string, Image)>{("11",            Properties.Resources.car00),  ("Peel P50",     Properties.Resources.car12),  ("13", Properties.Resources.car00) },     //1-ужасное
-            new List<(string, Image)>{("21",            Properties.Resources.car00),  ("ВАЗ 2107",     Properties.Resources.car22),  ("23", Properties.Resources.car00) },     //2-рыдван
-            new List<(string, Image)>{("31",            Properties.Resources.car00),  ("Toyota RAV4",  Properties.Resources.car32),  ("33", Properties.Resources.car00) },     //3-бывало и получше
-            new List<(string, Image)>{("Ford Torino",   Properties.Resources.car41),  ("Maybah GLS",   Properties.Resources.car42),  ("43", Properties.Resources.car00) },     //4-добротное
-            new List<(string, Image)>{("Buick Special", Properties.Resources.car51),  ("Бананомобиль", Properties.Resources.car52),  ("53", Properties.Resources.car00) }      //5-идеальное состояние
+            new List<(string, Image)>{("Ford Focus",    Properties.Resources.car11),   ("Peel P50",     Properties.Resources.car12),  ("13", Properties.Resources.car00) },     //1-ужасное
+            new List<(string, Image)>{("Dodge Caravan", Properties.Resources.car21_2), ("ВАЗ 2107",     Properties.Resources.car22),  ("23", Properties.Resources.car00) },     //2-рыдван
+            new List<(string, Image)>{("Dodge Stratus", Properties.Resources.car31),   ("Toyota RAV4",  Properties.Resources.car32),  ("33", Properties.Resources.car00) },     //3-бывало и получше
+            new List<(string, Image)>{("Ford Torino",   Properties.Resources.car41),   ("Maybah GLS",   Properties.Resources.car42),  ("43", Properties.Resources.car00) },     //4-добротное
+            new List<(string, Image)>{("Buick Special", Properties.Resources.car51),   ("Бананомобиль", Properties.Resources.car52),  ("53", Properties.Resources.car00) }      //5-идеальное состояние
         };
 
         private static string[] conditions = new string[] 
@@ -56,9 +56,6 @@ namespace ProjectPerekup.Classes
             "Самая лучшая машина в мире", "Многие хотят покататься на твоем банане", "Эксклюзивная отделка, полный привод, 500 л.с.",
             "53", "53", "53",
         };
-
-
-        // повреждения 45 30 25
 
 
         public int price { get; set; }

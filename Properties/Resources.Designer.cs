@@ -83,6 +83,16 @@ namespace ProjectPerekup.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap car11 {
+            get {
+                object obj = ResourceManager.GetObject("car11", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap car12 {
             get {
                 object obj = ResourceManager.GetObject("car12", resourceCulture);
@@ -93,9 +103,39 @@ namespace ProjectPerekup.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap car21_1 {
+            get {
+                object obj = ResourceManager.GetObject("car21_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap car21_2 {
+            get {
+                object obj = ResourceManager.GetObject("car21_2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap car22 {
             get {
                 object obj = ResourceManager.GetObject("car22", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap car31 {
+            get {
+                object obj = ResourceManager.GetObject("car31", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

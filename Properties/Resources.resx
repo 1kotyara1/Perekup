@@ -118,14 +118,20 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="avitocarproject" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\avitocarproject.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="car00" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\car00.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="car42" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\car42.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="reloadcars" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\reloadcars.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="car41" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\car41.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="car52" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\car52.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="car22" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\car22.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -136,19 +142,25 @@
   <data name="город" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\город.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="car12" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\car12.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="car32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\car32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="car00" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\car00.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="car12" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\car12.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="car52" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\car52.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="avitocarproject" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\avitocarproject.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="reloadcars" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\reloadcars.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="car11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\car11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="car31" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\car31.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="car21_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\car21_1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="car21_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\car21_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
