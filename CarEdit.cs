@@ -302,6 +302,11 @@ namespace ProjectPerekup
         }
         private void confirmbutton_Click(object sender, EventArgs e)
         {
+            if(Convert.ToInt64(balance) - editsum < 0)
+            {
+                MessageBox.Show($"Ошибка:  не хватает денег");
+                return;
+            }
             balance -= editsum;
             Instance.DialogResult = DialogResult.OK;
             Instance.Close();

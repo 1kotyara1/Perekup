@@ -486,6 +486,11 @@ namespace ProjectPerekup
 
         private void avitocar0buy_Click(object sender, EventArgs e)
         {
+            if (Convert.ToInt64(money) - avitocars[0].price < 0)
+            {
+                MessageBox.Show($"Ошибка:  не хватает денег");
+                return;
+            }
             if (avitocars[0] != null)
             {
                 int i = findZero();
@@ -513,6 +518,11 @@ namespace ProjectPerekup
         }
         private void avitocar1buy_Click(object sender, EventArgs e)
         {
+            if (Convert.ToInt64(money) - avitocars[1].price < 0)
+            {
+                MessageBox.Show($"Ошибка:  не хватает денег");
+                return;
+            }
             if (avitocars[1] != null)
             {
                 int i = findZero();
@@ -540,6 +550,11 @@ namespace ProjectPerekup
         }
         private void avitocar2buy_Click(object sender, EventArgs e)
         {
+            if (Convert.ToInt64(money) - avitocars[2].price < 0)
+            {
+                MessageBox.Show($"Ошибка:  не хватает денег");
+                return;
+            }
             if (avitocars[2] != null)
             {
                 int i = findZero();
