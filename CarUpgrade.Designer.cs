@@ -132,7 +132,7 @@
             // editcarlabel
             // 
             editcarlabel.BackColor = SystemColors.Control;
-            editcarlabel.Font = new Font("Segoe UI", 14F);
+            editcarlabel.Font = new Font("Segoe UI", 13F);
             editcarlabel.Location = new Point(273, 387);
             editcarlabel.Name = "editcarlabel";
             editcarlabel.Size = new Size(246, 83);
@@ -226,6 +226,7 @@
             salonbutton.TabIndex = 29;
             salonbutton.Text = "Починить - 1000₽";
             salonbutton.UseVisualStyleBackColor = true;
+            salonbutton.Click += salonbutton_Click;
             // 
             // kusovbutton
             // 
@@ -236,6 +237,7 @@
             kusovbutton.TabIndex = 27;
             kusovbutton.Text = "Починить - 1000₽";
             kusovbutton.UseVisualStyleBackColor = true;
+            kusovbutton.Click += kusovbutton_Click;
             // 
             // hodbutton
             // 
@@ -246,6 +248,7 @@
             hodbutton.TabIndex = 25;
             hodbutton.Text = "Починить - 1000₽";
             hodbutton.UseVisualStyleBackColor = true;
+            hodbutton.Click += hodbutton_Click;
             // 
             // transbutton
             // 
@@ -256,6 +259,7 @@
             transbutton.TabIndex = 23;
             transbutton.Text = "Починить - 1000₽";
             transbutton.UseVisualStyleBackColor = true;
+            transbutton.Click += transbutton_Click;
             // 
             // motorbutton
             // 
@@ -266,6 +270,7 @@
             motorbutton.TabIndex = 21;
             motorbutton.Text = "Починить - 1000₽";
             motorbutton.UseVisualStyleBackColor = true;
+            motorbutton.Click += motorbutton_Click;
             // 
             // editcarimg
             // 

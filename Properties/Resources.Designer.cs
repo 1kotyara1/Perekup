@@ -103,6 +103,16 @@ namespace ProjectPerekup.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap car13 {
+            get {
+                object obj = ResourceManager.GetObject("car13", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap car21_1 {
             get {
                 object obj = ResourceManager.GetObject("car21_1", resourceCulture);
@@ -133,6 +143,16 @@ namespace ProjectPerekup.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap car23 {
+            get {
+                object obj = ResourceManager.GetObject("car23", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap car31 {
             get {
                 object obj = ResourceManager.GetObject("car31", resourceCulture);
@@ -146,6 +166,16 @@ namespace ProjectPerekup.Properties {
         internal static System.Drawing.Bitmap car32 {
             get {
                 object obj = ResourceManager.GetObject("car32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap car33 {
+            get {
+                object obj = ResourceManager.GetObject("car33", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -173,6 +203,16 @@ namespace ProjectPerekup.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap car43 {
+            get {
+                object obj = ResourceManager.GetObject("car43", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap car51 {
             get {
                 object obj = ResourceManager.GetObject("car51", resourceCulture);
@@ -186,6 +226,16 @@ namespace ProjectPerekup.Properties {
         internal static System.Drawing.Bitmap car52 {
             get {
                 object obj = ResourceManager.GetObject("car52", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap car53 {
+            get {
+                object obj = ResourceManager.GetObject("car53", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

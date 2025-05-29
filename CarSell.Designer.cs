@@ -193,7 +193,7 @@
             // carprice
             // 
             carprice.BackColor = SystemColors.Control;
-            carprice.Font = new Font("Segoe UI", 14F);
+            carprice.Font = new Font("Segoe UI", 13F);
             carprice.Location = new Point(269, 364);
             carprice.Name = "carprice";
             carprice.Size = new Size(246, 35);

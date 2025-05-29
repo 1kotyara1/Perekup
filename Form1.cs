@@ -378,6 +378,10 @@ namespace ProjectPerekup
         {
             return cars.FindIndex(c => c.img != 0);
         }
+        private double getCondMult(int sum)
+        {
+            return 1.0 - 0.05 * sum;
+        }
 
 
 
@@ -488,8 +492,8 @@ namespace ProjectPerekup
                 if (i != -1)
                 {
                     cars[i] = avitocars[0];
-                    money -= avitocars[0].price;
-                    spent -= avitocars[0].price;
+                    money -= Convert.ToInt64(Convert.ToDouble(avitocars[0].price) * getCondMult(avitocars[0].getCondSum()));
+                    spent -= Convert.ToInt64(Convert.ToDouble(avitocars[0].price) * getCondMult(avitocars[0].getCondSum()));
                     bought++;
                     avitocars[0] = null;
                     avitocar0buy.Text = "Куплено";
@@ -515,8 +519,8 @@ namespace ProjectPerekup
                 if (i != -1)
                 {
                     cars[i] = avitocars[1];
-                    money -= avitocars[1].price;
-                    spent -= avitocars[1].price;
+                    money -= Convert.ToInt64(Convert.ToDouble(avitocars[1].price) * getCondMult(avitocars[1].getCondSum()));
+                    spent -= Convert.ToInt64(Convert.ToDouble(avitocars[1].price) * getCondMult(avitocars[1].getCondSum()));
                     bought++;
                     avitocars[1] = null;
                     avitocar1buy.Text = "Куплено";
@@ -542,8 +546,8 @@ namespace ProjectPerekup
                 if (i != -1)
                 {
                     cars[i] = avitocars[2];
-                    money -= avitocars[2].price;
-                    spent -= avitocars[2].price;
+                    money -= Convert.ToInt64(Convert.ToDouble(avitocars[2].price) * getCondMult(avitocars[2].getCondSum()));
+                    spent -= Convert.ToInt64(Convert.ToDouble(avitocars[2].price) * getCondMult(avitocars[2].getCondSum()));
                     bought++;
                     avitocars[2] = null;
                     avitocar2buy.Text = "Куплено";
@@ -562,17 +566,71 @@ namespace ProjectPerekup
             }
         }
 
-        private void Stepanichbutton_Click(object sender, EventArgs e)
-        {
-
-        }
         private void Vasiliybutton_Click(object sender, EventArgs e)
         {
+            List<Car> editcars;
+            long editbal;
 
+            if (money == 0)
+            {
+                MessageBox.Show("У вас нет денег", "Недостаточно средств", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            CarUpgrade.SendData(money, cars, Garage.vasya);
+            if (CarUpgrade.Instance.ShowDialog() == DialogResult.OK)
+            {
+                CarUpgrade.RecieveData(out editbal, out editcars);
+                spent += (money - editbal);
+                money = editbal;
+                cars = editcars;
+                Filework.Save(cars, money, sold, bought, spent, recieved, skills, skillsname);
+                reLoadGarage();
+                updMoney();
+            }
+        }
+        private void Stepanichbutton_Click(object sender, EventArgs e)
+        {
+            List<Car> editcars;
+            long editbal;
+
+            if (money == 0)
+            {
+                MessageBox.Show("У вас нет денег", "Недостаточно средств", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            CarUpgrade.SendData(money, cars, Garage.stepa);
+            if (CarUpgrade.Instance.ShowDialog() == DialogResult.OK)
+            {
+                CarUpgrade.RecieveData(out editbal, out editcars);
+                spent += (money - editbal);
+                money = editbal;
+                cars = editcars;
+                Filework.Save(cars, money, sold, bought, spent, recieved, skills, skillsname);
+                reLoadGarage();
+                updMoney();
+            }
         }
         private void Fitservicebutton_Click(object sender, EventArgs e)
         {
+            List<Car> editcars;
+            long editbal;
 
+            if (money == 0)
+            {
+                MessageBox.Show("У вас нет денег", "Недостаточно средств", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            CarUpgrade.SendData(money, cars, Garage.fits);
+            if (CarUpgrade.Instance.ShowDialog() == DialogResult.OK)
+            {
+                CarUpgrade.RecieveData(out editbal, out editcars);
+                spent += (money - editbal);
+                money = editbal;
+                cars = editcars;
+                Filework.Save(cars, money, sold, bought, spent, recieved, skills, skillsname);
+                reLoadGarage();
+                updMoney();
+            }
         }
     }
 }

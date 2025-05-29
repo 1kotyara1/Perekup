@@ -54,6 +54,7 @@ namespace ProjectPerekup
         {
             balance = editbalance;
             car = editcar;
+            Instance.reloadForm();
             Instance.Text = car.getName();
             Instance.InitializeForm();
         }
@@ -61,6 +62,15 @@ namespace ProjectPerekup
         {
             sendbalance = balance;
             sendcar = car;
+        }
+        private void reloadForm()
+        {
+            Instance.editsum = 0;
+            motoredited = false;
+            transedited = false;
+            hodedited = false;
+            kusovedited = false;
+            salonedited = false;
         }
 
         public CarEdit()
@@ -113,11 +123,11 @@ namespace ProjectPerekup
         {
             if (balance != 0)
             {
-                motorprice = Convert.ToInt32(car.price / 5 * Convert.ToDouble(8 + car.motor) / 10);
-                transprice = Convert.ToInt32(car.price / 5 * Convert.ToDouble(8 + car.trans) / 10);
-                hodprice = Convert.ToInt32(car.price / 5 * Convert.ToDouble(8 + car.hod) / 10);
-                kusovprice = Convert.ToInt32(car.price / 5 * Convert.ToDouble(8 + car.kusov) / 10);
-                salonprice = Convert.ToInt32(car.price / 5 * Convert.ToDouble(8 + car.salon) / 10);
+                motorprice = Convert.ToInt32(car.price / 7 * Convert.ToDouble(3 + car.motor) / 10);
+                transprice = Convert.ToInt32(car.price / 7 * Convert.ToDouble(3 + car.trans) / 10);
+                hodprice = Convert.ToInt32(car.price / 7 * Convert.ToDouble(3 + car.hod) / 10);
+                kusovprice = Convert.ToInt32(car.price / 7 * Convert.ToDouble(3 + car.kusov) / 10);
+                salonprice = Convert.ToInt32(car.price / 7 * Convert.ToDouble(3 + car.salon) / 10);
                 motorlvl = car.motor;
                 translvl = car.trans;
                 hodlvl = car.hod;
@@ -130,28 +140,39 @@ namespace ProjectPerekup
                 editpricesum.Text = $"Стоимость ремонта: {editsum}₽";
                 editcarimg.Image = car.getImg();
 
-                motorlabel.Text = $"Двигатель\nПовреждения:{conditions[car.motor]}";
-                translabel.Text = $"Трансмиссия\nПовреждения:{conditions[car.trans]}";
-                hodlabel.Text = $"Ходовая\nПовреждения:{conditions[car.hod]}";
-                kusovlabel.Text = $"Кузов\nПовреждения:{conditions[car.kusov]}";
-                salonlabel.Text = $"Салон\nПовреждения:{conditions[car.salon]}";
+                motorlabel.Text = $"Двигатель\n{getCond(car.motor)}";
+                translabel.Text = $"Трансмиссия\n{getCond(car.trans)}";
+                hodlabel.Text = $"Ходовая\n{getCond(car.hod)}";
+                kusovlabel.Text = $"Кузов\n{getCond(car.kusov)}";
+                salonlabel.Text = $"Салон\n{getCond(car.salon)}";
 
-                if (car.motor == 0) motorbutton.Text = "Недоступно";
+                if (car.motor <= 0) motorbutton.Text = "Недоступно";
                 else motorbutton.Text = $"Починить - {motorprice}";
 
-                if (car.trans == 0) transbutton.Text = "Недоступно";
+                if (car.trans <= 0) transbutton.Text = "Недоступно";
                 else transbutton.Text = $"Починить - {transprice}";
 
-                if (car.hod == 0) hodbutton.Text = "Недоступно";
+                if (car.hod <= 0) hodbutton.Text = "Недоступно";
                 else hodbutton.Text = $"Починить - {hodprice}";
 
-                if (car.kusov == 0) kusovbutton.Text = "Недоступно";
+                if (car.kusov <= 0) kusovbutton.Text = "Недоступно";
                 else kusovbutton.Text = $"Починить - {kusovprice}";
 
-                if (car.salon == 0) salonbutton.Text = "Недоступно";
+                if (car.salon <= 0) salonbutton.Text = "Недоступно";
                 else salonbutton.Text = $"Починить - {salonprice}";
             }
 
+        }
+        private string getCond(int cond)
+        {
+            if (cond >= 0)
+            {
+                return $"Повреждения:{conditions[cond]}";
+            }
+            else
+            {
+                return $"{-cond} уровень";
+            }
         }
 
         private void motorbutton_Click(object sender, EventArgs e)

@@ -30,7 +30,7 @@ namespace ProjectPerekup
 
         static long balance;
         static List<Car> cars;
-        int selectedcar = 0;
+        int selectedcar;
 
         public static void SendData(long editbalance, List<Car> editcars)
         {
@@ -51,6 +51,8 @@ namespace ProjectPerekup
 
         private void InitializeForm()
         {
+            selectedcar = cars.FindIndex(c => c.img != 0);
+
             car0img.MouseEnter += (sender, e) => car0text.Visible = true;
             car0img.MouseLeave += (sender, e) => hideCarText(0);
             car0img.Click += (sender, e) => { if (cars[0].img != 0) { if (selectedcar != 0) hideOtherCarText(); selectedcar = 0; loadStats(); } };
@@ -166,7 +168,7 @@ namespace ProjectPerekup
                             $"Ходовая:{getCond(cars[selectedcar].hod)}\n" +
                             $"Кузов:{getCond(cars[selectedcar].kusov)}\n" +
                             $"Салон:{getCond(cars[selectedcar].salon)}\n";
-            carprice.Text = $"Итоговая цена: {Convert.ToInt32(cars[selectedcar].price * (0.80 + 0.05 * cars[selectedcar].getCondSum()))}₽";
+            carprice.Text = $"Итоговая цена: {Convert.ToInt32(cars[selectedcar].price * (1.00 - 0.08 * cars[selectedcar].getCondSum()))}₽";
         }
         private string getCond(int cond)
         {
@@ -235,7 +237,7 @@ namespace ProjectPerekup
 
         private void sellbutton_Click(object sender, EventArgs e)
         {
-            balance += Convert.ToInt32(cars[selectedcar].price * (0.80 + 0.05 * cars[selectedcar].getCondSum()));
+            balance += Convert.ToInt32(cars[selectedcar].price * (1.00 - 0.07 * cars[selectedcar].getCondSum() + 0.01 * cars[selectedcar].img/10));
             cars[selectedcar] = new Car();
 
             Instance.DialogResult = DialogResult.OK;
