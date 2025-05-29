@@ -88,8 +88,8 @@ namespace ProjectPerekup.Classes
                     }
 
                     data.Add("0");
-                    money = 0;
-                    data.Add("0");
+                    money = 1000000;
+                    data.Add("1000000");
                     sold = 0;
                     data.Add("0");
                     bought = 0;
@@ -125,8 +125,8 @@ namespace ProjectPerekup.Classes
                 }
 
                 data.Add("0");
-                money = 0;
-                data.Add("0");
+                money = 1000000;
+                data.Add("1000000");
                 sold = 0;
                 data.Add("0");
                 bought = 0;
