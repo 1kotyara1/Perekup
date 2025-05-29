@@ -80,18 +80,29 @@ namespace ProjectPerekup
             car4img.Image = cars[4].getImg();
             car5img.Image = cars[5].getImg();
 
-            car0img.Click += (sender, e) => { if (cars[0].img != 0) { selectedcar = 0; loadStats(); } };
-            car1img.Click += (sender, e) => { if (cars[1].img != 0) { selectedcar = 1; loadStats(); } };
-            car2img.Click += (sender, e) => { if (cars[2].img != 0) { selectedcar = 2; loadStats(); } };
-            car3img.Click += (sender, e) => { if (cars[3].img != 0) { selectedcar = 3; loadStats(); } };
-            car4img.Click += (sender, e) => { if (cars[4].img != 0) { selectedcar = 4; loadStats(); } };
-            car5img.Click += (sender, e) => { if (cars[5].img != 0) { selectedcar = 5; loadStats(); } };
+            car0img.Click += (sender, e) => { if (cars[0].img != 0) { Nullstats(); selectedcar = 0; loadStats(); } };
+            car1img.Click += (sender, e) => { if (cars[1].img != 0) { Nullstats(); selectedcar = 1; loadStats(); } };
+            car2img.Click += (sender, e) => { if (cars[2].img != 0) { Nullstats(); selectedcar = 2; loadStats(); } };
+            car3img.Click += (sender, e) => { if (cars[3].img != 0) { Nullstats(); selectedcar = 3; loadStats(); } };
+            car4img.Click += (sender, e) => { if (cars[4].img != 0) { Nullstats(); selectedcar = 4; loadStats(); } };
+            car5img.Click += (sender, e) => { if (cars[5].img != 0) { Nullstats(); selectedcar = 5; loadStats(); } };
 
             labelmoneyedit.Text = $"Баланс: {balance} ₽";
 
             loadStats();
         }
 
+        private void Nullstats()
+        {
+            if (motoredited || transedited || hodedited || kusovedited || salonedited)
+            {
+                cars[selectedcar].motor = motorlvl;
+                cars[selectedcar].trans = translvl;
+                cars[selectedcar].hod = hodlvl;
+                cars[selectedcar].kusov = kusovlvl;
+                cars[selectedcar].salon = salonlvl;
+            }
+        }
         private void loadStats()
         {
             editsum = 0;
@@ -113,8 +124,7 @@ namespace ProjectPerekup
             kusovedited = false;
             salonedited = false;
 
-            editcarlabel.Text = $"{cars[selectedcar].getName()}\nСтоимость машины: {cars[selectedcar].price}₽\nСостояние: {cars[selectedcar].getCondText()}";
-            editpricesum.Text = $"Стоимость ремонта: {editsum}₽";
+            IniCarText();
             editcarimg.Image = cars[selectedcar].getImg();
 
             Inimotor();
@@ -124,10 +134,15 @@ namespace ProjectPerekup
             Inisalon();
         }
 
+        private void IniCarText()
+        {
+            editcarlabel.Text = $"{cars[selectedcar].getName()}\nСтоимость: {cars[selectedcar].price}₽\nСостояние: {cars[selectedcar].getCondText()}";
+            editpricesum.Text = $"Стоимость: {editsum}₽";
+        }
         private void Inimotor()
         {
             motorlabel.Text = $"Двигатель\n{getCond(cars[selectedcar].motor)}";
-            if (cars[selectedcar].motor == 0 && motoredited == false) motorbutton.Text = "Недоступно";
+            if (cars[selectedcar].motor == -3 && motoredited == false) motorbutton.Text = "Недоступно";
             else if (cars[selectedcar].motor == -3 && motoredited == true) motorbutton.Text = "Отмена";
             else motorbutton.Text = $"{getButtonText(cars[selectedcar].motor)}";
         }
@@ -161,11 +176,11 @@ namespace ProjectPerekup
         {
             if (lvl > 0)
             {
-                return $"Починить - {Convert.ToInt32(cars[selectedcar].price / 7 * (3.5 + Convert.ToDouble(fits() + lvl)) / 10)}";
+                return $"Починить - {Convert.ToInt32(cars[selectedcar].price / 7 * (3.5 + Convert.ToDouble(fits() + cars[selectedcar].motor)) / 10)}";
             }
             else
             {
-                return $"Улучшить - {Convert.ToInt32((cars[selectedcar].price / 7 * (2.0 + Convert.ToDouble(fits() - lvl)) / 10) * (0.9 - Convert.ToDouble(lvl) / 15))}";
+                return $"Улучшить - {Convert.ToInt32((cars[selectedcar].price / 7 * (2.0 + Convert.ToDouble(fits() - cars[selectedcar].motor)) / 10) * (0.9 - Convert.ToDouble(cars[selectedcar].motor) / 15))}";
             }
         }
         private string getCond(int cond)
@@ -197,25 +212,28 @@ namespace ProjectPerekup
                     editsum -= motorprice;
                     motorprice = 0;
                     cars[selectedcar].motor = motorlvl;
+                    IniCarText();
                     Inimotor();
                 }
                 else if (cars[selectedcar].motor > 0)
                 {
                     motoredited = true;
+                    int price = Convert.ToInt32(cars[selectedcar].price / 7 * (3.5 + Convert.ToDouble(fits() + cars[selectedcar].motor)) / 10);
+                    editsum += price;
+                    motorprice += price;
                     cars[selectedcar].motor = 0;
-                    motorprice += Convert.ToInt32(cars[selectedcar].price / 7 * (3.5 + Convert.ToDouble(fits() + cars[selectedcar].motor)) / 10);
-                    editcarlabel.Text = $"{cars[selectedcar].getName()}\nСтоимость машины: {cars[selectedcar].price}₽\nСостояние: {cars[selectedcar].getCondText()}";
-                    editpricesum.Text = $"Стоимость ремонта: {editsum}₽";
                     Inimotor();
+                    IniCarText();
                 }
                 else
                 {
                     motoredited = true;
+                    int price = Convert.ToInt32((cars[selectedcar].price / 7 * (2.0 + Convert.ToDouble(fits() - cars[selectedcar].motor)) / 10) * (0.9 - Convert.ToDouble(cars[selectedcar].motor) / 15));
+                    editsum += price;
+                    motorprice += price;
                     cars[selectedcar].motor--;
-                    motorprice += Convert.ToInt32((cars[selectedcar].price / 7 * (2.0 + Convert.ToDouble(fits() - cars[selectedcar].motor)) / 10) * (0.9 - Convert.ToDouble(cars[selectedcar].motor) / 15));
-                    editcarlabel.Text = $"{cars[selectedcar].getName()}\nСтоимость машины: {cars[selectedcar].price}₽\nСостояние: {cars[selectedcar].getCondText()}";
-                    editpricesum.Text = $"Стоимость ремонта: {editsum}₽";
                     Inimotor();
+                    IniCarText();
                 }
             }
         }
