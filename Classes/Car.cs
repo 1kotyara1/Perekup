@@ -8,6 +8,7 @@ namespace ProjectPerekup.Classes
 {
     public class Car
     {
+        // массив машин
         private static List<List<(string name, Image img)>> cars = new List<List<(string, Image)>> //если хотите изменить и не наводить красоту то просто после изменения напишите яромиру об изменении этого массива
         {                            //Валерий                                        Яромир                                         Николай
             new List<(string, Image)>{("zero", Properties.Resources.car00)},                                                                                                   //0-нет
@@ -19,6 +20,7 @@ namespace ProjectPerekup.Classes
             new List<(string, Image)>{("Buick Special", Properties.Resources.car51),   ("Бананомобиль", Properties.Resources.car52),  ("Buick Roadmaster", Properties.Resources.car53)  }      //5-идеальное состояние
         };
 
+        // массив состояний машины
         private static string[] conditions = new string[] 
         {
             "",                 //0
@@ -29,6 +31,7 @@ namespace ProjectPerekup.Classes
             "идеальное"         //5
         };      
 
+        // массив описаний для авито
         private static string[] descriptions = new string[]
         {
             //11, Peel P50, 13
@@ -58,16 +61,22 @@ namespace ProjectPerekup.Classes
         };
 
 
+        // общая информация
         public int price { get; set; }
         public int img { get; set; }
+        // проблемы
         public int motor {  get; set; }
         public int trans {  get; set; }
         public int hod {  get; set; }
         public int kusov {  get; set; }
         public int salon {  get; set; }
-        private int desc = 0;
+        // запоминание номера описания в авито
+        private int desc = 0; 
 
-        public Car() { //для создания пустого места в гараже
+
+        // создание машин
+        public Car() //для создания пустой машины
+        { 
             img = 0;
             price = 0;
 
@@ -77,8 +86,7 @@ namespace ProjectPerekup.Classes
             kusov = 0;
             salon = 0;
         }
-
-        public Car(int price, int img, int motor, int trans, int hod, int kusov, int salon)
+        public Car(int price, int img, int motor, int trans, int hod, int kusov, int salon) // передача машины
         {
             this.price = price;
             this.img = img;
@@ -88,8 +96,7 @@ namespace ProjectPerekup.Classes
             this.kusov = kusov;
             this.salon = salon;
         }
-
-        public Car(int rand) //для создания случайных машин
+        public Car(int rand) // для создания случайных машин 
         {
             var random = new Random();
             if(rand >= 50)
@@ -364,13 +371,13 @@ namespace ProjectPerekup.Classes
             this.price *= 1000;
         }
 
-        public string getName() //будем брать из массива модели по номеру картинки
+
+        // помощники
+        public string getName() // вывод имени из массива
         { return cars[img/10][img%10].name; }
-
-        public Image getImg() //будем брать из массива модели по номеру картинки
+        public Image getImg() // вывод картинки
         { return cars[img/10][img%10].img; }
-
-        public int getCond()
+        public int getCond() // вывод номера состояния(по количеству проблем в машине)
         {
             if(getCondSum() > 9)
             {
@@ -393,23 +400,25 @@ namespace ProjectPerekup.Classes
                 return 5;
             }
         }
-        public string getCondText()
+        public string getCondText() // вывод текста состояния
         { return conditions[getCond()]; }
-        public int getCondSum()
+        public int getCondSum() // вывод суммы количества проблем в машине
         {
             return motor + trans + hod + kusov + salon;
         }
-        public override string ToString()
+        private double getCondMult(int sum) // вывод множителя для цен(по количеству проблем в машине)
         {
-            return $"{cars[img / 10][img % 10].name}\nСостояние: {conditions[getCond()]}";
+            return 1.0 - 0.05 * sum;
         }
-        public string ToString(int a)
+        public string generateDesc() // вывод описания в авито
         {
-            return $"{cars[img / 10][img % 10].name}\n{conditions[getCond()]}";
+            var rand = new Random();
+            if (desc == 0) desc = (img / 10 - 1) * 9 + (img % 10) * 3 + rand.Next(1, 3);
+            return descriptions[desc];
         }
-        public string PriceToString()
+        public string PriceToString() // вывод цены машины в авито
         {
-            string pric = price.ToString();
+            string pric = Convert.ToInt64(Convert.ToDouble(price) * getCondMult(getCondSum())).ToString();
 
             string returnprice = "";
             for (int i = 0; i < pric.Length; i++)
@@ -423,11 +432,13 @@ namespace ProjectPerekup.Classes
 
             return returnprice;
         }
-        public string generateDesc()
+        public override string ToString() // вывод информации в гараже
         {
-            var rand = new Random();
-            if (desc == 0) desc = (img / 10 - 1) * 9 + (img % 10) * 3 + rand.Next(1, 3);
-            return descriptions[desc];
+            return $"{cars[img / 10][img % 10].name}\nСостояние: {conditions[getCond()]}";
+        }
+        public string ToString(int a) // вывод информации при продаже
+        {
+            return $"{cars[img / 10][img % 10].name}\n{conditions[getCond()]}";
         }
     }
 }

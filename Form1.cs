@@ -1,14 +1,17 @@
 ﻿using ProjectPerekup.Classes;
+using System.Diagnostics;
 using System.Security.Cryptography.Xml;
 
 namespace ProjectPerekup
 {
     public partial class perekup : Form
     {
+        // -- данные страниц --
         private string[] skillsname = new string[] { "Любовь поторговаться", "Мастер продаж", "Знаток гаджетов", "Ремонтник", "Тюнинговщик", "Хитрец" };
         private int selectedcar = -1;
         private Car[] avitocars;
 
+        // -- данные пользователя --
         List<Car> cars;
         private long money;
         private int sold;
@@ -20,7 +23,7 @@ namespace ProjectPerekup
 
 
 
-
+        // -- запуск --
         public perekup()
         {
             Filework.Load(out cars, out money, out sold, out bought, out spent, out recieved, out skills, skillsname);
@@ -32,6 +35,8 @@ namespace ProjectPerekup
             updMoney();
         }
 
+
+        // -- изменение размера окна --
         private void Transform()
         {
             if (garage.Height == 0)
@@ -169,6 +174,8 @@ namespace ProjectPerekup
                 soldcars.Width = spentmoney.Width;
                 boughtcars.Width = spentmoney.Width;
 
+                clearData.Width = 100 + Convert.ToInt32(Width / 8);
+
                 skillslabel.Location = new Point(32 + spentmoney.Width, spentmoney.Location.Y);
                 skill0.Location = new Point(skillslabel.Location.X, skillslabel.Location.Y + skillslabel.Height + 4);
                 skill1.Location = new Point(skillslabel.Location.X, skill0.Location.Y + skillslabel.Height);
@@ -184,8 +191,29 @@ namespace ProjectPerekup
                 skill3.Width = spentmoney.Width;
                 skill4.Width = spentmoney.Width;
                 skill5.Width = spentmoney.Width;
+
+                clearData.Location = new Point(Convert.ToInt32((Width - clearData.Width) / 2), Height - 135); 
             }
         }
+        private void Form1_Resize(object sender, EventArgs e)
+        { Transform(); }
+        private void tabs_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabs.SelectedIndex == 0)
+            {
+                hideOtherCarText();
+                selectedcar = -1;
+                buttoneditcar.Visible = false;
+            }
+            else if (tabs.SelectedIndex == 3)
+            {
+                InitializeStatistics();
+            }
+            Transform();
+        }
+
+
+        // -- помощники --
         private void InitializeGarage()
         {
             car0img.MouseEnter += (sender, e) => car0text.Visible = true;
@@ -216,6 +244,7 @@ namespace ProjectPerekup
         }
         private void InitializeBrowser()
         {
+            combosort.Items.Clear();
             combosort.Items.AddRange(new string[] {
                 "Случайное",
                 "Сначала дорогое",
@@ -311,7 +340,19 @@ namespace ProjectPerekup
         }
         private void updMoney()
         {
-            labelmoney.Text = $"Баланс: {money} ₽";
+            string mone = money.ToString();
+
+            string returnmoney = "";
+            for (int i = 0; i < mone.Length; i++)
+            {
+                returnmoney += mone[i];
+                if ((mone.Length - i - 1) % 3 == 0)
+                {
+                    returnmoney += " ";
+                }
+            }
+
+            labelmoney.Text = $"Баланс: {returnmoney} ₽";
         }
         private void hideCarText(int carnum)
         {
@@ -385,23 +426,7 @@ namespace ProjectPerekup
 
 
 
-        private void Form1_Resize(object sender, EventArgs e)
-        { Transform(); }
-        private void tabs_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (tabs.SelectedIndex == 0)
-            {
-                hideOtherCarText();
-                selectedcar = -1;
-                buttoneditcar.Visible = false;
-            }
-            else if (tabs.SelectedIndex == 3)
-            {
-                InitializeStatistics();
-            }
-            Transform();
-        }
-
+        // -- гараж --
         private void buttoneditcar_Click(object sender, EventArgs e)
         {
             Car editcar;
@@ -416,7 +441,7 @@ namespace ProjectPerekup
             if (CarEdit.Instance.ShowDialog() == DialogResult.OK)
             {
                 CarEdit.RecieveData(out editbal, out editcar);
-                spent += (money - editbal);
+                spent -= (money - editbal);
                 money = editbal;
                 cars[selectedcar] = editcar;
                 Filework.Save(cars, money, sold, bought, spent, recieved, skills, skillsname);
@@ -428,6 +453,90 @@ namespace ProjectPerekup
             selectedcar = -1;
         }
 
+        // -- карта --
+        private void Vasiliybutton_Click(object sender, EventArgs e)
+        {
+            List<Car> editcars;
+            long editbal;
+
+            if (money == 0)
+            {
+                MessageBox.Show("У вас нет денег", "Недостаточно средств", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            else if(findCar() == -1)
+            {
+                MessageBox.Show("У вас нет машин", "ааыаыыыыаыаааа", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+                CarUpgrade.SendData(money, cars, Garage.vasya);
+            if (CarUpgrade.Instance.ShowDialog() == DialogResult.OK)
+            {
+                CarUpgrade.RecieveData(out editbal, out editcars);
+                spent -= (money - editbal);
+                money = editbal;
+                cars = editcars;
+                Filework.Save(cars, money, sold, bought, spent, recieved, skills, skillsname);
+                reLoadGarage();
+                updMoney();
+            }
+        }
+        private void Stepanichbutton_Click(object sender, EventArgs e)
+        {
+            List<Car> editcars;
+            long editbal;
+
+            if (money == 0)
+            {
+                MessageBox.Show("У вас нет денег", "Недостаточно средств", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            else if (findCar() == -1)
+            {
+                MessageBox.Show("У вас нет машин", "ааыаыыыыаыаааа", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            CarUpgrade.SendData(money, cars, Garage.stepa);
+            if (CarUpgrade.Instance.ShowDialog() == DialogResult.OK)
+            {
+                CarUpgrade.RecieveData(out editbal, out editcars);
+                spent -= (money - editbal);
+                money = editbal;
+                cars = editcars;
+                Filework.Save(cars, money, sold, bought, spent, recieved, skills, skillsname);
+                reLoadGarage();
+                updMoney();
+            }
+        }
+        private void Fitservicebutton_Click(object sender, EventArgs e)
+        {
+            List<Car> editcars;
+            long editbal;
+
+            if (money == 0)
+            {
+                MessageBox.Show("У вас нет денег", "Недостаточно средств", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            else if (findCar() == -1)
+            {
+                MessageBox.Show("У вас нет машин", "ааыаыыыыаыаааа", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            CarUpgrade.SendData(money, cars, Garage.fits);
+            if (CarUpgrade.Instance.ShowDialog() == DialogResult.OK)
+            {
+                CarUpgrade.RecieveData(out editbal, out editcars);
+                spent -= (money - editbal);
+                money = editbal;
+                cars = editcars;
+                Filework.Save(cars, money, sold, bought, spent, recieved, skills, skillsname);
+                reLoadGarage();
+                updMoney();
+            }
+        }
+
+        // -- авито --
         private void buttonavitosell_Click(object sender, EventArgs e)
         {
 
@@ -483,12 +592,11 @@ namespace ProjectPerekup
 
             reLoadBrowser();
         }
-
         private void avitocar0buy_Click(object sender, EventArgs e)
         {
             if (avitocars[0] != null)
             {
-                if (Convert.ToInt64(money) - avitocars[0].price < 0)
+                if (Convert.ToInt64(money) - Convert.ToInt64(Convert.ToDouble(avitocars[0].price) * getCondMult(avitocars[0].getCondSum())) < 0)
                 {
                     MessageBox.Show($"Ошибка:  не хватает денег");
                     return;
@@ -520,7 +628,7 @@ namespace ProjectPerekup
         {
             if (avitocars[1] != null)
             {
-                if (Convert.ToInt64(money) - avitocars[1].price < 0)
+                if (Convert.ToInt64(money) - Convert.ToInt64(Convert.ToDouble(avitocars[1].price) * getCondMult(avitocars[1].getCondSum())) < 0)
                 {
                     MessageBox.Show($"Ошибка:  не хватает денег");
                     return;
@@ -552,7 +660,7 @@ namespace ProjectPerekup
         {
             if (avitocars[2] != null)
             {
-                if (Convert.ToInt64(money) - avitocars[2].price < 0)
+                if (Convert.ToInt64(money) - Convert.ToInt64(Convert.ToDouble(avitocars[2].price) * getCondMult(avitocars[2].getCondSum())) < 0)
                 {
                     MessageBox.Show($"Ошибка:  не хватает денег");
                     return;
@@ -581,69 +689,19 @@ namespace ProjectPerekup
             }
         }
 
-        private void Vasiliybutton_Click(object sender, EventArgs e)
+        // -- статистика -- 
+        private void buttonClearData_Click(object sender, EventArgs e)
         {
-            List<Car> editcars;
-            long editbal;
+            if(Confirm.Instance.ShowDialog() == DialogResult.OK)
+            {
+                Filework.DeleteFile();
+                Filework.CreateBlankFile(out cars, out money, out sold, out bought, out spent, out recieved, out skills, skillsname);
 
-            if (money == 0)
-            {
-                MessageBox.Show("У вас нет денег", "Недостаточно средств", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-            CarUpgrade.SendData(money, cars, Garage.vasya);
-            if (CarUpgrade.Instance.ShowDialog() == DialogResult.OK)
-            {
-                CarUpgrade.RecieveData(out editbal, out editcars);
-                spent += (money - editbal);
-                money = editbal;
-                cars = editcars;
-                Filework.Save(cars, money, sold, bought, spent, recieved, skills, skillsname);
+                InitializeGarage();
                 reLoadGarage();
-                updMoney();
-            }
-        }
-        private void Stepanichbutton_Click(object sender, EventArgs e)
-        {
-            List<Car> editcars;
-            long editbal;
-
-            if (money == 0)
-            {
-                MessageBox.Show("У вас нет денег", "Недостаточно средств", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-            CarUpgrade.SendData(money, cars, Garage.stepa);
-            if (CarUpgrade.Instance.ShowDialog() == DialogResult.OK)
-            {
-                CarUpgrade.RecieveData(out editbal, out editcars);
-                spent += (money - editbal);
-                money = editbal;
-                cars = editcars;
-                Filework.Save(cars, money, sold, bought, spent, recieved, skills, skillsname);
-                reLoadGarage();
-                updMoney();
-            }
-        }
-        private void Fitservicebutton_Click(object sender, EventArgs e)
-        {
-            List<Car> editcars;
-            long editbal;
-
-            if (money == 0)
-            {
-                MessageBox.Show("У вас нет денег", "Недостаточно средств", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-            CarUpgrade.SendData(money, cars, Garage.fits);
-            if (CarUpgrade.Instance.ShowDialog() == DialogResult.OK)
-            {
-                CarUpgrade.RecieveData(out editbal, out editcars);
-                spent += (money - editbal);
-                money = editbal;
-                cars = editcars;
-                Filework.Save(cars, money, sold, bought, spent, recieved, skills, skillsname);
-                reLoadGarage();
+                InitializeBrowser();
+                InitializeStatistics();
+                reLoadBrowser();
                 updMoney();
             }
         }

@@ -72,6 +72,7 @@
             label1 = new Label();
             pictureBox1 = new PictureBox();
             statistics = new TabPage();
+            clearData = new Button();
             recievedmoney = new Label();
             spentmoney = new Label();
             skill5 = new Label();
@@ -593,6 +594,7 @@
             // 
             // statistics
             // 
+            statistics.Controls.Add(clearData);
             statistics.Controls.Add(recievedmoney);
             statistics.Controls.Add(spentmoney);
             statistics.Controls.Add(skill5);
@@ -612,6 +614,16 @@
             statistics.TabIndex = 3;
             statistics.Text = "Статистика";
             statistics.UseVisualStyleBackColor = true;
+            // 
+            // clearData
+            // 
+            clearData.Location = new Point(291, 380);
+            clearData.Name = "clearData";
+            clearData.Size = new Size(200, 50);
+            clearData.TabIndex = 12;
+            clearData.Text = "Стереть данные";
+            clearData.UseVisualStyleBackColor = true;
+            clearData.Click += buttonClearData_Click;
             // 
             // recievedmoney
             // 
@@ -825,5 +837,6 @@
         private Label boughtcars;
         private Label recievedmoney;
         private Label spentmoney;
+        private Button clearData;
     }
 }

@@ -150,6 +150,7 @@ namespace ProjectPerekup
         {
             translabel.Text = $"Трансмиссия\n{getCond(cars[selectedcar].trans)}";
             if (cars[selectedcar].trans == -3 && transedited == false) transbutton.Text = "Недоступно";
+            else if (cars[selectedcar].trans == -3 && transedited == true) transbutton.Text = "Отмена";
             else transbutton.Text = $"{getButtonText(cars[selectedcar].trans)}";
         }
         private void Inihod()
@@ -163,12 +164,14 @@ namespace ProjectPerekup
         {
             kusovlabel.Text = $"Кузов\n{getCond(cars[selectedcar].kusov)}";
             if (cars[selectedcar].kusov == -3 && kusovedited == false) kusovbutton.Text = "Недоступно";
+            else if (cars[selectedcar].kusov == -3 && kusovedited == true) kusovbutton.Text = "Отмена";
             else kusovbutton.Text = $"{getButtonText(cars[selectedcar].kusov)}";
         }
         private void Inisalon()
         {
             salonlabel.Text = $"Салон\n{getCond(cars[selectedcar].salon)}";
             if (cars[selectedcar].salon == -3 && salonedited == false) salonbutton.Text = "Недоступно";
+            else if (cars[selectedcar].salon == -3 && salonedited == true) salonbutton.Text = "Отмена";
             else salonbutton.Text = $"{getButtonText(cars[selectedcar].salon)}";
         }
 
@@ -176,11 +179,11 @@ namespace ProjectPerekup
         {
             if (lvl > 0)
             {
-                return $"Починить - {Convert.ToInt32(cars[selectedcar].price / 7 * (3.5 + Convert.ToDouble(fits() + cars[selectedcar].motor)) / 10)}";
+                return $"Починить - {Convert.ToInt32(cars[selectedcar].price / 7 * (3.5 + Convert.ToDouble(fits() + lvl)) / 10)}";
             }
             else
             {
-                return $"Улучшить - {Convert.ToInt32((cars[selectedcar].price / 7 * (2.0 + Convert.ToDouble(fits() - cars[selectedcar].motor)) / 10) * (0.9 - Convert.ToDouble(cars[selectedcar].motor) / 15))}";
+                return $"Улучшить - {Convert.ToInt32((cars[selectedcar].price / 7 * (2.0 + Convert.ToDouble(fits() - lvl)) / 10) * (0.9 - Convert.ToDouble(lvl) / 15))}";
             }
         }
         private string getCond(int cond)
@@ -240,22 +243,164 @@ namespace ProjectPerekup
 
         private void transbutton_Click(object sender, EventArgs e)
         {
-
+            if (transbutton.Text != "Недоступно")
+            {
+                if (transbutton.Text == "Отмена")
+                {
+                    transedited = false;
+                    editsum -= transprice;
+                    transprice = 0;
+                    cars[selectedcar].trans = translvl;
+                    IniCarText();
+                    Initrans();
+                }
+                else if (cars[selectedcar].trans > 0)
+                {
+                    transedited = true;
+                    int price = Convert.ToInt32(cars[selectedcar].price / 7 * (3.5 + Convert.ToDouble(fits() + cars[selectedcar].trans)) / 10);
+                    editsum += price;
+                    transprice += price;
+                    cars[selectedcar].trans = 0;
+                    Initrans();
+                    IniCarText();
+                }
+                else
+                {
+                    transedited = true;
+                    int price = Convert.ToInt32((cars[selectedcar].price / 7 * (2.0 + Convert.ToDouble(fits() - cars[selectedcar].trans)) / 10) * (0.9 - Convert.ToDouble(cars[selectedcar].trans) / 15));
+                    editsum += price;
+                    transprice += price;
+                    cars[selectedcar].trans--;
+                    Initrans();
+                    IniCarText();
+                }
+            }
         }
 
         private void hodbutton_Click(object sender, EventArgs e)
         {
-
+            if (hodbutton.Text != "Недоступно")
+            {
+                if (hodbutton.Text == "Отмена")
+                {
+                    hodedited = false;
+                    editsum -= hodprice;
+                    hodprice = 0;
+                    cars[selectedcar].hod = hodlvl;
+                    IniCarText();
+                    Inihod();
+                }
+                else if (cars[selectedcar].hod > 0)
+                {
+                    hodedited = true;
+                    int price = Convert.ToInt32(cars[selectedcar].price / 7 * (3.5 + Convert.ToDouble(fits() + cars[selectedcar].hod)) / 10);
+                    editsum += price;
+                    hodprice += price;
+                    cars[selectedcar].hod = 0;
+                    Inihod();
+                    IniCarText();
+                }
+                else
+                {
+                    hodedited = true;
+                    int price = Convert.ToInt32((cars[selectedcar].price / 7 * (2.0 + Convert.ToDouble(fits() - cars[selectedcar].hod)) / 10) * (0.9 - Convert.ToDouble(cars[selectedcar].hod) / 15));
+                    editsum += price;
+                    hodprice += price;
+                    cars[selectedcar].hod--;
+                    Inihod();
+                    IniCarText();
+                }
+            }
         }
 
         private void kusovbutton_Click(object sender, EventArgs e)
         {
-
+            if (kusovbutton.Text != "Недоступно")
+            {
+                if (kusovbutton.Text == "Отмена")
+                {
+                    kusovedited = false;
+                    editsum -= kusovprice;
+                    kusovprice = 0;
+                    cars[selectedcar].kusov = kusovlvl;
+                    IniCarText();
+                    Inikusov();
+                }
+                else if (cars[selectedcar].kusov > 0)
+                {
+                    kusovedited = true;
+                    int price = Convert.ToInt32(cars[selectedcar].price / 7 * (3.5 + Convert.ToDouble(fits() + cars[selectedcar].kusov)) / 10);
+                    editsum += price;
+                    kusovprice += price;
+                    cars[selectedcar].kusov = 0;
+                    Inikusov();
+                    IniCarText();
+                }
+                else
+                {
+                    kusovedited = true;
+                    int price = Convert.ToInt32((cars[selectedcar].price / 7 * (2.0 + Convert.ToDouble(fits() - cars[selectedcar].kusov)) / 10) * (0.9 - Convert.ToDouble(cars[selectedcar].kusov) / 15));
+                    editsum += price;
+                    kusovprice += price;
+                    cars[selectedcar].kusov--;
+                    Inikusov();
+                    IniCarText();
+                }
+            }
         }
 
         private void salonbutton_Click(object sender, EventArgs e)
         {
+            if (salonbutton.Text != "Недоступно")
+            {
+                if (salonbutton.Text == "Отмена")
+                {
+                    salonedited = false;
+                    editsum -= salonprice;
+                    salonprice = 0;
+                    cars[selectedcar].salon = salonlvl;
+                    IniCarText();
+                    Inisalon();
+                }
+                else if (cars[selectedcar].salon > 0)
+                {
+                    salonedited = true;
+                    int price = Convert.ToInt32(cars[selectedcar].price / 7 * (3.5 + Convert.ToDouble(fits() + cars[selectedcar].salon)) / 10);
+                    editsum += price;
+                    salonprice += price;
+                    cars[selectedcar].salon = 0;
+                    Inisalon();
+                    IniCarText();
+                }
+                else
+                {
+                    salonedited = true;
+                    int price = Convert.ToInt32((cars[selectedcar].price / 7 * (2.0 + Convert.ToDouble(fits() - cars[selectedcar].salon)) / 10) * (0.9 - Convert.ToDouble(cars[selectedcar].salon) / 15));
+                    editsum += price;
+                    salonprice += price;
+                    cars[selectedcar].salon--;
+                    Inisalon();
+                    IniCarText();
+                }
+            }
+        }
 
+        private void cancelbutton_Click(object sender, EventArgs e)
+        {
+            Nullstats();
+            Instance.Close();
+        }
+
+        private void confirmbutton_Click(object sender, EventArgs e)
+        {
+            if (Convert.ToInt64(balance) - editsum < 0)
+            {
+                MessageBox.Show($"Ошибка:  не хватает денег");
+                return;
+            }
+            balance -= editsum;
+            Instance.DialogResult = DialogResult.OK;
+            Instance.Close();
         }
     }
 

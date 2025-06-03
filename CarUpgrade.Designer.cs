@@ -206,6 +206,7 @@
             confirmbutton.TabIndex = 32;
             confirmbutton.Text = "Изменить";
             confirmbutton.UseVisualStyleBackColor = true;
+            confirmbutton.Click += confirmbutton_Click;
             // 
             // cancelbutton
             // 
@@ -216,6 +217,7 @@
             cancelbutton.TabIndex = 31;
             cancelbutton.Text = "Отмена";
             cancelbutton.UseVisualStyleBackColor = true;
+            cancelbutton.Click += cancelbutton_Click;
             // 
             // salonbutton
             // 

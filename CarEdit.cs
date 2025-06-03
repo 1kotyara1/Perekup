@@ -295,9 +295,20 @@ namespace ProjectPerekup
                 }
             }
         }
-
+        private void Nullstats()
+        {
+            if (motoredited || transedited || hodedited || kusovedited || salonedited)
+            {
+                car.motor = motorlvl;
+                car.trans = translvl;
+                car.hod = hodlvl;
+                car.kusov = kusovlvl;
+                car.salon = salonlvl;
+            }
+        }
         private void cancelbutton_Click(object sender, EventArgs e)
         {
+            Nullstats();
             Instance.Close();
         }
         private void confirmbutton_Click(object sender, EventArgs e)

@@ -11,6 +11,7 @@ namespace ProjectPerekup.Classes
     {
         private static string path = ".\\data.txt";
 
+        // сохранение
         public static void Save(in List<Car> cars, in long money, in int sold, in int bought, in long spent, in long recieved, in int[] skills, string[] skillsname)
         {
             List<string> data = new List<string>();
@@ -41,6 +42,7 @@ namespace ProjectPerekup.Classes
             File.WriteAllLines(path, data);
         }
 
+        // чтение
         public static void Load(out List<Car> cars, out long money, out int sold, out int bought, out long spent, out long recieved, out int[] skills, string[] skillsname)
         {
             int carslen = 6;
@@ -72,77 +74,60 @@ namespace ProjectPerekup.Classes
                 }
                 catch 
                 {
-                    List<string> data = new List<string>();
-
-                    for (int j = 0; j < carslen; j++)
-                    {
-                        data.Add("0");
-                        data.Add("0");
-
-                        data.Add("0");
-                        data.Add("0");
-                        data.Add("0");
-                        data.Add("0");
-                        data.Add("0");
-                        cars.Add(new Car());
-                    }
-
-                    data.Add("0");
-                    money = 1000000;
-                    data.Add("1000000");
-                    sold = 0;
-                    data.Add("0");
-                    bought = 0;
-                    data.Add("0");
-                    spent = 0;
-                    data.Add("0");
-                    recieved = 0;
-
-                    for (int j = 0; j < skillsname.Length; j++)
-                    {
-                        data.Add("0");
-                        skills[j] = 0;
-                    }
-
-                    File.WriteAllLines(path, data);
+                    CreateBlankFile(out cars, out money, out sold, out bought, out spent, out recieved, out skills, skillsname);
                 }
             }
             else
             {
-                List<string> data = new List<string>();
-
-                for(int j = 0; j < carslen; j++)
-                {
-                    data.Add("0");
-                    data.Add("0");
-
-                    data.Add("0");
-                    data.Add("0");
-                    data.Add("0");
-                    data.Add("0");
-                    data.Add("0");
-                    cars.Add(new Car());
-                }
-
-                data.Add("0");
-                money = 1000000;
-                data.Add("1000000");
-                sold = 0;
-                data.Add("0");
-                bought = 0;
-                data.Add("0");
-                spent = 0;
-                data.Add("0");
-                recieved = 0;
-
-                for (int j = 0; j < skillsname.Length; j++)
-                {
-                    data.Add("0");
-                    skills[j] = 0;
-                }
-
-                File.WriteAllLines(path, data);
+                CreateBlankFile(out cars, out money, out sold, out bought, out spent, out recieved, out skills, skillsname);
             }
+        }
+
+        // удаление
+        public static void DeleteFile()
+        {
+            File.Delete(path);
+        }
+
+        // создание
+        public static void CreateBlankFile(out List<Car> cars, out long money, out int sold, out int bought, out long spent, out long recieved, out int[] skills, string[] skillsname)
+        {
+            int carslen = 6;
+            cars = new List<Car>();
+            skills = new int[skillsname.Length];
+            List<string> data = new List<string>();
+
+            for (int j = 0; j < carslen; j++)
+            {
+                data.Add("0");
+                data.Add("0");
+
+                data.Add("0");
+                data.Add("0");
+                data.Add("0");
+                data.Add("0");
+                data.Add("0");
+                cars.Add(new Car());
+            }
+
+            data.Add("100000");
+            money = 100000;
+            data.Add("0");
+            sold = 0;
+            data.Add("0");
+            bought = 0;
+            data.Add("0");
+            spent = 0;
+            data.Add("0");
+            recieved = 0;
+
+            for (int j = 0; j < skillsname.Length; j++)
+            {
+                data.Add("0");
+                skills[j] = 0;
+            }
+
+            File.WriteAllLines(path, data);
         }
     }
 }

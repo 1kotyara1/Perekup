@@ -13,8 +13,7 @@ namespace ProjectPerekup
 {
     public partial class CarSell : Form
     {
-        private string[] conditions = { " нет повреждений", " лёгкие повреждения", " средние повреждения", " тяжелые повреждения" };
-
+        // создание окна(можете не смотреть сюда)
         private static CarSell _Instance = new CarSell();
         public static CarSell Instance
         {
@@ -27,29 +26,37 @@ namespace ProjectPerekup
                 return _Instance;
             }
         }
+        public CarSell()
+        {
+            InitializeComponent();
+        }
+     
 
+        // массив состояний отдельных частей машины
+        private string[] conditions = { " нет повреждений", " лёгкие повреждения", " средние повреждения", " тяжелые повреждения" };
+
+
+        // баланс, машины, выбранная машина
         static long balance;
         static List<Car> cars;
         int selectedcar;
 
-        public static void SendData(long editbalance, List<Car> editcars)
+
+        // передача данных между окнами
+        public static void SendData(long editbalance, List<Car> editcars) // идет сюда
         {
             balance = editbalance;
             cars = editcars;
             Instance.InitializeForm();
         }
-        public static void RecieveData(out long sendbalance, out List<Car> sendcars)
+        public static void RecieveData(out long sendbalance, out List<Car> sendcars) // идет отсюда
         {
             sendbalance = balance;
             sendcars = cars;
         }
 
-        public CarSell()
-        {
-            InitializeComponent();
-        }
 
-        private void InitializeForm()
+        private void InitializeForm() // загрузка данных в окно
         {
             selectedcar = cars.FindIndex(c => c.img != 0);
 
@@ -104,84 +111,7 @@ namespace ProjectPerekup
             car0text.Visible = true;
             loadStats();
         }
-        private void hideCarText(int carnum)
-        {
-            if (carnum != selectedcar)
-            {
-                if (carnum == 0)
-                {
-                    car0text.Visible = false;
-                }
-                else if (carnum == 1)
-                {
-                    car1text.Visible = false;
-                }
-                else if (carnum == 2)
-                {
-                    car2text.Visible = false;
-                }
-                else if (carnum == 3)
-                {
-                    car3text.Visible = false;
-                }
-                else if (carnum == 4)
-                {
-                    car4text.Visible = false;
-                }
-                else if (carnum == 5)
-                {
-                    car5text.Visible = false;
-                }
-            }
-        }
-        private void hideOtherCarText()
-        {
-            if (selectedcar == 0)
-            {
-                car0text.Visible = false;
-            }
-            else if (selectedcar == 1)
-            {
-                car1text.Visible = false;
-            }
-            else if (selectedcar == 2)
-            {
-                car2text.Visible = false;
-            }
-            else if (selectedcar == 3)
-            {
-                car3text.Visible = false;
-            }
-            else if (selectedcar == 4)
-            {
-                car4text.Visible = false;
-            }
-            else if (selectedcar == 5)
-            {
-                car5text.Visible = false;
-            }
-        }
-        private void loadStats()
-        {
-            carstat0.Text = $"Мотор:{getCond(cars[selectedcar].motor)}\n" +
-                            $"Трансмиссия:{getCond(cars[selectedcar].trans)}\n" +
-                            $"Ходовая:{getCond(cars[selectedcar].hod)}\n" +
-                            $"Кузов:{getCond(cars[selectedcar].kusov)}\n" +
-                            $"Салон:{getCond(cars[selectedcar].salon)}\n";
-            carprice.Text = $"Итоговая цена: {Convert.ToInt32(cars[selectedcar].price * (1.00 - 0.08 * cars[selectedcar].getCondSum()))}₽";
-        }
-        private string getCond(int cond)
-        {
-            if (cond >= 0)
-            {
-                return conditions[cond];
-            }
-            else
-            {
-                return $" {-cond} уровень";
-            }
-        }
-        private void CarSell_Resize(object sender, EventArgs e)
+        private void CarSell_Resize(object sender, EventArgs e) // изменение положения объектов
         {
             int width = Width - 16;
             int height = Height - 39;
@@ -230,14 +160,96 @@ namespace ProjectPerekup
             carprice.Location = new Point(cancelbutton.Location.X, cancelbutton.Location.Y - 38);
         }
 
-        private void cancelbutton_Click(object sender, EventArgs e)
+
+        // помощники
+        private void hideCarText(int carnum) // скрытие описания(кроме выбранной машины)
+        {
+            if (carnum != selectedcar)
+            {
+                if (carnum == 0)
+                {
+                    car0text.Visible = false;
+                }
+                else if (carnum == 1)
+                {
+                    car1text.Visible = false;
+                }
+                else if (carnum == 2)
+                {
+                    car2text.Visible = false;
+                }
+                else if (carnum == 3)
+                {
+                    car3text.Visible = false;
+                }
+                else if (carnum == 4)
+                {
+                    car4text.Visible = false;
+                }
+                else if (carnum == 5)
+                {
+                    car5text.Visible = false;
+                }
+            }
+        }
+        private void hideOtherCarText() // скрытие описаний(сразу всех кроме выбранной)
+        {
+            if (selectedcar == 0)
+            {
+                car0text.Visible = false;
+            }
+            else if (selectedcar == 1)
+            {
+                car1text.Visible = false;
+            }
+            else if (selectedcar == 2)
+            {
+                car2text.Visible = false;
+            }
+            else if (selectedcar == 3)
+            {
+                car3text.Visible = false;
+            }
+            else if (selectedcar == 4)
+            {
+                car4text.Visible = false;
+            }
+            else if (selectedcar == 5)
+            {
+                car5text.Visible = false;
+            }
+        }
+        private void loadStats() // загрузка данных выбранной машины
+        {
+            carstat0.Text = $"Мотор:{getCond(cars[selectedcar].motor)}\n" +
+                            $"Трансмиссия:{getCond(cars[selectedcar].trans)}\n" +
+                            $"Ходовая:{getCond(cars[selectedcar].hod)}\n" +
+                            $"Кузов:{getCond(cars[selectedcar].kusov)}\n" +
+                            $"Салон:{getCond(cars[selectedcar].salon)}\n";
+            carprice.Text = $"Итоговая цена: {Convert.ToInt64(Convert.ToDouble(cars[selectedcar].price) * getCondMult(cars[selectedcar].getCondSum()))}₽";
+        }
+        private string getCond(int cond) // вывод состояния частей машины
+        {
+            if (cond >= 0)
+            {
+                return conditions[cond];
+            }
+            else
+            {
+                return $" {-cond} уровень";
+            }
+        }
+        private void cancelbutton_Click(object sender, EventArgs e) //
         {
             Instance.Close();
         }
-
-        private void sellbutton_Click(object sender, EventArgs e)
+        private double getCondMult(int sum) //
         {
-            balance += Convert.ToInt32(cars[selectedcar].price * (1.00 - 0.07 * cars[selectedcar].getCondSum() + 0.01 * cars[selectedcar].img/10));
+            return 1.0 - 0.05 * sum;
+        }
+        private void sellbutton_Click(object sender, EventArgs e) //
+        {
+            balance += Convert.ToInt64(Convert.ToDouble(cars[selectedcar].price) * getCondMult(cars[selectedcar].getCondSum()));
             cars[selectedcar] = new Car();
 
             Instance.DialogResult = DialogResult.OK;
