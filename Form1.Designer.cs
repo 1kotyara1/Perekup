@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(perekup));
             tabs = new TabControl();
             garage = new TabPage();
-            buttoneditcar = new Button();
+            label2 = new Label();
             car3img = new PictureBox();
             car4img = new PictureBox();
             car5img = new PictureBox();
@@ -118,13 +118,13 @@
             tabs.Name = "tabs";
             tabs.Padding = new Point(12, 3);
             tabs.SelectedIndex = 0;
-            tabs.Size = new Size(790, 477);
+            tabs.Size = new Size(790, 576);
             tabs.TabIndex = 0;
             tabs.SelectedIndexChanged += tabs_SelectedIndexChanged;
             // 
             // garage
             // 
-            garage.Controls.Add(buttoneditcar);
+            garage.Controls.Add(label2);
             garage.Controls.Add(car3img);
             garage.Controls.Add(car4img);
             garage.Controls.Add(car5img);
@@ -141,27 +141,25 @@
             garage.Location = new Point(4, 34);
             garage.Name = "garage";
             garage.Padding = new Padding(3);
-            garage.Size = new Size(782, 439);
+            garage.Size = new Size(782, 538);
             garage.TabIndex = 0;
             garage.Text = "Гараж";
             garage.UseVisualStyleBackColor = true;
             // 
-            // buttoneditcar
+            // label2
             // 
-            buttoneditcar.Location = new Point(316, 380);
-            buttoneditcar.Name = "buttoneditcar";
-            buttoneditcar.Size = new Size(150, 50);
-            buttoneditcar.TabIndex = 7;
-            buttoneditcar.Text = "Починить";
-            buttoneditcar.UseVisualStyleBackColor = true;
-            buttoneditcar.Visible = false;
-            buttoneditcar.Click += buttoneditcar_Click;
+            label2.AutoSize = true;
+            label2.Location = new Point(21, 97);
+            label2.Name = "label2";
+            label2.Size = new Size(63, 25);
+            label2.TabIndex = 14;
+            label2.Text = "label2";
             // 
             // car3img
             // 
             car3img.Cursor = Cursors.Hand;
             car3img.Image = Properties.Resources.car00;
-            car3img.Location = new Point(650, 52);
+            car3img.Location = new Point(123, 300);
             car3img.Name = "car3img";
             car3img.Size = new Size(120, 120);
             car3img.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -172,7 +170,7 @@
             // 
             car4img.Cursor = Cursors.Hand;
             car4img.Image = Properties.Resources.car00;
-            car4img.Location = new Point(650, 181);
+            car4img.Location = new Point(331, 300);
             car4img.Name = "car4img";
             car4img.Size = new Size(120, 120);
             car4img.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -183,7 +181,7 @@
             // 
             car5img.Cursor = Cursors.Hand;
             car5img.Image = Properties.Resources.car00;
-            car5img.Location = new Point(650, 310);
+            car5img.Location = new Point(539, 300);
             car5img.Name = "car5img";
             car5img.Size = new Size(120, 120);
             car5img.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -194,7 +192,7 @@
             // 
             car0img.Cursor = Cursors.Hand;
             car0img.Image = Properties.Resources.car00;
-            car0img.Location = new Point(12, 52);
+            car0img.Location = new Point(123, 64);
             car0img.Name = "car0img";
             car0img.Size = new Size(120, 120);
             car0img.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -205,7 +203,7 @@
             // 
             car1img.Cursor = Cursors.Hand;
             car1img.Image = Properties.Resources.car00;
-            car1img.Location = new Point(12, 181);
+            car1img.Location = new Point(331, 64);
             car1img.Name = "car1img";
             car1img.Size = new Size(120, 120);
             car1img.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -216,7 +214,7 @@
             // 
             car2img.Cursor = Cursors.Hand;
             car2img.Image = Properties.Resources.car00;
-            car2img.Location = new Point(12, 310);
+            car2img.Location = new Point(539, 64);
             car2img.Name = "car2img";
             car2img.Size = new Size(120, 120);
             car2img.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -226,64 +224,67 @@
             // car0text
             // 
             car0text.BackColor = Color.Transparent;
-            car0text.Location = new Point(138, 52);
+            car0text.Location = new Point(83, 187);
             car0text.Name = "car0text";
-            car0text.Size = new Size(172, 120);
+            car0text.Size = new Size(205, 111);
             car0text.TabIndex = 10;
             car0text.Text = "label1";
+            car0text.TextAlign = ContentAlignment.TopCenter;
             car0text.Visible = false;
             // 
             // car1text
             // 
             car1text.BackColor = Color.Transparent;
-            car1text.Location = new Point(138, 181);
+            car1text.Location = new Point(291, 187);
             car1text.Name = "car1text";
-            car1text.Size = new Size(172, 120);
+            car1text.Size = new Size(200, 111);
             car1text.TabIndex = 9;
             car1text.Text = "label1";
+            car1text.TextAlign = ContentAlignment.TopCenter;
             car1text.Visible = false;
             // 
             // car2text
             // 
             car2text.BackColor = Color.Transparent;
-            car2text.Location = new Point(138, 310);
+            car2text.Location = new Point(494, 187);
             car2text.Name = "car2text";
-            car2text.Size = new Size(172, 120);
+            car2text.Size = new Size(205, 111);
             car2text.TabIndex = 8;
             car2text.Text = "label1";
+            car2text.TextAlign = ContentAlignment.TopCenter;
             car2text.Visible = false;
             // 
             // car3text
             // 
             car3text.BackColor = Color.Transparent;
-            car3text.Location = new Point(472, 52);
+            car3text.Location = new Point(83, 423);
             car3text.Name = "car3text";
-            car3text.Size = new Size(172, 120);
+            car3text.Size = new Size(205, 111);
             car3text.TabIndex = 11;
             car3text.Text = "label1";
-            car3text.TextAlign = ContentAlignment.TopRight;
+            car3text.TextAlign = ContentAlignment.TopCenter;
             car3text.Visible = false;
             // 
             // car4text
             // 
             car4text.BackColor = Color.Transparent;
-            car4text.Location = new Point(472, 181);
+            car4text.Location = new Point(291, 423);
             car4text.Name = "car4text";
-            car4text.Size = new Size(172, 120);
+            car4text.Size = new Size(205, 111);
             car4text.TabIndex = 12;
             car4text.Text = "label1";
-            car4text.TextAlign = ContentAlignment.TopRight;
+            car4text.TextAlign = ContentAlignment.TopCenter;
             car4text.Visible = false;
             // 
             // car5text
             // 
             car5text.BackColor = Color.Transparent;
-            car5text.Location = new Point(472, 310);
+            car5text.Location = new Point(494, 423);
             car5text.Name = "car5text";
-            car5text.Size = new Size(172, 120);
+            car5text.Size = new Size(205, 111);
             car5text.TabIndex = 13;
             car5text.Text = "label1";
-            car5text.TextAlign = ContentAlignment.TopRight;
+            car5text.TextAlign = ContentAlignment.TopCenter;
             car5text.Visible = false;
             // 
             // garagetitle
@@ -306,7 +307,7 @@
             workshops.Location = new Point(4, 34);
             workshops.Name = "workshops";
             workshops.Padding = new Padding(3);
-            workshops.Size = new Size(782, 439);
+            workshops.Size = new Size(782, 538);
             workshops.TabIndex = 1;
             workshops.Text = "Мастерские";
             workshops.UseVisualStyleBackColor = true;
@@ -314,7 +315,7 @@
             // Stepanichbutton
             // 
             Stepanichbutton.Font = new Font("Segoe UI", 10F);
-            Stepanichbutton.Location = new Point(347, 63);
+            Stepanichbutton.Location = new Point(398, 76);
             Stepanichbutton.Name = "Stepanichbutton";
             Stepanichbutton.Size = new Size(83, 27);
             Stepanichbutton.TabIndex = 3;
@@ -325,7 +326,7 @@
             // Fitservicebutton
             // 
             Fitservicebutton.Font = new Font("Segoe UI", 10F);
-            Fitservicebutton.Location = new Point(633, 180);
+            Fitservicebutton.Location = new Point(710, 202);
             Fitservicebutton.Name = "Fitservicebutton";
             Fitservicebutton.Size = new Size(77, 27);
             Fitservicebutton.TabIndex = 2;
@@ -336,7 +337,7 @@
             // Vasiliybutton
             // 
             Vasiliybutton.Font = new Font("Segoe UI", 10F);
-            Vasiliybutton.Location = new Point(73, 282);
+            Vasiliybutton.Location = new Point(78, 269);
             Vasiliybutton.Name = "Vasiliybutton";
             Vasiliybutton.Size = new Size(73, 26);
             Vasiliybutton.TabIndex = 1;
@@ -351,7 +352,7 @@
             citypicture.InitialImage = null;
             citypicture.Location = new Point(0, 0);
             citypicture.Name = "citypicture";
-            citypicture.Size = new Size(786, 443);
+            citypicture.Size = new Size(885, 443);
             citypicture.SizeMode = PictureBoxSizeMode.StretchImage;
             citypicture.TabIndex = 0;
             citypicture.TabStop = false;
@@ -381,7 +382,7 @@
             browser.Location = new Point(4, 34);
             browser.Name = "browser";
             browser.Padding = new Padding(3);
-            browser.Size = new Size(782, 439);
+            browser.Size = new Size(782, 538);
             browser.TabIndex = 2;
             browser.Text = "Браузер";
             browser.UseVisualStyleBackColor = true;
@@ -389,7 +390,7 @@
             // avitocar2price
             // 
             avitocar2price.BackColor = SystemColors.ScrollBar;
-            avitocar2price.Location = new Point(518, 333);
+            avitocar2price.Location = new Point(611, 333);
             avitocar2price.Name = "avitocar2price";
             avitocar2price.Size = new Size(250, 37);
             avitocar2price.TabIndex = 24;
@@ -399,7 +400,7 @@
             // avitocar1price
             // 
             avitocar1price.BackColor = SystemColors.ScrollBar;
-            avitocar1price.Location = new Point(518, 237);
+            avitocar1price.Location = new Point(611, 237);
             avitocar1price.Name = "avitocar1price";
             avitocar1price.Size = new Size(250, 37);
             avitocar1price.TabIndex = 23;
@@ -409,7 +410,7 @@
             // avitocar0price
             // 
             avitocar0price.BackColor = SystemColors.ScrollBar;
-            avitocar0price.Location = new Point(518, 141);
+            avitocar0price.Location = new Point(611, 141);
             avitocar0price.Name = "avitocar0price";
             avitocar0price.Size = new Size(250, 37);
             avitocar0price.TabIndex = 22;
@@ -419,7 +420,7 @@
             // avitocar2buy
             // 
             avitocar2buy.Font = new Font("Segoe UI", 16F);
-            avitocar2buy.Location = new Point(518, 373);
+            avitocar2buy.Location = new Point(611, 373);
             avitocar2buy.Name = "avitocar2buy";
             avitocar2buy.Size = new Size(250, 39);
             avitocar2buy.TabIndex = 21;
@@ -430,7 +431,7 @@
             // avitocar1buy
             // 
             avitocar1buy.Font = new Font("Segoe UI", 16F);
-            avitocar1buy.Location = new Point(518, 277);
+            avitocar1buy.Location = new Point(611, 277);
             avitocar1buy.Name = "avitocar1buy";
             avitocar1buy.Size = new Size(250, 39);
             avitocar1buy.TabIndex = 20;
@@ -441,7 +442,7 @@
             // avitocar0buy
             // 
             avitocar0buy.Font = new Font("Segoe UI", 16F);
-            avitocar0buy.Location = new Point(518, 181);
+            avitocar0buy.Location = new Point(611, 181);
             avitocar0buy.Name = "avitocar0buy";
             avitocar0buy.Size = new Size(250, 39);
             avitocar0buy.TabIndex = 19;
@@ -453,7 +454,7 @@
             // 
             avitocar2name.Location = new Point(102, 333);
             avitocar2name.Name = "avitocar2name";
-            avitocar2name.Size = new Size(410, 79);
+            avitocar2name.Size = new Size(503, 79);
             avitocar2name.TabIndex = 15;
             avitocar2name.Text = "Пусто";
             // 
@@ -461,7 +462,7 @@
             // 
             avitocar1name.Location = new Point(102, 237);
             avitocar1name.Name = "avitocar1name";
-            avitocar1name.Size = new Size(410, 79);
+            avitocar1name.Size = new Size(503, 79);
             avitocar1name.TabIndex = 14;
             avitocar1name.Text = "Пусто";
             // 
@@ -469,7 +470,7 @@
             // 
             avitocar0name.Location = new Point(102, 141);
             avitocar0name.Name = "avitocar0name";
-            avitocar0name.Size = new Size(410, 79);
+            avitocar0name.Size = new Size(503, 79);
             avitocar0name.TabIndex = 13;
             avitocar0name.Text = "Пусто";
             // 
@@ -521,7 +522,7 @@
             avitocar0.BackColor = SystemColors.ScrollBar;
             avitocar0.Location = new Point(6, 136);
             avitocar0.Name = "avitocar0";
-            avitocar0.Size = new Size(766, 90);
+            avitocar0.Size = new Size(865, 90);
             avitocar0.TabIndex = 8;
             avitocar0.UseCompatibleStateImageBehavior = false;
             // 
@@ -531,7 +532,7 @@
             avitocar1.BackColor = SystemColors.ScrollBar;
             avitocar1.Location = new Point(6, 232);
             avitocar1.Name = "avitocar1";
-            avitocar1.Size = new Size(766, 90);
+            avitocar1.Size = new Size(865, 90);
             avitocar1.TabIndex = 7;
             avitocar1.UseCompatibleStateImageBehavior = false;
             // 
@@ -541,7 +542,7 @@
             avitocar2.BackColor = SystemColors.ScrollBar;
             avitocar2.Location = new Point(6, 328);
             avitocar2.Name = "avitocar2";
-            avitocar2.Size = new Size(766, 90);
+            avitocar2.Size = new Size(865, 90);
             avitocar2.TabIndex = 6;
             avitocar2.UseCompatibleStateImageBehavior = false;
             // 
@@ -560,7 +561,7 @@
             buttonavitosell.Cursor = Cursors.Hand;
             buttonavitosell.FlatStyle = FlatStyle.Popup;
             buttonavitosell.ForeColor = SystemColors.Control;
-            buttonavitosell.Location = new Point(479, 25);
+            buttonavitosell.Location = new Point(578, 25);
             buttonavitosell.Name = "buttonavitosell";
             buttonavitosell.Size = new Size(293, 41);
             buttonavitosell.TabIndex = 2;
@@ -574,7 +575,7 @@
             label1.Font = new Font("Segoe UI", 28F);
             label1.Location = new Point(92, -2);
             label1.Name = "label1";
-            label1.Size = new Size(381, 80);
+            label1.Size = new Size(480, 80);
             label1.TabIndex = 1;
             label1.Text = "Автомаркет";
             label1.TextAlign = ContentAlignment.MiddleLeft;
@@ -610,14 +611,14 @@
             statistics.Location = new Point(4, 34);
             statistics.Name = "statistics";
             statistics.Padding = new Padding(3);
-            statistics.Size = new Size(782, 439);
+            statistics.Size = new Size(782, 538);
             statistics.TabIndex = 3;
             statistics.Text = "Статистика";
             statistics.UseVisualStyleBackColor = true;
             // 
             // clearData
             // 
-            clearData.Location = new Point(291, 380);
+            clearData.Location = new Point(340, 380);
             clearData.Name = "clearData";
             clearData.Size = new Size(200, 50);
             clearData.TabIndex = 12;
@@ -645,7 +646,7 @@
             // 
             // skill5
             // 
-            skill5.Location = new Point(433, 228);
+            skill5.Location = new Point(534, 228);
             skill5.Name = "skill5";
             skill5.Size = new Size(337, 29);
             skill5.TabIndex = 9;
@@ -654,7 +655,7 @@
             // 
             // skill4
             // 
-            skill4.Location = new Point(433, 199);
+            skill4.Location = new Point(534, 199);
             skill4.Name = "skill4";
             skill4.Size = new Size(337, 29);
             skill4.TabIndex = 8;
@@ -663,7 +664,7 @@
             // 
             // skill3
             // 
-            skill3.Location = new Point(433, 170);
+            skill3.Location = new Point(534, 170);
             skill3.Name = "skill3";
             skill3.Size = new Size(337, 29);
             skill3.TabIndex = 7;
@@ -672,7 +673,7 @@
             // 
             // skill2
             // 
-            skill2.Location = new Point(433, 141);
+            skill2.Location = new Point(534, 141);
             skill2.Name = "skill2";
             skill2.Size = new Size(337, 29);
             skill2.TabIndex = 6;
@@ -681,7 +682,7 @@
             // 
             // skill1
             // 
-            skill1.Location = new Point(433, 112);
+            skill1.Location = new Point(534, 112);
             skill1.Name = "skill1";
             skill1.Size = new Size(337, 29);
             skill1.TabIndex = 5;
@@ -690,7 +691,7 @@
             // 
             // skill0
             // 
-            skill0.Location = new Point(433, 83);
+            skill0.Location = new Point(534, 83);
             skill0.Name = "skill0";
             skill0.Size = new Size(337, 29);
             skill0.TabIndex = 4;
@@ -708,7 +709,7 @@
             // 
             // skillslabel
             // 
-            skillslabel.Location = new Point(433, 50);
+            skillslabel.Location = new Point(534, 50);
             skillslabel.Name = "skillslabel";
             skillslabel.Size = new Size(337, 29);
             skillslabel.TabIndex = 2;
@@ -730,7 +731,7 @@
             stattitle.Font = new Font("Segoe UI", 25F);
             stattitle.Location = new Point(0, 0);
             stattitle.Name = "stattitle";
-            stattitle.Size = new Size(786, 50);
+            stattitle.Size = new Size(885, 50);
             stattitle.TabIndex = 0;
             stattitle.Text = "Ваша статистика";
             stattitle.TextAlign = ContentAlignment.MiddleCenter;
@@ -751,16 +752,17 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(784, 476);
+            ClientSize = new Size(784, 575);
             Controls.Add(labelmoney);
             Controls.Add(tabs);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            MinimumSize = new Size(800, 515);
+            MinimumSize = new Size(800, 614);
             Name = "perekup";
             Text = "Симулятор перекупа";
             Resize += Form1_Resize;
             tabs.ResumeLayout(false);
             garage.ResumeLayout(false);
+            garage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)car3img).EndInit();
             ((System.ComponentModel.ISupportInitialize)car4img).EndInit();
             ((System.ComponentModel.ISupportInitialize)car5img).EndInit();
@@ -794,7 +796,6 @@
         private PictureBox car0img;
         private PictureBox car1img;
         private PictureBox car2img;
-        private Button buttoneditcar;
         private PictureBox car3img;
         private PictureBox car4img;
         private PictureBox car5img;
@@ -838,5 +839,6 @@
         private Label recievedmoney;
         private Label spentmoney;
         private Button clearData;
+        private Label label2;
     }
 }

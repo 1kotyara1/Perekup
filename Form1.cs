@@ -33,75 +33,172 @@ namespace ProjectPerekup
             InitializeStatistics();
             reLoadGarage();
             updMoney();
+
+            Transform();
         }
 
 
         // -- изменение размера окна --
-        private void Transform()
+        private void Transform() // вызывается при изменении размера окна
         {
-            if (garage.Height == 0)
+
+            if (garage.Height == 0) // если окно скрыто 
             {
                 return;
             }
-            else if (tabs.SelectedIndex == 0)
+            else if (tabs.SelectedIndex == 0) // гараж
             {
-                garagetitle.Height = garage.Height / 10 + 8;
-                garagetitle.Font = new Font("Segoe UI", garagetitle.Height / 2);
+                label2.Location = new Point((garage.Width - label2.Width) / 2, (garage.Height - label2.Height) / 2);
 
-                buttoneditcar.Height = Convert.ToInt32(garage.Height / 8.48);
-                buttoneditcar.Width = buttoneditcar.Height * 3;
-                buttoneditcar.Font = new Font("Segoe UI", Convert.ToInt32(buttoneditcar.Height / 3.57));
-                buttoneditcar.Location = new Point((garage.Width - buttoneditcar.Width) / 2, garage.Height - buttoneditcar.Height - 9);
+                if (Convert.ToDouble(garage.Width) > Convert.ToDouble(garage.Height) * 1.4335) // 3x2 сверху
+                {
+                    garagetitle.Height = garage.Height / 10 + 8;
+                    garagetitle.Font = new Font("Segoe UI", garagetitle.Height / 2);
 
-                car1img.Height = Convert.ToInt32(120 + (garage.Height - 424) / 10);
-                car1img.Width = car1img.Height;
-                car1img.Location = new Point(12, (garage.Height - car1img.Height) / 2 + 19);
-                car1text.Location = new Point(car1img.Location.X + car1img.Width + 7, car1img.Location.Y);
+                    car0img.Height = Convert.ToInt32(((garage.Height - 24 - garagetitle.Height) / 2) * 0.519);
+                    car1img.Height = car0img.Height;
+                    car2img.Height = car0img.Height;
+                    car3img.Height = car0img.Height;
+                    car4img.Height = car0img.Height;
+                    car5img.Height = car0img.Height;
+                    car0img.Width = car0img.Height;
+                    car1img.Width = car1img.Height;
+                    car2img.Width = car2img.Height;
+                    car3img.Width = car3img.Height;
+                    car4img.Width = car4img.Height;
+                    car5img.Width = car5img.Height;
 
-                car0img.Height = car1img.Height;
-                car0img.Width = car1img.Height;
-                car0img.Location = new Point(12, car1img.Location.Y - car0img.Height - 9);
-                car0text.Location = new Point(car0img.Location.X + car1img.Width + 7, car0img.Location.Y);
+                    car1img.Location = new Point((garage.Width - car1img.Width) / 2, garagetitle.Height + 24);
+                    car1text.Width = (car1img.Width * 5) / 3;
+                    car1text.Height = car1img.Height - 9;
+                    car0img.Location = new Point(car1img.Location.X - car1text.Width, car1img.Location.Y);
+                    car0text.Width = car1text.Width;
+                    car0text.Height = car1text.Height;
+                    car2img.Location = new Point(car1img.Location.X + car1text.Width, car1img.Location.Y);
+                    car2text.Width = car1text.Width;
+                    car2text.Height = car1text.Height;
 
-                car2img.Height = car1img.Height;
-                car2img.Width = car1img.Height;
-                car2img.Location = new Point(12, car1img.Location.Y + car2img.Height + 9);
-                car2text.Location = new Point(car2img.Location.X + car1img.Width + 7, car2img.Location.Y);
+                    car1text.Location = new Point(car1img.Location.X - (car1text.Width - car0img.Width) / 2, car1img.Location.Y + car1img.Height);
 
-                car4img.Height = car1img.Height;
-                car4img.Width = car1img.Height;
-                car4img.Location = new Point(garage.Width - car4img.Width - 12, car1img.Location.Y);
-                car4text.Location = new Point(garage.Width / 2 + 81, car1img.Location.Y);
+                    car4img.Location = new Point(car1img.Location.X, car1text.Location.Y + car1text.Height);
+                    car4text.Width = car1text.Width;
+                    car4text.Height = car1text.Height;
+                    car3img.Location = new Point(car0img.Location.X, car4img.Location.Y);
+                    car3text.Width = car1text.Width;
+                    car3text.Height = car1text.Height;
+                    car5img.Location = new Point(car2img.Location.X, car4img.Location.Y);
+                    car5text.Width = car1text.Width;
+                    car5text.Height = car1text.Height;
 
-                car3img.Height = car1img.Height;
-                car3img.Width = car1img.Height;
-                car3img.Location = new Point(car4img.Location.X, car4img.Location.Y - car3img.Height - 9);
-                car3text.Location = new Point(car4text.Location.X, car0img.Location.Y);
+                    car0text.Location = new Point(car0img.Location.X - (car0text.Width - car0img.Width) / 2, car0img.Location.Y + car0img.Height);
+                    car2text.Location = new Point(car2img.Location.X - (car2text.Width - car2img.Width) / 2, car2img.Location.Y + car2img.Height);
+                    car3text.Location = new Point(car3img.Location.X - (car3text.Width - car3img.Width) / 2, car3img.Location.Y + car3img.Height);
+                    car4text.Location = new Point(car4img.Location.X - (car4text.Width - car4img.Width) / 2, car4img.Location.Y + car4img.Height);
+                    car5text.Location = new Point(car5img.Location.X - (car5text.Width - car5img.Width) / 2, car5img.Location.Y + car5img.Height);
+                }
+                else
+                {
+                    if (garage.Height - 100 > garage.Width) // 2x3 по середине
+                    {
+                        garagetitle.Height = garage.Height / 15 + 8;
+                        garagetitle.Font = new Font("Segoe UI", garagetitle.Height / 2);
 
-                car5img.Height = car1img.Height;
-                car5img.Width = car1img.Height;
-                car5img.Location = new Point(car4img.Location.X, car4img.Location.Y + car3img.Height + 9);
-                car5text.Location = new Point(car4text.Location.X, car2img.Location.Y);
+                        car0img.Height = (garage.Width - 240) / 10 * 3;
+                        car1img.Height = car0img.Height;
+                        car2img.Height = car0img.Height;
+                        car3img.Height = car0img.Height;
+                        car4img.Height = car0img.Height;
+                        car5img.Height = car0img.Height;
+                        car0img.Width = car0img.Height;
+                        car1img.Width = car1img.Height;
+                        car2img.Width = car2img.Height;
+                        car3img.Width = car3img.Height;
+                        car4img.Width = car4img.Height;
+                        car5img.Width = car5img.Height;
 
+                        car3img.Location = new Point((garage.Width / 2) + (car3img.Width * 2 / 3), (garage.Height - car3img.Height) / 2);
+                        car2img.Location = new Point((garage.Width / 2) - (car2img.Width * 5 / 3), car3img.Location.Y);
 
-                car0text.Width = garage.Width / 2 - 81 - car0text.Location.X;
-                car0text.Height = car1img.Height;
+                        car0img.Location = new Point(car2img.Location.X, car2img.Location.Y - Convert.ToInt32(car2img.Height * 1.7));
+                        car1img.Location = new Point(car3img.Location.X, car0img.Location.Y);
 
-                car1text.Width = car0text.Width;
-                car1text.Height = car1img.Height;
+                        car4img.Location = new Point(car2img.Location.X, car2img.Location.Y + Convert.ToInt32(car2img.Height * 1.7));
+                        car5img.Location = new Point(car3img.Location.X, car4img.Location.Y);
 
-                car2text.Width = car0text.Width;
-                car2text.Height = car1img.Height;
+                        car0text.Width = (car0img.Width * 5) / 3;
+                        car0text.Height = car0img.Height - 9;
+                        car1text.Width = car0text.Width;
+                        car1text.Height = car0text.Height;
+                        car2text.Width = car0text.Width;
+                        car2text.Height = car0text.Height;
+                        car3text.Width = car0text.Width;
+                        car3text.Height = car0text.Height;
+                        car4text.Width = car0text.Width;
+                        car4text.Height = car0text.Height;
+                        car5text.Width = car0text.Width;
+                        car5text.Height = car0text.Height;
 
-                car3text.Width = car0text.Width;
-                car3text.Height = car1img.Height;
+                        car0text.Location = new Point(car0img.Location.X - (car0text.Width - car0img.Width) / 2, car0img.Location.Y + car0img.Height);
+                        car1text.Location = new Point(car1img.Location.X - (car1text.Width - car0img.Width) / 2, car1img.Location.Y + car1img.Height);
+                        car2text.Location = new Point(car2img.Location.X - (car2text.Width - car2img.Width) / 2, car2img.Location.Y + car2img.Height);
+                        car3text.Location = new Point(car3img.Location.X - (car3text.Width - car3img.Width) / 2, car3img.Location.Y + car3img.Height);
+                        car4text.Location = new Point(car4img.Location.X - (car4text.Width - car4img.Width) / 2, car4img.Location.Y + car4img.Height);
+                        car5text.Location = new Point(car5img.Location.X - (car5text.Width - car5img.Width) / 2, car5img.Location.Y + car5img.Height);
+                    }
+                    else //3x2 по середине
+                    {
+                        garagetitle.Height = garage.Height / 10 + 8;
+                        garagetitle.Font = new Font("Segoe UI", garagetitle.Height / 2);
 
-                car4text.Width = car0text.Width;
-                car4text.Height = car1img.Height;
+                        car0img.Height = Convert.ToInt32((garage.Width - 246) * 0.65764) / 3;
+                        car1img.Height = car0img.Height;
+                        car2img.Height = car0img.Height;
+                        car3img.Height = car0img.Height;
+                        car4img.Height = car0img.Height;
+                        car5img.Height = car0img.Height;
+                        car0img.Width = car0img.Height;
+                        car1img.Width = car1img.Height;
+                        car2img.Width = car2img.Height;
+                        car3img.Width = car3img.Height;
+                        car4img.Width = car4img.Height;
+                        car5img.Width = car5img.Height;
 
-                car5text.Width = car0text.Width;
-                car5text.Height = car1img.Height;
+                        car1img.Location = new Point((garage.Width - car1img.Width) / 2, (garage.Height - car1img.Height) / 2 - (126 + (garage.Height - 538) / 5));
+                        car1text.Width = (car1img.Width * 5) / 3;
+                        car1text.Height = car1img.Height - 9;
+                        car0img.Location = new Point(car1img.Location.X - car1text.Width, car1img.Location.Y);
+                        car0text.Width = car1text.Width;
+                        car0text.Height = car1text.Height;
+                        car2img.Location = new Point(car1img.Location.X + car1text.Width, car1img.Location.Y);
+                        car2text.Width = car1text.Width;
+                        car2text.Height = car1text.Height;
 
+                        car1text.Location = new Point(car1img.Location.X - (car1text.Width - car0img.Width) / 2, car1img.Location.Y + car1img.Height);
+
+                        car4img.Location = new Point(car1img.Location.X, car1text.Location.Y + car1text.Height);
+                        car4text.Width = car1text.Width;
+                        car4text.Height = car1text.Height;
+                        car3img.Location = new Point(car0img.Location.X, car4img.Location.Y);
+                        car3text.Width = car1text.Width;
+                        car3text.Height = car1text.Height;
+                        car5img.Location = new Point(car2img.Location.X, car4img.Location.Y);
+                        car5text.Width = car1text.Width;
+                        car5text.Height = car1text.Height;
+
+                        car0text.Location = new Point(car0img.Location.X - (car0text.Width - car0img.Width) / 2, car0img.Location.Y + car0img.Height);
+                        car2text.Location = new Point(car2img.Location.X - (car2text.Width - car2img.Width) / 2, car2img.Location.Y + car2img.Height);
+                        car3text.Location = new Point(car3img.Location.X - (car3text.Width - car3img.Width) / 2, car3img.Location.Y + car3img.Height);
+                        car4text.Location = new Point(car4img.Location.X - (car4text.Width - car4img.Width) / 2, car4img.Location.Y + car4img.Height);
+                        car5text.Location = new Point(car5img.Location.X - (car5text.Width - car5img.Width) / 2, car5img.Location.Y + car5img.Height);
+                    }
+                }
+
+                car0text.Font = new Font("Segoe UI", 14 + (car0text.Height + car0text.Width - 310) / 50);
+                car1text.Font = new Font("Segoe UI", car0text.Font.Size);
+                car2text.Font = new Font("Segoe UI", car0text.Font.Size);
+                car3text.Font = new Font("Segoe UI", car0text.Font.Size);
+                car4text.Font = new Font("Segoe UI", car0text.Font.Size);
+                car5text.Font = new Font("Segoe UI", car0text.Font.Size);
             }
             else if (tabs.SelectedIndex == 1)
             {
@@ -192,7 +289,7 @@ namespace ProjectPerekup
                 skill4.Width = spentmoney.Width;
                 skill5.Width = spentmoney.Width;
 
-                clearData.Location = new Point(Convert.ToInt32((Width - clearData.Width) / 2), Height - 135); 
+                clearData.Location = new Point(Convert.ToInt32((Width - clearData.Width) / 2), Height - 135);
             }
         }
         private void Form1_Resize(object sender, EventArgs e)
@@ -203,7 +300,6 @@ namespace ProjectPerekup
             {
                 hideOtherCarText();
                 selectedcar = -1;
-                buttoneditcar.Visible = false;
             }
             else if (tabs.SelectedIndex == 3)
             {
@@ -218,27 +314,33 @@ namespace ProjectPerekup
         {
             car0img.MouseEnter += (sender, e) => car0text.Visible = true;
             car0img.MouseLeave += (sender, e) => hideCarText(0);
-            car0img.Click += (sender, e) => { if (cars[0].img != 0) { if (selectedcar != 0) hideOtherCarText(); selectedcar = 0; buttoneditcar.Visible = true; } };
+            car0img.Click += (sender, e) => { if (cars[0].img != 0) { if (selectedcar != 0) hideOtherCarText(); selectedcar = 0; } };
+            car0img.DoubleClick += (sender, e) => { if (cars[0].img != 00) { carimg_DoubleClick(); } };
 
             car1img.MouseEnter += (sender, e) => car1text.Visible = true;
             car1img.MouseLeave += (sender, e) => hideCarText(1);
-            car1img.Click += (sender, e) => { if (cars[1].img != 0) { if (selectedcar != 1) hideOtherCarText(); selectedcar = 1; buttoneditcar.Visible = true; } };
+            car1img.Click += (sender, e) => { if (cars[1].img != 0) { if (selectedcar != 1) hideOtherCarText(); selectedcar = 1; } };
+            car1img.DoubleClick += (sender, e) => { if (cars[1].img != 00) { carimg_DoubleClick(); } };
 
             car2img.MouseEnter += (sender, e) => car2text.Visible = true;
             car2img.MouseLeave += (sender, e) => hideCarText(2);
-            car2img.Click += (sender, e) => { if (cars[2].img != 0) { if (selectedcar != 2) hideOtherCarText(); selectedcar = 2; buttoneditcar.Visible = true; } };
+            car2img.Click += (sender, e) => { if (cars[2].img != 0) { if (selectedcar != 2) hideOtherCarText(); selectedcar = 2; } };
+            car2img.DoubleClick += (sender, e) => { if (cars[2].img != 00) { carimg_DoubleClick(); } };
 
             car3img.MouseEnter += (sender, e) => car3text.Visible = true;
             car3img.MouseLeave += (sender, e) => hideCarText(3);
-            car3img.Click += (sender, e) => { if (cars[3].img != 0) { if (selectedcar != 3) hideOtherCarText(); selectedcar = 3; buttoneditcar.Visible = true; } };
+            car3img.Click += (sender, e) => { if (cars[3].img != 0) { if (selectedcar != 3) hideOtherCarText(); selectedcar = 3; } };
+            car3img.DoubleClick += (sender, e) => { if (cars[3].img != 00) { carimg_DoubleClick(); } };
 
             car4img.MouseEnter += (sender, e) => car4text.Visible = true;
             car4img.MouseLeave += (sender, e) => hideCarText(4);
-            car4img.Click += (sender, e) => { if (cars[4].img != 0) { if (selectedcar != 4) hideOtherCarText(); selectedcar = 4; buttoneditcar.Visible = true; } };
+            car4img.Click += (sender, e) => { if (cars[4].img != 0) { if (selectedcar != 4) hideOtherCarText(); selectedcar = 4; } };
+            car4img.DoubleClick += (sender, e) => { if (cars[4].img != 00) { carimg_DoubleClick(); } };
 
             car5img.MouseEnter += (sender, e) => car5text.Visible = true;
             car5img.MouseLeave += (sender, e) => hideCarText(5);
-            car5img.Click += (sender, e) => { if (cars[5].img != 0) { if (selectedcar != 5) hideOtherCarText(); selectedcar = 5; buttoneditcar.Visible = true; } };
+            car5img.Click += (sender, e) => { if (cars[5].img != 0) { if (selectedcar != 5) hideOtherCarText(); selectedcar = 5; } };
+            car5img.DoubleClick += (sender, e) => { if (cars[5].img != 00) { carimg_DoubleClick(); } };
 
 
         }
@@ -427,7 +529,7 @@ namespace ProjectPerekup
 
 
         // -- гараж --
-        private void buttoneditcar_Click(object sender, EventArgs e)
+        private void carimg_DoubleClick()
         {
             Car editcar;
             long editbal;
@@ -449,7 +551,6 @@ namespace ProjectPerekup
                 updMoney();
             }
             hideOtherCarText();
-            buttoneditcar.Visible = false;
             selectedcar = -1;
         }
 
@@ -464,12 +565,12 @@ namespace ProjectPerekup
                 MessageBox.Show("У вас нет денег", "Недостаточно средств", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-            else if(findCar() == -1)
+            else if (findCar() == -1)
             {
                 MessageBox.Show("У вас нет машин", "ааыаыыыыаыаааа", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-                CarUpgrade.SendData(money, cars, Garage.vasya);
+            CarUpgrade.SendData(money, cars, Garage.vasya);
             if (CarUpgrade.Instance.ShowDialog() == DialogResult.OK)
             {
                 CarUpgrade.RecieveData(out editbal, out editcars);
@@ -692,7 +793,7 @@ namespace ProjectPerekup
         // -- статистика -- 
         private void buttonClearData_Click(object sender, EventArgs e)
         {
-            if(Confirm.Instance.ShowDialog() == DialogResult.OK)
+            if (Confirm.Instance.ShowDialog() == DialogResult.OK)
             {
                 Filework.DeleteFile();
                 Filework.CreateBlankFile(out cars, out money, out sold, out bought, out spent, out recieved, out skills, skillsname);
