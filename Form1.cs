@@ -214,47 +214,47 @@ namespace ProjectPerekup
             // браузер
             else if (tabs.SelectedIndex == 2)
             {
-                avitocar0.Height = (browser.Height - 136 - 24) / 3;
+                avitocar0.Height = (browser.Height - 150) / 3;
                 avitocar0img.Height = avitocar0.Height;
                 avitocar0img.Width = avitocar0.Height;
 
-                avitocar0name.Location = new Point(14 + avitocar0img.Width, avitocar0.Location.Y + 5);
-                avitocar0name.Width = avitocar0.Width - avitocar0img.Width - 266;
+                avitocar0name.Location = new Point(11 + avitocar0img.Width, avitocar0.Location.Y + 5);
+                avitocar0name.Width = avitocar0.Width - avitocar0img.Width - 263;
                 avitocar0name.Height = avitocar0.Height - 11;
 
 
 
-                avitocar1.Location = new Point(6, 136 + avitocar0.Height + 8);
+                avitocar1.Location = new Point(6, 143 + avitocar0.Height);
                 avitocar1.Height = avitocar0.Height;
                 avitocar1img.Location = avitocar1.Location;
                 avitocar1img.Height = avitocar0.Height;
                 avitocar1img.Width = avitocar0.Height;
 
-                avitocar1name.Location = new Point(14 + avitocar1img.Width, avitocar1.Location.Y + 5);
+                avitocar1name.Location = new Point(avitocar0name.Location.X, avitocar1.Location.Y + 5);
                 avitocar1name.Width = avitocar0name.Width;
                 avitocar1name.Height = avitocar0name.Height;
 
 
 
-                avitocar2.Location = new Point(6, avitocar1.Location.Y + avitocar1.Height + 8);
+                avitocar2.Location = new Point(6, avitocar1.Location.Y + avitocar1.Height + 4);
                 avitocar2.Height = avitocar0.Height;
                 avitocar2img.Location = avitocar2.Location;
                 avitocar2img.Height = avitocar2.Height;
                 avitocar2img.Width = avitocar2.Height;
 
-                avitocar2name.Location = new Point(14 + avitocar2img.Width, avitocar2.Location.Y + 5);
+                avitocar2name.Location = new Point(avitocar0name.Location.X, avitocar2.Location.Y + 5);
                 avitocar2name.Width = avitocar0name.Width;
                 avitocar2name.Height = avitocar0name.Height;
 
 
 
-                avitocar0buy.Location = new Point(browser.Width - 264, avitocar1.Location.Y - 53);
+                avitocar0buy.Location = new Point(browser.Width - 260, avitocar1.Location.Y - 49);
                 avitocar0price.Location = new Point(avitocar0buy.Location.X, avitocar0buy.Location.Y - 37);
 
-                avitocar1buy.Location = new Point(avitocar0buy.Location.X, avitocar2.Location.Y - 53);
+                avitocar1buy.Location = new Point(avitocar0buy.Location.X, avitocar2.Location.Y - 49);
                 avitocar1price.Location = new Point(avitocar1buy.Location.X, avitocar1buy.Location.Y - 37);
 
-                avitocar2buy.Location = new Point(avitocar0buy.Location.X, browser.Height - 51);
+                avitocar2buy.Location = new Point(avitocar0buy.Location.X, browser.Height - 49);
                 avitocar2price.Location = new Point(avitocar2buy.Location.X, avitocar2buy.Location.Y - 37);
             }
             // статистика

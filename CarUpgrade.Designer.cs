@@ -288,7 +288,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 591);
+            ClientSize = new Size(789, 591);
             Controls.Add(editpricesum);
             Controls.Add(editcarlabel);
             Controls.Add(salonlabel);
@@ -311,8 +311,10 @@
             Controls.Add(car2img);
             Controls.Add(car1img);
             Controls.Add(car0img);
+            MinimumSize = new Size(805, 630);
             Name = "CarUpgrade";
             Text = "CarUpgrade";
+            Resize += CarUpgrade_Resize;
             ((System.ComponentModel.ISupportInitialize)car5img).EndInit();
             ((System.ComponentModel.ISupportInitialize)car4img).EndInit();
             ((System.ComponentModel.ISupportInitialize)car3img).EndInit();

@@ -92,6 +92,19 @@ namespace ProjectPerekup
             loadStats();
         }
 
+        private void CarUpgrade_Resize(object sender, EventArgs e)
+        {
+            if(Height + 165 < Width)
+            {
+
+            }
+            else
+            {
+
+            }
+        }
+
+
         private void Nullstats()
         {
             if (motoredited || transedited || hodedited || kusovedited || salonedited)
@@ -402,6 +415,7 @@ namespace ProjectPerekup
             Instance.DialogResult = DialogResult.OK;
             Instance.Close();
         }
+
     }
 
     public enum Garage
