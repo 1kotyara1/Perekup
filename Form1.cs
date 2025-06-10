@@ -41,15 +41,14 @@ namespace ProjectPerekup
         // -- изменение размера окна --
         private void Transform() // вызывается при изменении размера окна
         {
-
-            if (garage.Height == 0) // если окно скрыто 
+            // скрыто
+            if (garage.Height == 0)
             {
                 return;
             }
+            // гараж
             else if (tabs.SelectedIndex == 0) // гараж
             {
-                label2.Location = new Point((garage.Width - label2.Width) / 2, (garage.Height - label2.Height) / 2);
-
                 if (Convert.ToDouble(garage.Width) > Convert.ToDouble(garage.Height) * 1.4335) // 3x2 сверху
                 {
                     garagetitle.Height = garage.Height / 10 + 8;
@@ -200,6 +199,7 @@ namespace ProjectPerekup
                 car4text.Font = new Font("Segoe UI", car0text.Font.Size);
                 car5text.Font = new Font("Segoe UI", car0text.Font.Size);
             }
+            // мастерские
             else if (tabs.SelectedIndex == 1)
             {
                 Vasiliybutton.Location = new Point(Convert.ToInt32(citypicture.Width * 0.091),
@@ -211,6 +211,7 @@ namespace ProjectPerekup
                 Fitservicebutton.Location = new Point(Convert.ToInt32(citypicture.Width * 0.806),
                                                       Convert.ToInt32(citypicture.Height * 0.457));
             }
+            // браузер
             else if (tabs.SelectedIndex == 2)
             {
                 avitocar0.Height = (browser.Height - 136 - 24) / 3;
@@ -256,6 +257,7 @@ namespace ProjectPerekup
                 avitocar2buy.Location = new Point(avitocar0buy.Location.X, browser.Height - 51);
                 avitocar2price.Location = new Point(avitocar2buy.Location.X, avitocar2buy.Location.Y - 37);
             }
+            // статистика
             else if (tabs.SelectedIndex == 3)
             {
                 stattitle.Height = statistics.Height / 10 + 8;

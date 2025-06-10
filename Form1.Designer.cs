@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(perekup));
             tabs = new TabControl();
             garage = new TabPage();
-            label2 = new Label();
             car3img = new PictureBox();
             car4img = new PictureBox();
             car5img = new PictureBox();
@@ -86,6 +85,11 @@
             soldcars = new Label();
             stattitle = new Label();
             labelmoney = new Label();
+            avitocar3price = new Label();
+            avitocar3buy = new Button();
+            avitocar3name = new Label();
+            avitocar3img = new PictureBox();
+            listView1 = new ListView();
             tabs.SuspendLayout();
             garage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)car3img).BeginInit();
@@ -103,6 +107,7 @@
             ((System.ComponentModel.ISupportInitialize)reloadcars).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             statistics.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)avitocar3img).BeginInit();
             SuspendLayout();
             // 
             // tabs
@@ -124,7 +129,6 @@
             // 
             // garage
             // 
-            garage.Controls.Add(label2);
             garage.Controls.Add(car3img);
             garage.Controls.Add(car4img);
             garage.Controls.Add(car5img);
@@ -145,15 +149,6 @@
             garage.TabIndex = 0;
             garage.Text = "Гараж";
             garage.UseVisualStyleBackColor = true;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(21, 97);
-            label2.Name = "label2";
-            label2.Size = new Size(63, 25);
-            label2.TabIndex = 14;
-            label2.Text = "label2";
             // 
             // car3img
             // 
@@ -315,7 +310,7 @@
             // Stepanichbutton
             // 
             Stepanichbutton.Font = new Font("Segoe UI", 10F);
-            Stepanichbutton.Location = new Point(398, 76);
+            Stepanichbutton.Location = new Point(373, 79);
             Stepanichbutton.Name = "Stepanichbutton";
             Stepanichbutton.Size = new Size(83, 27);
             Stepanichbutton.TabIndex = 3;
@@ -326,7 +321,7 @@
             // Fitservicebutton
             // 
             Fitservicebutton.Font = new Font("Segoe UI", 10F);
-            Fitservicebutton.Location = new Point(710, 202);
+            Fitservicebutton.Location = new Point(631, 269);
             Fitservicebutton.Name = "Fitservicebutton";
             Fitservicebutton.Size = new Size(77, 27);
             Fitservicebutton.TabIndex = 2;
@@ -337,7 +332,7 @@
             // Vasiliybutton
             // 
             Vasiliybutton.Font = new Font("Segoe UI", 10F);
-            Vasiliybutton.Location = new Point(78, 269);
+            Vasiliybutton.Location = new Point(79, 283);
             Vasiliybutton.Name = "Vasiliybutton";
             Vasiliybutton.Size = new Size(73, 26);
             Vasiliybutton.TabIndex = 1;
@@ -352,13 +347,18 @@
             citypicture.InitialImage = null;
             citypicture.Location = new Point(0, 0);
             citypicture.Name = "citypicture";
-            citypicture.Size = new Size(885, 443);
+            citypicture.Size = new Size(782, 538);
             citypicture.SizeMode = PictureBoxSizeMode.StretchImage;
             citypicture.TabIndex = 0;
             citypicture.TabStop = false;
             // 
             // browser
             // 
+            browser.Controls.Add(avitocar3price);
+            browser.Controls.Add(avitocar3buy);
+            browser.Controls.Add(avitocar3name);
+            browser.Controls.Add(avitocar3img);
+            browser.Controls.Add(listView1);
             browser.Controls.Add(avitocar2price);
             browser.Controls.Add(avitocar1price);
             browser.Controls.Add(avitocar0price);
@@ -390,7 +390,7 @@
             // avitocar2price
             // 
             avitocar2price.BackColor = SystemColors.ScrollBar;
-            avitocar2price.Location = new Point(611, 333);
+            avitocar2price.Location = new Point(522, 347);
             avitocar2price.Name = "avitocar2price";
             avitocar2price.Size = new Size(250, 37);
             avitocar2price.TabIndex = 24;
@@ -400,7 +400,7 @@
             // avitocar1price
             // 
             avitocar1price.BackColor = SystemColors.ScrollBar;
-            avitocar1price.Location = new Point(611, 237);
+            avitocar1price.Location = new Point(522, 251);
             avitocar1price.Name = "avitocar1price";
             avitocar1price.Size = new Size(250, 37);
             avitocar1price.TabIndex = 23;
@@ -410,7 +410,7 @@
             // avitocar0price
             // 
             avitocar0price.BackColor = SystemColors.ScrollBar;
-            avitocar0price.Location = new Point(611, 141);
+            avitocar0price.Location = new Point(522, 155);
             avitocar0price.Name = "avitocar0price";
             avitocar0price.Size = new Size(250, 37);
             avitocar0price.TabIndex = 22;
@@ -420,7 +420,7 @@
             // avitocar2buy
             // 
             avitocar2buy.Font = new Font("Segoe UI", 16F);
-            avitocar2buy.Location = new Point(611, 373);
+            avitocar2buy.Location = new Point(522, 387);
             avitocar2buy.Name = "avitocar2buy";
             avitocar2buy.Size = new Size(250, 39);
             avitocar2buy.TabIndex = 21;
@@ -431,7 +431,7 @@
             // avitocar1buy
             // 
             avitocar1buy.Font = new Font("Segoe UI", 16F);
-            avitocar1buy.Location = new Point(611, 277);
+            avitocar1buy.Location = new Point(522, 291);
             avitocar1buy.Name = "avitocar1buy";
             avitocar1buy.Size = new Size(250, 39);
             avitocar1buy.TabIndex = 20;
@@ -442,7 +442,7 @@
             // avitocar0buy
             // 
             avitocar0buy.Font = new Font("Segoe UI", 16F);
-            avitocar0buy.Location = new Point(611, 181);
+            avitocar0buy.Location = new Point(522, 195);
             avitocar0buy.Name = "avitocar0buy";
             avitocar0buy.Size = new Size(250, 39);
             avitocar0buy.TabIndex = 19;
@@ -452,32 +452,32 @@
             // 
             // avitocar2name
             // 
-            avitocar2name.Location = new Point(102, 333);
+            avitocar2name.Location = new Point(102, 347);
             avitocar2name.Name = "avitocar2name";
-            avitocar2name.Size = new Size(503, 79);
+            avitocar2name.Size = new Size(414, 79);
             avitocar2name.TabIndex = 15;
             avitocar2name.Text = "Пусто";
             // 
             // avitocar1name
             // 
-            avitocar1name.Location = new Point(102, 237);
+            avitocar1name.Location = new Point(102, 251);
             avitocar1name.Name = "avitocar1name";
-            avitocar1name.Size = new Size(503, 79);
+            avitocar1name.Size = new Size(414, 79);
             avitocar1name.TabIndex = 14;
             avitocar1name.Text = "Пусто";
             // 
             // avitocar0name
             // 
-            avitocar0name.Location = new Point(102, 141);
+            avitocar0name.Location = new Point(102, 155);
             avitocar0name.Name = "avitocar0name";
-            avitocar0name.Size = new Size(503, 79);
+            avitocar0name.Size = new Size(414, 79);
             avitocar0name.TabIndex = 13;
             avitocar0name.Text = "Пусто";
             // 
             // avitocar2img
             // 
             avitocar2img.Image = Properties.Resources.car00;
-            avitocar2img.Location = new Point(6, 328);
+            avitocar2img.Location = new Point(6, 342);
             avitocar2img.Name = "avitocar2img";
             avitocar2img.Size = new Size(90, 90);
             avitocar2img.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -487,7 +487,7 @@
             // avitocar1img
             // 
             avitocar1img.Image = Properties.Resources.car00;
-            avitocar1img.Location = new Point(6, 232);
+            avitocar1img.Location = new Point(6, 246);
             avitocar1img.Name = "avitocar1img";
             avitocar1img.Size = new Size(90, 90);
             avitocar1img.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -497,7 +497,7 @@
             // avitocar0img
             // 
             avitocar0img.Image = Properties.Resources.car00;
-            avitocar0img.Location = new Point(6, 136);
+            avitocar0img.Location = new Point(6, 150);
             avitocar0img.Name = "avitocar0img";
             avitocar0img.Size = new Size(90, 90);
             avitocar0img.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -508,7 +508,7 @@
             // 
             reloadcars.Cursor = Cursors.Hand;
             reloadcars.Image = Properties.Resources.reloadcars;
-            reloadcars.Location = new Point(185, 97);
+            reloadcars.Location = new Point(185, 111);
             reloadcars.Name = "reloadcars";
             reloadcars.Size = new Size(33, 33);
             reloadcars.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -520,9 +520,9 @@
             // 
             avitocar0.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             avitocar0.BackColor = SystemColors.ScrollBar;
-            avitocar0.Location = new Point(6, 136);
+            avitocar0.Location = new Point(6, 150);
             avitocar0.Name = "avitocar0";
-            avitocar0.Size = new Size(865, 90);
+            avitocar0.Size = new Size(770, 90);
             avitocar0.TabIndex = 8;
             avitocar0.UseCompatibleStateImageBehavior = false;
             // 
@@ -530,9 +530,9 @@
             // 
             avitocar1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             avitocar1.BackColor = SystemColors.ScrollBar;
-            avitocar1.Location = new Point(6, 232);
+            avitocar1.Location = new Point(6, 246);
             avitocar1.Name = "avitocar1";
-            avitocar1.Size = new Size(865, 90);
+            avitocar1.Size = new Size(770, 90);
             avitocar1.TabIndex = 7;
             avitocar1.UseCompatibleStateImageBehavior = false;
             // 
@@ -540,16 +540,16 @@
             // 
             avitocar2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             avitocar2.BackColor = SystemColors.ScrollBar;
-            avitocar2.Location = new Point(6, 328);
+            avitocar2.Location = new Point(6, 342);
             avitocar2.Name = "avitocar2";
-            avitocar2.Size = new Size(865, 90);
+            avitocar2.Size = new Size(770, 90);
             avitocar2.TabIndex = 6;
             avitocar2.UseCompatibleStateImageBehavior = false;
             // 
             // combosort
             // 
             combosort.FormattingEnabled = true;
-            combosort.Location = new Point(6, 97);
+            combosort.Location = new Point(6, 111);
             combosort.Name = "combosort";
             combosort.Size = new Size(173, 33);
             combosort.TabIndex = 3;
@@ -561,7 +561,7 @@
             buttonavitosell.Cursor = Cursors.Hand;
             buttonavitosell.FlatStyle = FlatStyle.Popup;
             buttonavitosell.ForeColor = SystemColors.Control;
-            buttonavitosell.Location = new Point(578, 25);
+            buttonavitosell.Location = new Point(483, 25);
             buttonavitosell.Name = "buttonavitosell";
             buttonavitosell.Size = new Size(293, 41);
             buttonavitosell.TabIndex = 2;
@@ -618,7 +618,7 @@
             // 
             // clearData
             // 
-            clearData.Location = new Point(340, 380);
+            clearData.Location = new Point(303, 479);
             clearData.Name = "clearData";
             clearData.Size = new Size(200, 50);
             clearData.TabIndex = 12;
@@ -646,7 +646,7 @@
             // 
             // skill5
             // 
-            skill5.Location = new Point(534, 228);
+            skill5.Location = new Point(439, 228);
             skill5.Name = "skill5";
             skill5.Size = new Size(337, 29);
             skill5.TabIndex = 9;
@@ -655,7 +655,7 @@
             // 
             // skill4
             // 
-            skill4.Location = new Point(534, 199);
+            skill4.Location = new Point(439, 199);
             skill4.Name = "skill4";
             skill4.Size = new Size(337, 29);
             skill4.TabIndex = 8;
@@ -664,7 +664,7 @@
             // 
             // skill3
             // 
-            skill3.Location = new Point(534, 170);
+            skill3.Location = new Point(439, 170);
             skill3.Name = "skill3";
             skill3.Size = new Size(337, 29);
             skill3.TabIndex = 7;
@@ -673,7 +673,7 @@
             // 
             // skill2
             // 
-            skill2.Location = new Point(534, 141);
+            skill2.Location = new Point(439, 141);
             skill2.Name = "skill2";
             skill2.Size = new Size(337, 29);
             skill2.TabIndex = 6;
@@ -682,7 +682,7 @@
             // 
             // skill1
             // 
-            skill1.Location = new Point(534, 112);
+            skill1.Location = new Point(439, 112);
             skill1.Name = "skill1";
             skill1.Size = new Size(337, 29);
             skill1.TabIndex = 5;
@@ -691,7 +691,7 @@
             // 
             // skill0
             // 
-            skill0.Location = new Point(534, 83);
+            skill0.Location = new Point(439, 83);
             skill0.Name = "skill0";
             skill0.Size = new Size(337, 29);
             skill0.TabIndex = 4;
@@ -709,7 +709,7 @@
             // 
             // skillslabel
             // 
-            skillslabel.Location = new Point(534, 50);
+            skillslabel.Location = new Point(439, 50);
             skillslabel.Name = "skillslabel";
             skillslabel.Size = new Size(337, 29);
             skillslabel.TabIndex = 2;
@@ -729,9 +729,9 @@
             // 
             stattitle.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             stattitle.Font = new Font("Segoe UI", 25F);
-            stattitle.Location = new Point(0, 0);
+            stattitle.Location = new Point(3, -2);
             stattitle.Name = "stattitle";
-            stattitle.Size = new Size(885, 50);
+            stattitle.Size = new Size(776, 50);
             stattitle.TabIndex = 0;
             stattitle.Text = "Ваша статистика";
             stattitle.TextAlign = ContentAlignment.MiddleCenter;
@@ -748,6 +748,54 @@
             labelmoney.Text = "Баланс: 0 ₽";
             labelmoney.TextAlign = ContentAlignment.MiddleRight;
             // 
+            // avitocar3price
+            // 
+            avitocar3price.BackColor = SystemColors.ScrollBar;
+            avitocar3price.Location = new Point(522, 444);
+            avitocar3price.Name = "avitocar3price";
+            avitocar3price.Size = new Size(250, 37);
+            avitocar3price.TabIndex = 29;
+            avitocar3price.Text = "0";
+            avitocar3price.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // avitocar3buy
+            // 
+            avitocar3buy.Font = new Font("Segoe UI", 16F);
+            avitocar3buy.Location = new Point(522, 484);
+            avitocar3buy.Name = "avitocar3buy";
+            avitocar3buy.Size = new Size(250, 39);
+            avitocar3buy.TabIndex = 28;
+            avitocar3buy.Text = "Купить";
+            avitocar3buy.UseVisualStyleBackColor = true;
+            // 
+            // avitocar3name
+            // 
+            avitocar3name.Location = new Point(102, 444);
+            avitocar3name.Name = "avitocar3name";
+            avitocar3name.Size = new Size(414, 79);
+            avitocar3name.TabIndex = 27;
+            avitocar3name.Text = "Пусто";
+            // 
+            // avitocar3img
+            // 
+            avitocar3img.Image = Properties.Resources.car00;
+            avitocar3img.Location = new Point(6, 439);
+            avitocar3img.Name = "avitocar3img";
+            avitocar3img.Size = new Size(90, 90);
+            avitocar3img.SizeMode = PictureBoxSizeMode.StretchImage;
+            avitocar3img.TabIndex = 26;
+            avitocar3img.TabStop = false;
+            // 
+            // listView1
+            // 
+            listView1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            listView1.BackColor = SystemColors.ScrollBar;
+            listView1.Location = new Point(6, 439);
+            listView1.Name = "listView1";
+            listView1.Size = new Size(770, 90);
+            listView1.TabIndex = 25;
+            listView1.UseCompatibleStateImageBehavior = false;
+            // 
             // perekup
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -762,7 +810,6 @@
             Resize += Form1_Resize;
             tabs.ResumeLayout(false);
             garage.ResumeLayout(false);
-            garage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)car3img).EndInit();
             ((System.ComponentModel.ISupportInitialize)car4img).EndInit();
             ((System.ComponentModel.ISupportInitialize)car5img).EndInit();
@@ -778,6 +825,7 @@
             ((System.ComponentModel.ISupportInitialize)reloadcars).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             statistics.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)avitocar3img).EndInit();
             ResumeLayout(false);
         }
 
@@ -839,6 +887,10 @@
         private Label recievedmoney;
         private Label spentmoney;
         private Button clearData;
-        private Label label2;
+        private Label avitocar3price;
+        private Button avitocar3buy;
+        private Label avitocar3name;
+        private PictureBox avitocar3img;
+        private ListView listView1;
     }
 }
