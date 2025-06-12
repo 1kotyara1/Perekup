@@ -70,6 +70,20 @@
             buttonavitosell = new Button();
             label1 = new Label();
             pictureBox1 = new PictureBox();
+            skill = new TabPage();
+            skill3up = new PictureBox();
+            skill4up = new PictureBox();
+            skill5up = new PictureBox();
+            skill2up = new PictureBox();
+            skill1up = new PictureBox();
+            skill0up = new PictureBox();
+            skill5name = new Label();
+            skill4name = new Label();
+            skill3name = new Label();
+            skill2name = new Label();
+            skill1name = new Label();
+            skill0name = new Label();
+            skilltitle = new Label();
             statistics = new TabPage();
             clearData = new Button();
             recievedmoney = new Label();
@@ -84,27 +98,7 @@
             skillslabel = new Label();
             soldcars = new Label();
             stattitle = new Label();
-            skill = new TabPage();
-            panel1 = new Panel();
-            pictureBox2 = new PictureBox();
-            label6 = new Label();
-            label5 = new Label();
-            label4 = new Label();
-            label3 = new Label();
-            label2 = new Label();
-            skill0name = new Label();
-            skilltitle = new Label();
             labelmoney = new Label();
-            panel2 = new Panel();
-            pictureBox3 = new PictureBox();
-            panel3 = new Panel();
-            pictureBox4 = new PictureBox();
-            panel4 = new Panel();
-            pictureBox5 = new PictureBox();
-            panel5 = new Panel();
-            pictureBox6 = new PictureBox();
-            panel6 = new Panel();
-            pictureBox7 = new PictureBox();
             tabs.SuspendLayout();
             garage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)car3img).BeginInit();
@@ -121,14 +115,14 @@
             ((System.ComponentModel.ISupportInitialize)avitocar0img).BeginInit();
             ((System.ComponentModel.ISupportInitialize)reloadcars).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            statistics.SuspendLayout();
             skill.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)skill3up).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)skill4up).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)skill5up).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)skill2up).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)skill1up).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)skill0up).BeginInit();
+            statistics.SuspendLayout();
             SuspendLayout();
             // 
             // tabs
@@ -137,8 +131,8 @@
             tabs.Controls.Add(garage);
             tabs.Controls.Add(workshops);
             tabs.Controls.Add(browser);
-            tabs.Controls.Add(statistics);
             tabs.Controls.Add(skill);
+            tabs.Controls.Add(statistics);
             tabs.Font = new Font("Segoe UI", 14F);
             tabs.ItemSize = new Size(120, 30);
             tabs.Location = new Point(-4, 0);
@@ -619,6 +613,166 @@
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
+            // skill
+            // 
+            skill.Controls.Add(skill3up);
+            skill.Controls.Add(skill4up);
+            skill.Controls.Add(skill5up);
+            skill.Controls.Add(skill2up);
+            skill.Controls.Add(skill1up);
+            skill.Controls.Add(skill0up);
+            skill.Controls.Add(skill5name);
+            skill.Controls.Add(skill4name);
+            skill.Controls.Add(skill3name);
+            skill.Controls.Add(skill2name);
+            skill.Controls.Add(skill1name);
+            skill.Controls.Add(skill0name);
+            skill.Controls.Add(skilltitle);
+            skill.Location = new Point(4, 34);
+            skill.Name = "skill";
+            skill.Padding = new Padding(3);
+            skill.Size = new Size(782, 538);
+            skill.TabIndex = 4;
+            skill.Text = "Навыки";
+            skill.UseVisualStyleBackColor = true;
+            // 
+            // skill3up
+            // 
+            skill3up.BackColor = Color.FromArgb(200, 200, 200);
+            skill3up.BorderStyle = BorderStyle.FixedSingle;
+            skill3up.Image = Properties.Resources.plus;
+            skill3up.Location = new Point(695, 128);
+            skill3up.Name = "skill3up";
+            skill3up.Size = new Size(40, 40);
+            skill3up.SizeMode = PictureBoxSizeMode.StretchImage;
+            skill3up.TabIndex = 10;
+            skill3up.TabStop = false;
+            // 
+            // skill4up
+            // 
+            skill4up.BackColor = Color.FromArgb(200, 200, 200);
+            skill4up.BorderStyle = BorderStyle.FixedSingle;
+            skill4up.Image = Properties.Resources.plus;
+            skill4up.Location = new Point(695, 256);
+            skill4up.Name = "skill4up";
+            skill4up.Size = new Size(40, 40);
+            skill4up.SizeMode = PictureBoxSizeMode.StretchImage;
+            skill4up.TabIndex = 10;
+            skill4up.TabStop = false;
+            // 
+            // skill5up
+            // 
+            skill5up.BackColor = Color.FromArgb(200, 200, 200);
+            skill5up.BorderStyle = BorderStyle.FixedSingle;
+            skill5up.Image = Properties.Resources.plus;
+            skill5up.Location = new Point(695, 414);
+            skill5up.Name = "skill5up";
+            skill5up.Size = new Size(40, 40);
+            skill5up.SizeMode = PictureBoxSizeMode.StretchImage;
+            skill5up.TabIndex = 10;
+            skill5up.TabStop = false;
+            // 
+            // skill2up
+            // 
+            skill2up.BackColor = Color.FromArgb(200, 200, 200);
+            skill2up.BorderStyle = BorderStyle.FixedSingle;
+            skill2up.Image = Properties.Resources.plus;
+            skill2up.Location = new Point(221, 414);
+            skill2up.Name = "skill2up";
+            skill2up.Size = new Size(40, 40);
+            skill2up.SizeMode = PictureBoxSizeMode.StretchImage;
+            skill2up.TabIndex = 10;
+            skill2up.TabStop = false;
+            // 
+            // skill1up
+            // 
+            skill1up.BackColor = Color.FromArgb(200, 200, 200);
+            skill1up.BorderStyle = BorderStyle.FixedSingle;
+            skill1up.Image = Properties.Resources.plus;
+            skill1up.Location = new Point(221, 256);
+            skill1up.Name = "skill1up";
+            skill1up.Size = new Size(40, 40);
+            skill1up.SizeMode = PictureBoxSizeMode.StretchImage;
+            skill1up.TabIndex = 10;
+            skill1up.TabStop = false;
+            // 
+            // skill0up
+            // 
+            skill0up.BackColor = Color.FromArgb(200, 200, 200);
+            skill0up.BorderStyle = BorderStyle.FixedSingle;
+            skill0up.Image = Properties.Resources.plus;
+            skill0up.Location = new Point(221, 128);
+            skill0up.Name = "skill0up";
+            skill0up.Size = new Size(40, 40);
+            skill0up.SizeMode = PictureBoxSizeMode.StretchImage;
+            skill0up.TabIndex = 8;
+            skill0up.TabStop = false;
+            // 
+            // skill5name
+            // 
+            skill5name.Location = new Point(521, 361);
+            skill5name.Name = "skill5name";
+            skill5name.Size = new Size(214, 50);
+            skill5name.TabIndex = 7;
+            skill5name.Text = "Хитрец  100₽";
+            skill5name.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // skill4name
+            // 
+            skill4name.Location = new Point(521, 203);
+            skill4name.Name = "skill4name";
+            skill4name.Size = new Size(214, 50);
+            skill4name.TabIndex = 6;
+            skill4name.Text = "Тюнинговщик  100₽";
+            skill4name.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // skill3name
+            // 
+            skill3name.Location = new Point(521, 75);
+            skill3name.Name = "skill3name";
+            skill3name.Size = new Size(214, 50);
+            skill3name.TabIndex = 5;
+            skill3name.Text = "          Ремонтник            100₽";
+            skill3name.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // skill2name
+            // 
+            skill2name.Location = new Point(47, 361);
+            skill2name.Name = "skill2name";
+            skill2name.Size = new Size(214, 50);
+            skill2name.TabIndex = 4;
+            skill2name.Text = "Знаток гаджетов  100₽";
+            skill2name.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // skill1name
+            // 
+            skill1name.Location = new Point(47, 203);
+            skill1name.Name = "skill1name";
+            skill1name.Size = new Size(214, 50);
+            skill1name.TabIndex = 3;
+            skill1name.Text = "Мастер продаж  100₽";
+            skill1name.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // skill0name
+            // 
+            skill0name.Location = new Point(47, 75);
+            skill0name.Name = "skill0name";
+            skill0name.Size = new Size(214, 50);
+            skill0name.TabIndex = 2;
+            skill0name.Text = "Любовь поторговаться 100₽";
+            skill0name.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // skilltitle
+            // 
+            skilltitle.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            skilltitle.Font = new Font("Segoe UI", 25F);
+            skilltitle.Location = new Point(3, 0);
+            skilltitle.Name = "skilltitle";
+            skilltitle.Size = new Size(776, 50);
+            skilltitle.TabIndex = 1;
+            skilltitle.Text = "Ваши навыки";
+            skilltitle.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // statistics
             // 
             statistics.Controls.Add(clearData);
@@ -638,7 +792,7 @@
             statistics.Name = "statistics";
             statistics.Padding = new Padding(3);
             statistics.Size = new Size(782, 538);
-            statistics.TabIndex = 3;
+            statistics.TabIndex = 5;
             statistics.Text = "Статистика";
             statistics.UseVisualStyleBackColor = true;
             // 
@@ -650,7 +804,7 @@
             clearData.TabIndex = 12;
             clearData.Text = "Стереть данные";
             clearData.UseVisualStyleBackColor = true;
-            clearData.Click += buttonClearData_Click;
+            clearData.Click += clearData_Click;
             // 
             // recievedmoney
             // 
@@ -755,127 +909,12 @@
             // 
             stattitle.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             stattitle.Font = new Font("Segoe UI", 25F);
-            stattitle.Location = new Point(3, -2);
+            stattitle.Location = new Point(0, 0);
             stattitle.Name = "stattitle";
-            stattitle.Size = new Size(776, 50);
+            stattitle.Size = new Size(782, 50);
             stattitle.TabIndex = 0;
             stattitle.Text = "Ваша статистика";
             stattitle.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // skill
-            // 
-            skill.Controls.Add(panel6);
-            skill.Controls.Add(pictureBox7);
-            skill.Controls.Add(panel5);
-            skill.Controls.Add(pictureBox6);
-            skill.Controls.Add(panel4);
-            skill.Controls.Add(pictureBox5);
-            skill.Controls.Add(panel3);
-            skill.Controls.Add(pictureBox4);
-            skill.Controls.Add(panel2);
-            skill.Controls.Add(pictureBox3);
-            skill.Controls.Add(panel1);
-            skill.Controls.Add(pictureBox2);
-            skill.Controls.Add(label6);
-            skill.Controls.Add(label5);
-            skill.Controls.Add(label4);
-            skill.Controls.Add(label3);
-            skill.Controls.Add(label2);
-            skill.Controls.Add(skill0name);
-            skill.Controls.Add(skilltitle);
-            skill.Location = new Point(4, 34);
-            skill.Name = "skill";
-            skill.Padding = new Padding(3);
-            skill.Size = new Size(782, 538);
-            skill.TabIndex = 4;
-            skill.Text = "Навыки";
-            skill.UseVisualStyleBackColor = true;
-            // 
-            // panel1
-            // 
-            panel1.BackColor = Color.FromArgb(200, 200, 200);
-            panel1.BorderStyle = BorderStyle.FixedSingle;
-            panel1.Location = new Point(47, 128);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(168, 40);
-            panel1.TabIndex = 9;
-            // 
-            // pictureBox2
-            // 
-            pictureBox2.BackColor = Color.FromArgb(200, 200, 200);
-            pictureBox2.BorderStyle = BorderStyle.FixedSingle;
-            pictureBox2.Image = Properties.Resources.plus;
-            pictureBox2.Location = new Point(221, 128);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(40, 40);
-            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox2.TabIndex = 8;
-            pictureBox2.TabStop = false;
-            // 
-            // label6
-            // 
-            label6.Location = new Point(521, 361);
-            label6.Name = "label6";
-            label6.Size = new Size(214, 50);
-            label6.TabIndex = 7;
-            label6.Text = "Хитрец  100₽";
-            label6.TextAlign = ContentAlignment.TopCenter;
-            // 
-            // label5
-            // 
-            label5.Location = new Point(521, 203);
-            label5.Name = "label5";
-            label5.Size = new Size(214, 50);
-            label5.TabIndex = 6;
-            label5.Text = "Тюнинговщик  100₽";
-            label5.TextAlign = ContentAlignment.TopCenter;
-            // 
-            // label4
-            // 
-            label4.Location = new Point(521, 75);
-            label4.Name = "label4";
-            label4.Size = new Size(214, 50);
-            label4.TabIndex = 5;
-            label4.Text = "          Ремонтник            100₽";
-            label4.TextAlign = ContentAlignment.TopCenter;
-            // 
-            // label3
-            // 
-            label3.Location = new Point(47, 361);
-            label3.Name = "label3";
-            label3.Size = new Size(214, 50);
-            label3.TabIndex = 4;
-            label3.Text = "Знаток гаджетов  100₽";
-            label3.TextAlign = ContentAlignment.TopCenter;
-            // 
-            // label2
-            // 
-            label2.Location = new Point(47, 203);
-            label2.Name = "label2";
-            label2.Size = new Size(214, 50);
-            label2.TabIndex = 3;
-            label2.Text = "Мастер продаж  100₽";
-            label2.TextAlign = ContentAlignment.TopCenter;
-            // 
-            // skill0name
-            // 
-            skill0name.Location = new Point(47, 75);
-            skill0name.Name = "skill0name";
-            skill0name.Size = new Size(214, 50);
-            skill0name.TabIndex = 2;
-            skill0name.Text = "Любовь поторговаться 100₽";
-            skill0name.TextAlign = ContentAlignment.TopCenter;
-            // 
-            // skilltitle
-            // 
-            skilltitle.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            skilltitle.Font = new Font("Segoe UI", 25F);
-            skilltitle.Location = new Point(3, 0);
-            skilltitle.Name = "skilltitle";
-            skilltitle.Size = new Size(776, 50);
-            skilltitle.TabIndex = 1;
-            skilltitle.Text = "Ваши навыки";
-            skilltitle.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // labelmoney
             // 
@@ -888,111 +927,6 @@
             labelmoney.TabIndex = 25;
             labelmoney.Text = "Баланс: 0 ₽";
             labelmoney.TextAlign = ContentAlignment.MiddleRight;
-            // 
-            // panel2
-            // 
-            panel2.BackColor = Color.FromArgb(200, 200, 200);
-            panel2.BorderStyle = BorderStyle.FixedSingle;
-            panel2.Location = new Point(47, 256);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(168, 40);
-            panel2.TabIndex = 11;
-            // 
-            // pictureBox3
-            // 
-            pictureBox3.BackColor = Color.FromArgb(200, 200, 200);
-            pictureBox3.BorderStyle = BorderStyle.FixedSingle;
-            pictureBox3.Image = Properties.Resources.plus;
-            pictureBox3.Location = new Point(221, 256);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(40, 40);
-            pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox3.TabIndex = 10;
-            pictureBox3.TabStop = false;
-            // 
-            // panel3
-            // 
-            panel3.BackColor = Color.FromArgb(200, 200, 200);
-            panel3.BorderStyle = BorderStyle.FixedSingle;
-            panel3.Location = new Point(47, 414);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(168, 40);
-            panel3.TabIndex = 11;
-            // 
-            // pictureBox4
-            // 
-            pictureBox4.BackColor = Color.FromArgb(200, 200, 200);
-            pictureBox4.BorderStyle = BorderStyle.FixedSingle;
-            pictureBox4.Image = Properties.Resources.plus;
-            pictureBox4.Location = new Point(221, 414);
-            pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(40, 40);
-            pictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox4.TabIndex = 10;
-            pictureBox4.TabStop = false;
-            // 
-            // panel4
-            // 
-            panel4.BackColor = Color.FromArgb(200, 200, 200);
-            panel4.BorderStyle = BorderStyle.FixedSingle;
-            panel4.Location = new Point(521, 414);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(168, 40);
-            panel4.TabIndex = 11;
-            // 
-            // pictureBox5
-            // 
-            pictureBox5.BackColor = Color.FromArgb(200, 200, 200);
-            pictureBox5.BorderStyle = BorderStyle.FixedSingle;
-            pictureBox5.Image = Properties.Resources.plus;
-            pictureBox5.Location = new Point(695, 414);
-            pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(40, 40);
-            pictureBox5.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox5.TabIndex = 10;
-            pictureBox5.TabStop = false;
-            // 
-            // panel5
-            // 
-            panel5.BackColor = Color.FromArgb(200, 200, 200);
-            panel5.BorderStyle = BorderStyle.FixedSingle;
-            panel5.Location = new Point(521, 256);
-            panel5.Name = "panel5";
-            panel5.Size = new Size(168, 40);
-            panel5.TabIndex = 11;
-            // 
-            // pictureBox6
-            // 
-            pictureBox6.BackColor = Color.FromArgb(200, 200, 200);
-            pictureBox6.BorderStyle = BorderStyle.FixedSingle;
-            pictureBox6.Image = Properties.Resources.plus;
-            pictureBox6.Location = new Point(695, 256);
-            pictureBox6.Name = "pictureBox6";
-            pictureBox6.Size = new Size(40, 40);
-            pictureBox6.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox6.TabIndex = 10;
-            pictureBox6.TabStop = false;
-            // 
-            // panel6
-            // 
-            panel6.BackColor = Color.FromArgb(200, 200, 200);
-            panel6.BorderStyle = BorderStyle.FixedSingle;
-            panel6.Location = new Point(521, 128);
-            panel6.Name = "panel6";
-            panel6.Size = new Size(168, 40);
-            panel6.TabIndex = 11;
-            // 
-            // pictureBox7
-            // 
-            pictureBox7.BackColor = Color.FromArgb(200, 200, 200);
-            pictureBox7.BorderStyle = BorderStyle.FixedSingle;
-            pictureBox7.Image = Properties.Resources.plus;
-            pictureBox7.Location = new Point(695, 128);
-            pictureBox7.Name = "pictureBox7";
-            pictureBox7.Size = new Size(40, 40);
-            pictureBox7.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox7.TabIndex = 10;
-            pictureBox7.TabStop = false;
             // 
             // perekup
             // 
@@ -1023,14 +957,14 @@
             ((System.ComponentModel.ISupportInitialize)avitocar0img).EndInit();
             ((System.ComponentModel.ISupportInitialize)reloadcars).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            statistics.ResumeLayout(false);
             skill.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
+            ((System.ComponentModel.ISupportInitialize)skill3up).EndInit();
+            ((System.ComponentModel.ISupportInitialize)skill4up).EndInit();
+            ((System.ComponentModel.ISupportInitialize)skill5up).EndInit();
+            ((System.ComponentModel.ISupportInitialize)skill2up).EndInit();
+            ((System.ComponentModel.ISupportInitialize)skill1up).EndInit();
+            ((System.ComponentModel.ISupportInitialize)skill0up).EndInit();
+            statistics.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -1040,7 +974,6 @@
         private TabPage garage;
         private TabPage workshops;
         private TabPage browser;
-        private TabPage statistics;
         private Label garagetitle;
         private PictureBox citypicture;
         private Button Stepanichbutton;
@@ -1079,9 +1012,31 @@
         private Label avitocar2price;
         private Label avitocar1price;
         private Label labelmoney;
-        private Label stattitle;
-        private Label skillslabel;
-        private Label soldcars;
+        private TabPage skill;
+        private Label skilltitle;
+        private Label skill0name;
+        private Label skill5name;
+        private Label skill4name;
+        private Label skill3name;
+        private Label skill2name;
+        private Label skill1name;
+        private Panel panel6;
+        private Panel panel5;
+        private Panel panel4;
+        private Panel panel3;
+        private Panel panel1;
+        private PictureBox skill5up;
+        private PictureBox skill4up;
+        private PictureBox skill3up;
+        private PictureBox skill2up;
+        private PictureBox skill1up;
+        private PictureBox skill0up;
+        private Panel[] panelskillprogress;
+        private Panel[][] skillprogress;
+        private TabPage statistics;
+        private Button clearData;
+        private Label recievedmoney;
+        private Label spentmoney;
         private Label skill5;
         private Label skill4;
         private Label skill3;
@@ -1089,28 +1044,8 @@
         private Label skill1;
         private Label skill0;
         private Label boughtcars;
-        private Label recievedmoney;
-        private Label spentmoney;
-        private Button clearData;
-        private TabPage skill;
-        private Label skilltitle;
-        private Label skill0name;
-        private Label label6;
-        private Label label5;
-        private Label label4;
-        private Label label3;
-        private Label label2;
-        private Panel panel1;
-        private PictureBox pictureBox2;
-        private Panel panel6;
-        private PictureBox pictureBox7;
-        private Panel panel5;
-        private PictureBox pictureBox6;
-        private Panel panel4;
-        private PictureBox pictureBox5;
-        private Panel panel3;
-        private PictureBox pictureBox4;
-        private Panel panel2;
-        private PictureBox pictureBox3;
+        private Label skillslabel;
+        private Label soldcars;
+        private Label stattitle;
     }
 }

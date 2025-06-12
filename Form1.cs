@@ -13,7 +13,7 @@ namespace ProjectPerekup
         private DateTime lastResize;
         private (int w, int h) lastsize;
 
-        // -- данные пользователя --
+        // -- данные пользователя -- 
         List<Car> cars;
         private long money;
         private int sold;
@@ -31,6 +31,7 @@ namespace ProjectPerekup
             InitializeComponent();
             InitializeGarage();
             InitializeBrowser();
+            InitializeSkills();
             InitializeStatistics();
             reLoadGarage();
             updMoney();
@@ -270,8 +271,21 @@ namespace ProjectPerekup
                 avitocar2buy.Location = new Point(avitocar0buy.Location.X, browser.Height - 49);
                 avitocar2price.Location = new Point(avitocar2buy.Location.X, avitocar2buy.Location.Y - 37);
             }
-            // статистика
+            // навыки
             else if (tabs.SelectedIndex == 3)
+            {
+                skilltitle.Height = skill.Height / 10 + 8;
+                skilltitle.Font = new Font("Segoe UI", skilltitle.Height / 2);
+
+                panelskillprogress[0].Location = new Point(skill0name.Location.X, skill0up.Location.Y);
+                panelskillprogress[1].Location = new Point(skill1name.Location.X, skill1up.Location.Y);
+                panelskillprogress[2].Location = new Point(skill2name.Location.X, skill2up.Location.Y);
+                panelskillprogress[3].Location = new Point(skill3name.Location.X, skill3up.Location.Y);
+                panelskillprogress[4].Location = new Point(skill4name.Location.X, skill4up.Location.Y);
+                panelskillprogress[5].Location = new Point(skill5name.Location.X, skill5up.Location.Y);
+            }
+            // статистика
+            else if (tabs.SelectedIndex == 4)
             {
                 stattitle.Height = statistics.Height / 10 + 8;
                 stattitle.Font = new Font("Segoe UI", stattitle.Height / 2);
@@ -305,12 +319,6 @@ namespace ProjectPerekup
                 skill5.Width = spentmoney.Width;
 
                 clearData.Location = new Point(Convert.ToInt32((Width - clearData.Width) / 2), Height - 135);
-            }
-            // навыки
-            else if (tabs.SelectedIndex == 4)
-            {
-                skilltitle.Height = skill.Height / 10 + 8;
-                skilltitle.Font = new Font("Segoe UI", skilltitle.Height / 2);
             }
         }
         private void Form1_Resize(object sender, EventArgs e)
@@ -404,6 +412,89 @@ namespace ProjectPerekup
             skill3.Text = $"{skillsname[3]}: {skills[3]}";
             skill4.Text = $"{skillsname[4]}: {skills[4]}";
             skill5.Text = $"{skillsname[5]}: {skills[5]}";
+        }
+        private void InitializeSkills()
+        {
+            skill0up.Click += (sender, e) => { upgradeSkill(0); };
+            skill1up.Click += (sender, e) => { upgradeSkill(1); };
+            skill2up.Click += (sender, e) => { upgradeSkill(2); };
+            skill3up.Click += (sender, e) => { upgradeSkill(3); };
+            skill4up.Click += (sender, e) => { upgradeSkill(4); };
+            skill5up.Click += (sender, e) => { upgradeSkill(5); };
+
+            loadSkillsTab();
+        }
+        private void loadSkillsTab()
+        {
+            panelskillprogress = new Panel[6];
+            for (int i = 0; i < panelskillprogress.Length; i++)
+            {
+                panelskillprogress[i] = new Panel();
+                panelskillprogress[i].BackColor = Color.FromArgb(200, 200, 200);
+                panelskillprogress[i].Name = "panel2";
+                panelskillprogress[i].Size = new Size(168, 40);
+                panelskillprogress[i].TabIndex = 11;
+                panelskillprogress[i].BorderStyle = BorderStyle.FixedSingle;
+                panelskillprogress[i].Resize += (sender, e) => { loadSkills(); };
+                skill.Controls.Add(panelskillprogress[i]);
+            }
+
+            skillprogress = new Panel[6][];
+            for (int x = 0; x < skillprogress.Length; x++)
+            {
+                skillprogress[x] = new Panel[6];
+                for (int y = 0; y < skillprogress[0].Length; y++)
+                {
+                    skillprogress[x][y] = new Panel();
+                    skillprogress[x][y].BorderStyle = BorderStyle.FixedSingle;
+                    skillprogress[x][y].Parent = panelskillprogress[x];
+                }
+            }
+
+            loadSkillsProgress(-1);
+        }
+        private void loadSkills()
+        {
+            for (int x = 0; x < 6; x++)
+            {
+                for (int y = 0; y < 6; y++)
+                {
+                    skillprogress[x][y].Height = 30;
+                    skillprogress[x][y].Width = ((panelskillprogress[x].Width - 10) / 6) - 5;
+                    skillprogress[x][y].Location = new Point(7 + (5 + skillprogress[x][y].Width) * y, 4);
+                }
+            }
+        }
+        private void loadSkillsProgress(int i)
+        {
+            if (i == -1)
+            {
+                for (int x = 0; x < 6; x++)
+                {
+                    for (int y = 0; y < skills[x]; y++)
+                    {
+                        skillprogress[x][y].BackColor = Color.Green;
+                    }
+                }
+            }
+            else
+            {
+                for (int y = 0; y < skills[i]; y++)
+                {
+                    skillprogress[i][y].BackColor = Color.Green;
+                }
+            }
+        }
+        private void DeleteSkills()
+        {
+
+            for(int x = 0; x < 6; x++)
+            {
+                for (int y = 0; y < skillprogress[x].Length; y++)
+                {
+                    skillprogress[x][y].BackColor = Color.Transparent;
+                }
+            }
         }
         private void reLoadGarage()
         {
@@ -553,7 +644,8 @@ namespace ProjectPerekup
 
 
 
-        // -- гараж --
+
+        // -- гараж -- {
         private void carimg_DoubleClick()
         {
             Car editcar;
@@ -724,7 +816,7 @@ namespace ProjectPerekup
             {
                 if (Convert.ToInt64(money) - Convert.ToInt64(Convert.ToDouble(avitocars[0].price) * getCondMult(avitocars[0].getCondSum())) < 0)
                 {
-                    MessageBox.Show($"Ошибка:  не хватает денег");
+                    MessageBox.Show($"не хватает денег", "Ошибка");
                     return;
                 }
                 int i = findZero();
@@ -756,7 +848,7 @@ namespace ProjectPerekup
             {
                 if (Convert.ToInt64(money) - Convert.ToInt64(Convert.ToDouble(avitocars[1].price) * getCondMult(avitocars[1].getCondSum())) < 0)
                 {
-                    MessageBox.Show($"Ошибка:  не хватает денег");
+                    MessageBox.Show($"не хватает денег", "Ошибка");
                     return;
                 }
                 int i = findZero();
@@ -788,7 +880,7 @@ namespace ProjectPerekup
             {
                 if (Convert.ToInt64(money) - Convert.ToInt64(Convert.ToDouble(avitocars[2].price) * getCondMult(avitocars[2].getCondSum())) < 0)
                 {
-                    MessageBox.Show($"Ошибка:  не хватает денег");
+                    MessageBox.Show($"не хватает денег", "Ошибка");
                     return;
                 }
                 int i = findZero();
@@ -815,8 +907,16 @@ namespace ProjectPerekup
             }
         }
 
+        // -- навыки --
+        private void upgradeSkill(int i)
+        {
+            skills[i]++;
+            skillprogress[i][skills[i]-1].BackColor = Color.Green;
+            Filework.Save(cars, money, sold, bought, spent, recieved, skills, skillsname);
+        }
+
         // -- статистика -- 
-        private void buttonClearData_Click(object sender, EventArgs e)
+        private void clearData_Click(object sender, EventArgs e)
         {
             if (Confirm.Instance.ShowDialog() == DialogResult.OK)
             {
@@ -827,9 +927,12 @@ namespace ProjectPerekup
                 reLoadGarage();
                 InitializeBrowser();
                 InitializeStatistics();
+                DeleteSkills();
+                //loadSkillsProgress(-1);
                 reLoadBrowser();
                 updMoney();
             }
         }
+
     }
 }
