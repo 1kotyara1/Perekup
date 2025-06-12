@@ -14,9 +14,7 @@ namespace ProjectPerekup
 {
     public partial class CarUpgrade : Form
     {
-        private string[] conditions = { " нет повреждений", " лёгкие повреждения", " средние повреждения", " тяжелые повреждения" };
-        private string[] garages = { "Гараж Василия", "Гараж Степаныча", "FitService" };
-
+        // для создания окна
         private static CarUpgrade _Instance = new CarUpgrade();
         public static CarUpgrade Instance
         {
@@ -30,10 +28,20 @@ namespace ProjectPerekup
             }
         }
 
+
+
+        // прсто информация
+        private string[] conditions = { " нет повреждений", " лёгкие повреждения", " средние повреждения", " тяжелые повреждения" };
+        private string[] garages = { "Гараж Василия", "Гараж Степаныча", "FitService" };
+        private DateTime lastResize;
+        private (int w, int h) lastsize;
+
+        // данные о пользователе
         static long balance;
         static List<Car> cars;
         int selectedcar;
 
+        // данные об изменениях в машине
         private int editsum;
         private int motorlvl;
         private int translvl;
@@ -51,23 +59,12 @@ namespace ProjectPerekup
         private bool kusovedited = false;
         private bool salonedited = false;
 
+
+        // запуск
         public CarUpgrade()
         {
             InitializeComponent();
         }
-
-        public static void SendData(long editbalance, List<Car> editcars, Garage gar)
-        {
-            balance = editbalance;
-            cars = editcars;
-            Instance.InitializeForm(gar);
-        }
-        public static void RecieveData(out long sendbalance, out List<Car> sendcars)
-        {
-            sendbalance = balance;
-            sendcars = cars;
-        }
-
         private void InitializeForm(Garage gar)
         {
             Instance.Text = garages[Convert.ToInt32(gar)];
@@ -87,25 +84,158 @@ namespace ProjectPerekup
             car4img.Click += (sender, e) => { if (cars[4].img != 0) { Nullstats(); selectedcar = 4; loadStats(); } };
             car5img.Click += (sender, e) => { if (cars[5].img != 0) { Nullstats(); selectedcar = 5; loadStats(); } };
 
+            Resize += (sender, e) => CarUpgrade_Resize();
+
             labelmoneyedit.Text = $"Баланс: {balance} ₽";
 
             loadStats();
+            lastResize = DateTime.Now;
+            resize();
         }
 
-        private void CarUpgrade_Resize(object sender, EventArgs e)
-        {
-            if(Height + 165 < Width)
-            {
 
+        // отправка и получение информации
+        public static void SendData(long editbalance, List<Car> editcars, Garage gar)
+        {
+            balance = editbalance;
+            cars = editcars;
+            Instance.InitializeForm(gar);
+        }
+        public static void RecieveData(out long sendbalance, out List<Car> sendcars)
+        {
+            sendbalance = balance;
+            sendcars = cars;
+        }
+
+
+        // изменение размеров окна
+        private void CarUpgrade_Resize()
+        {
+            DateTime now = DateTime.Now;
+            if (lastResize.Millisecond + lastResize.Second*1000 - now.Millisecond - now.Second*1000 < -500 || lastsize.h - Height < -100 || lastsize.h - Height > 100 || lastsize.w - Width < -100 || lastsize.w - Width > 100)
+            {
+                lastResize = DateTime.Now;
+                resize();
             }
+        }
+        private void CarUpgrade_ResizeEnd(object sender, EventArgs e)
+        {
+            resize();
+        }
+        private void resize()
+        {
+            lastsize = (Width, Height);
+
+            int height = Height - 15;
+            int width = Width - 16;
+
+            // окно широкое
+            if (Height * 1.2777 < Width)
+            {
+                car0img.Height = Convert.ToInt32(Height * 0.1904); // опираемся на высоту
+                car1img.Height = car0img.Height;
+                car2img.Height = car0img.Height;
+                car3img.Height = car0img.Height;
+                car4img.Height = car0img.Height;
+                car5img.Height = car0img.Height;
+                car0img.Width = car0img.Height;
+                car1img.Width = car1img.Height;
+                car2img.Width = car2img.Height;
+                car3img.Width = car3img.Height;
+                car4img.Width = car4img.Height;
+                car5img.Width = car5img.Height;
+
+                car3img.Location = new Point((width + 6) / 2, 12);
+                car4img.Location = new Point(car3img.Location.X + car3img.Width + 6, 12);
+                car5img.Location = new Point(car4img.Location.X + car4img.Width + 6, 12);
+
+                car2img.Location = new Point((width - 6) / 2 - car2img.Width, 12);
+                car1img.Location = new Point(car2img.Location.X - car2img.Width - 6, 12);
+                car0img.Location = new Point(car1img.Location.X - car1img.Width - 6, 12);
+            }
+            // окно высокое
             else
             {
+                car0img.Height = Convert.ToInt32(Width * 0.149); // опираемся на ширину
+                car1img.Height = car0img.Height;
+                car2img.Height = car0img.Height;
+                car3img.Height = car0img.Height;
+                car4img.Height = car0img.Height;
+                car5img.Height = car0img.Height;
+                car0img.Width = car0img.Height;
+                car1img.Width = car1img.Height;
+                car2img.Width = car2img.Height;
+                car3img.Width = car3img.Height;
+                car4img.Width = car4img.Height;
+                car5img.Width = car5img.Height;
 
+                car3img.Location = new Point((width + 6) / 2, 12);
+                car4img.Location = new Point(car3img.Location.X + car3img.Width + 6, 12);
+                car5img.Location = new Point(car4img.Location.X + car4img.Width + 6, 12);
+
+                car2img.Location = new Point((width - 6) / 2 - car2img.Width, 12);
+                car1img.Location = new Point(car2img.Location.X - car2img.Width - 6, 12);
+                car0img.Location = new Point(car1img.Location.X - car1img.Width - 6, 12);
+            }
+
+            /* конпки починки, информация о выбранной машине и кнопки снизу */ {
+                editcarimg.Width = car0img.Width * 2 + 6;
+                editcarimg.Height = editcarimg.Width;
+                editcarimg.Location = new Point(car2img.Location.X, car2img.Location.Y + car2img.Height + 6);
+                editcarlabel.Width = editcarimg.Width;
+                editcarlabel.Height = editcarimg.Width / 3;
+                editcarlabel.Location = new Point(editcarimg.Location.X, editcarimg.Location.Y + editcarimg.Height + 2);
+
+                cancelbutton.Width = car0img.Width;
+                cancelbutton.Height = Convert.ToInt32(cancelbutton.Width * 0.416);
+                cancelbutton.Location = new Point(car2img.Location.X, Height - cancelbutton.Height - 43);
+                confirmbutton.Width = car0img.Width;
+                confirmbutton.Height = cancelbutton.Height;
+                confirmbutton.Location = new Point(car3img.Location.X, cancelbutton.Location.Y);
+                editpricesum.Width = editcarimg.Width;
+                editpricesum.Height = editpricesum.Width / 10;
+                editpricesum.Location = new Point(cancelbutton.Location.X, cancelbutton.Location.Y - 6 - editpricesum.Height);
+
+                motorlabel.Width = editcarimg.Width;
+                motorlabel.Height = 52 + (motorlabel.Width - 246) / 10;
+                motorlabel.Location = new Point(car0img.Location.X, editcarimg.Location.Y);
+                motorbutton.Width = editcarimg.Width;
+                motorbutton.Height = 40 + (motorbutton.Width - 246) / 10;
+                motorbutton.Location = new Point(car0img.Location.X, motorlabel.Location.Y + motorlabel.Height + 3);
+
+                translabel.Width = motorlabel.Width;
+                translabel.Height = motorlabel.Height;
+                translabel.Location = new Point(motorlabel.Location.X, motorbutton.Location.Y + motorbutton.Height + 7);
+                transbutton.Width = editcarimg.Width;
+                transbutton.Height = motorbutton.Height;
+                transbutton.Location = new Point(car0img.Location.X, translabel.Location.Y + translabel.Height + 3);
+
+                hodlabel.Width = motorlabel.Width;
+                hodlabel.Height = motorlabel.Height;
+                hodlabel.Location = new Point(translabel.Location.X, transbutton.Location.Y + transbutton.Height + 7);
+                hodbutton.Width = editcarimg.Width;
+                hodbutton.Height = motorbutton.Height;
+                hodbutton.Location = new Point(car0img.Location.X, hodlabel.Location.Y + hodlabel.Height + 3);
+
+                kusovlabel.Width = motorlabel.Width;
+                kusovlabel.Height = motorlabel.Height;
+                kusovlabel.Location = new Point(car4img.Location.X, motorlabel.Location.Y);
+                kusovbutton.Width = editcarimg.Width;
+                kusovbutton.Height = motorbutton.Height;
+                kusovbutton.Location = new Point(car4img.Location.X, kusovlabel.Location.Y + kusovlabel.Height + 3);
+
+                salonlabel.Width = kusovlabel.Width;
+                salonlabel.Height = kusovlabel.Height;
+                salonlabel.Location = new Point(kusovlabel.Location.X, kusovbutton.Location.Y + kusovbutton.Height + 7);
+                salonbutton.Width = editcarimg.Width;
+                salonbutton.Height = kusovbutton.Height;
+                salonbutton.Location = new Point(car4img.Location.X, salonlabel.Location.Y + salonlabel.Height + 3);
             }
         }
 
 
-        private void Nullstats()
+        // загрузка или обновление информации о выбранной машине на экране
+        private void Nullstats() // сбрасывает
         {
             if (motoredited || transedited || hodedited || kusovedited || salonedited)
             {
@@ -116,7 +246,7 @@ namespace ProjectPerekup
                 cars[selectedcar].salon = salonlvl;
             }
         }
-        private void loadStats()
+        private void loadStats() // загружает
         {
             editsum = 0;
             motorprice = 0;
@@ -147,6 +277,8 @@ namespace ProjectPerekup
             Inisalon();
         }
 
+
+        // загрузка данных на определенные элементы окна
         private void IniCarText()
         {
             editcarlabel.Text = $"{cars[selectedcar].getName()}\nСтоимость: {cars[selectedcar].price}₽\nСостояние: {cars[selectedcar].getCondText()}";
@@ -188,7 +320,7 @@ namespace ProjectPerekup
             else salonbutton.Text = $"{getButtonText(cars[selectedcar].salon)}";
         }
 
-        private string getButtonText(int lvl)
+        private string getButtonText(int lvl) // возвращает текст для кнопки в зависимости от состояния определенного элемента машины
         {
             if (lvl > 0)
             {
@@ -199,7 +331,7 @@ namespace ProjectPerekup
                 return $"Улучшить - {Convert.ToInt32((cars[selectedcar].price / 7 * (2.0 + Convert.ToDouble(fits() - lvl)) / 10) * (0.9 - Convert.ToDouble(lvl) / 15))}";
             }
         }
-        private string getCond(int cond)
+        private string getCond(int cond) // возвращает текст для label в зависимости от состояния определенного элемента машины
         {
             if (cond >= 0)
             {
@@ -210,7 +342,7 @@ namespace ProjectPerekup
                 return $"{-cond} уровень";
             }
         }
-        private int fits()
+        private int fits() // проверка на мастерскую
         {
             if (Instance.Text == "FitService")
             {
@@ -218,6 +350,9 @@ namespace ProjectPerekup
             }
             return 0;
         }
+
+
+        // нажатие кнопок
         private void motorbutton_Click(object sender, EventArgs e)
         {
             if (motorbutton.Text != "Недоступно")
@@ -253,7 +388,6 @@ namespace ProjectPerekup
                 }
             }
         }
-
         private void transbutton_Click(object sender, EventArgs e)
         {
             if (transbutton.Text != "Недоступно")
@@ -289,7 +423,6 @@ namespace ProjectPerekup
                 }
             }
         }
-
         private void hodbutton_Click(object sender, EventArgs e)
         {
             if (hodbutton.Text != "Недоступно")
@@ -325,7 +458,6 @@ namespace ProjectPerekup
                 }
             }
         }
-
         private void kusovbutton_Click(object sender, EventArgs e)
         {
             if (kusovbutton.Text != "Недоступно")
@@ -361,7 +493,6 @@ namespace ProjectPerekup
                 }
             }
         }
-
         private void salonbutton_Click(object sender, EventArgs e)
         {
             if (salonbutton.Text != "Недоступно")
@@ -403,7 +534,6 @@ namespace ProjectPerekup
             Nullstats();
             Instance.Close();
         }
-
         private void confirmbutton_Click(object sender, EventArgs e)
         {
             if (Convert.ToInt64(balance) - editsum < 0)
@@ -415,9 +545,10 @@ namespace ProjectPerekup
             Instance.DialogResult = DialogResult.OK;
             Instance.Close();
         }
-
     }
 
+
+    // для понимания в каком гараже мы находимся
     public enum Garage
     {
         vasya,

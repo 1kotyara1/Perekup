@@ -84,7 +84,27 @@
             skillslabel = new Label();
             soldcars = new Label();
             stattitle = new Label();
+            skill = new TabPage();
+            panel1 = new Panel();
+            pictureBox2 = new PictureBox();
+            label6 = new Label();
+            label5 = new Label();
+            label4 = new Label();
+            label3 = new Label();
+            label2 = new Label();
+            skill0name = new Label();
+            skilltitle = new Label();
             labelmoney = new Label();
+            panel2 = new Panel();
+            pictureBox3 = new PictureBox();
+            panel3 = new Panel();
+            pictureBox4 = new PictureBox();
+            panel4 = new Panel();
+            pictureBox5 = new PictureBox();
+            panel5 = new Panel();
+            pictureBox6 = new PictureBox();
+            panel6 = new Panel();
+            pictureBox7 = new PictureBox();
             tabs.SuspendLayout();
             garage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)car3img).BeginInit();
@@ -102,6 +122,13 @@
             ((System.ComponentModel.ISupportInitialize)reloadcars).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             statistics.SuspendLayout();
+            skill.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             SuspendLayout();
             // 
             // tabs
@@ -111,6 +138,7 @@
             tabs.Controls.Add(workshops);
             tabs.Controls.Add(browser);
             tabs.Controls.Add(statistics);
+            tabs.Controls.Add(skill);
             tabs.Font = new Font("Segoe UI", 14F);
             tabs.ItemSize = new Size(120, 30);
             tabs.Location = new Point(-4, 0);
@@ -146,6 +174,7 @@
             // 
             // car3img
             // 
+            car3img.BorderStyle = BorderStyle.FixedSingle;
             car3img.Cursor = Cursors.Hand;
             car3img.Image = Properties.Resources.car00;
             car3img.Location = new Point(123, 300);
@@ -157,6 +186,7 @@
             // 
             // car4img
             // 
+            car4img.BorderStyle = BorderStyle.FixedSingle;
             car4img.Cursor = Cursors.Hand;
             car4img.Image = Properties.Resources.car00;
             car4img.Location = new Point(331, 300);
@@ -168,6 +198,7 @@
             // 
             // car5img
             // 
+            car5img.BorderStyle = BorderStyle.FixedSingle;
             car5img.Cursor = Cursors.Hand;
             car5img.Image = Properties.Resources.car00;
             car5img.Location = new Point(539, 300);
@@ -179,6 +210,7 @@
             // 
             // car0img
             // 
+            car0img.BorderStyle = BorderStyle.FixedSingle;
             car0img.Cursor = Cursors.Hand;
             car0img.Image = Properties.Resources.car00;
             car0img.Location = new Point(123, 64);
@@ -190,6 +222,7 @@
             // 
             // car1img
             // 
+            car1img.BorderStyle = BorderStyle.FixedSingle;
             car1img.Cursor = Cursors.Hand;
             car1img.Image = Properties.Resources.car00;
             car1img.Location = new Point(331, 64);
@@ -201,6 +234,7 @@
             // 
             // car2img
             // 
+            car2img.BorderStyle = BorderStyle.FixedSingle;
             car2img.Cursor = Cursors.Hand;
             car2img.Image = Properties.Resources.car00;
             car2img.Location = new Point(539, 64);
@@ -465,6 +499,7 @@
             // 
             // avitocar2img
             // 
+            avitocar2img.BorderStyle = BorderStyle.FixedSingle;
             avitocar2img.Image = Properties.Resources.car00;
             avitocar2img.Location = new Point(6, 332);
             avitocar2img.Name = "avitocar2img";
@@ -475,6 +510,7 @@
             // 
             // avitocar1img
             // 
+            avitocar1img.BorderStyle = BorderStyle.FixedSingle;
             avitocar1img.Image = Properties.Resources.car00;
             avitocar1img.Location = new Point(6, 236);
             avitocar1img.Name = "avitocar1img";
@@ -485,6 +521,7 @@
             // 
             // avitocar0img
             // 
+            avitocar0img.BorderStyle = BorderStyle.FixedSingle;
             avitocar0img.Image = Properties.Resources.car00;
             avitocar0img.Location = new Point(6, 140);
             avitocar0img.Name = "avitocar0img";
@@ -725,17 +762,237 @@
             stattitle.Text = "Ваша статистика";
             stattitle.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // skill
+            // 
+            skill.Controls.Add(panel6);
+            skill.Controls.Add(pictureBox7);
+            skill.Controls.Add(panel5);
+            skill.Controls.Add(pictureBox6);
+            skill.Controls.Add(panel4);
+            skill.Controls.Add(pictureBox5);
+            skill.Controls.Add(panel3);
+            skill.Controls.Add(pictureBox4);
+            skill.Controls.Add(panel2);
+            skill.Controls.Add(pictureBox3);
+            skill.Controls.Add(panel1);
+            skill.Controls.Add(pictureBox2);
+            skill.Controls.Add(label6);
+            skill.Controls.Add(label5);
+            skill.Controls.Add(label4);
+            skill.Controls.Add(label3);
+            skill.Controls.Add(label2);
+            skill.Controls.Add(skill0name);
+            skill.Controls.Add(skilltitle);
+            skill.Location = new Point(4, 34);
+            skill.Name = "skill";
+            skill.Padding = new Padding(3);
+            skill.Size = new Size(782, 538);
+            skill.TabIndex = 4;
+            skill.Text = "Навыки";
+            skill.UseVisualStyleBackColor = true;
+            // 
+            // panel1
+            // 
+            panel1.BackColor = Color.FromArgb(200, 200, 200);
+            panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Location = new Point(47, 128);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(168, 40);
+            panel1.TabIndex = 9;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.BackColor = Color.FromArgb(200, 200, 200);
+            pictureBox2.BorderStyle = BorderStyle.FixedSingle;
+            pictureBox2.Image = Properties.Resources.plus;
+            pictureBox2.Location = new Point(221, 128);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(40, 40);
+            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox2.TabIndex = 8;
+            pictureBox2.TabStop = false;
+            // 
+            // label6
+            // 
+            label6.Location = new Point(521, 361);
+            label6.Name = "label6";
+            label6.Size = new Size(214, 50);
+            label6.TabIndex = 7;
+            label6.Text = "Хитрец  100₽";
+            label6.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // label5
+            // 
+            label5.Location = new Point(521, 203);
+            label5.Name = "label5";
+            label5.Size = new Size(214, 50);
+            label5.TabIndex = 6;
+            label5.Text = "Тюнинговщик  100₽";
+            label5.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // label4
+            // 
+            label4.Location = new Point(521, 75);
+            label4.Name = "label4";
+            label4.Size = new Size(214, 50);
+            label4.TabIndex = 5;
+            label4.Text = "          Ремонтник            100₽";
+            label4.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // label3
+            // 
+            label3.Location = new Point(47, 361);
+            label3.Name = "label3";
+            label3.Size = new Size(214, 50);
+            label3.TabIndex = 4;
+            label3.Text = "Знаток гаджетов  100₽";
+            label3.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // label2
+            // 
+            label2.Location = new Point(47, 203);
+            label2.Name = "label2";
+            label2.Size = new Size(214, 50);
+            label2.TabIndex = 3;
+            label2.Text = "Мастер продаж  100₽";
+            label2.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // skill0name
+            // 
+            skill0name.Location = new Point(47, 75);
+            skill0name.Name = "skill0name";
+            skill0name.Size = new Size(214, 50);
+            skill0name.TabIndex = 2;
+            skill0name.Text = "Любовь поторговаться 100₽";
+            skill0name.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // skilltitle
+            // 
+            skilltitle.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            skilltitle.Font = new Font("Segoe UI", 25F);
+            skilltitle.Location = new Point(3, 0);
+            skilltitle.Name = "skilltitle";
+            skilltitle.Size = new Size(776, 50);
+            skilltitle.TabIndex = 1;
+            skilltitle.Text = "Ваши навыки";
+            skilltitle.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // labelmoney
             // 
             labelmoney.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             labelmoney.BackColor = Color.Transparent;
             labelmoney.Font = new Font("Segoe UI", 16F);
-            labelmoney.Location = new Point(433, 0);
+            labelmoney.Location = new Point(521, 0);
             labelmoney.Name = "labelmoney";
-            labelmoney.Size = new Size(349, 32);
+            labelmoney.Size = new Size(261, 32);
             labelmoney.TabIndex = 25;
             labelmoney.Text = "Баланс: 0 ₽";
             labelmoney.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // panel2
+            // 
+            panel2.BackColor = Color.FromArgb(200, 200, 200);
+            panel2.BorderStyle = BorderStyle.FixedSingle;
+            panel2.Location = new Point(47, 256);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(168, 40);
+            panel2.TabIndex = 11;
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.BackColor = Color.FromArgb(200, 200, 200);
+            pictureBox3.BorderStyle = BorderStyle.FixedSingle;
+            pictureBox3.Image = Properties.Resources.plus;
+            pictureBox3.Location = new Point(221, 256);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(40, 40);
+            pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox3.TabIndex = 10;
+            pictureBox3.TabStop = false;
+            // 
+            // panel3
+            // 
+            panel3.BackColor = Color.FromArgb(200, 200, 200);
+            panel3.BorderStyle = BorderStyle.FixedSingle;
+            panel3.Location = new Point(47, 414);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(168, 40);
+            panel3.TabIndex = 11;
+            // 
+            // pictureBox4
+            // 
+            pictureBox4.BackColor = Color.FromArgb(200, 200, 200);
+            pictureBox4.BorderStyle = BorderStyle.FixedSingle;
+            pictureBox4.Image = Properties.Resources.plus;
+            pictureBox4.Location = new Point(221, 414);
+            pictureBox4.Name = "pictureBox4";
+            pictureBox4.Size = new Size(40, 40);
+            pictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox4.TabIndex = 10;
+            pictureBox4.TabStop = false;
+            // 
+            // panel4
+            // 
+            panel4.BackColor = Color.FromArgb(200, 200, 200);
+            panel4.BorderStyle = BorderStyle.FixedSingle;
+            panel4.Location = new Point(521, 414);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(168, 40);
+            panel4.TabIndex = 11;
+            // 
+            // pictureBox5
+            // 
+            pictureBox5.BackColor = Color.FromArgb(200, 200, 200);
+            pictureBox5.BorderStyle = BorderStyle.FixedSingle;
+            pictureBox5.Image = Properties.Resources.plus;
+            pictureBox5.Location = new Point(695, 414);
+            pictureBox5.Name = "pictureBox5";
+            pictureBox5.Size = new Size(40, 40);
+            pictureBox5.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox5.TabIndex = 10;
+            pictureBox5.TabStop = false;
+            // 
+            // panel5
+            // 
+            panel5.BackColor = Color.FromArgb(200, 200, 200);
+            panel5.BorderStyle = BorderStyle.FixedSingle;
+            panel5.Location = new Point(521, 256);
+            panel5.Name = "panel5";
+            panel5.Size = new Size(168, 40);
+            panel5.TabIndex = 11;
+            // 
+            // pictureBox6
+            // 
+            pictureBox6.BackColor = Color.FromArgb(200, 200, 200);
+            pictureBox6.BorderStyle = BorderStyle.FixedSingle;
+            pictureBox6.Image = Properties.Resources.plus;
+            pictureBox6.Location = new Point(695, 256);
+            pictureBox6.Name = "pictureBox6";
+            pictureBox6.Size = new Size(40, 40);
+            pictureBox6.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox6.TabIndex = 10;
+            pictureBox6.TabStop = false;
+            // 
+            // panel6
+            // 
+            panel6.BackColor = Color.FromArgb(200, 200, 200);
+            panel6.BorderStyle = BorderStyle.FixedSingle;
+            panel6.Location = new Point(521, 128);
+            panel6.Name = "panel6";
+            panel6.Size = new Size(168, 40);
+            panel6.TabIndex = 11;
+            // 
+            // pictureBox7
+            // 
+            pictureBox7.BackColor = Color.FromArgb(200, 200, 200);
+            pictureBox7.BorderStyle = BorderStyle.FixedSingle;
+            pictureBox7.Image = Properties.Resources.plus;
+            pictureBox7.Location = new Point(695, 128);
+            pictureBox7.Name = "pictureBox7";
+            pictureBox7.Size = new Size(40, 40);
+            pictureBox7.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox7.TabIndex = 10;
+            pictureBox7.TabStop = false;
             // 
             // perekup
             // 
@@ -748,6 +1005,7 @@
             MinimumSize = new Size(800, 614);
             Name = "perekup";
             Text = "Симулятор перекупа";
+            ResizeEnd += perekup_ResizeEnd;
             Resize += Form1_Resize;
             tabs.ResumeLayout(false);
             garage.ResumeLayout(false);
@@ -766,6 +1024,13 @@
             ((System.ComponentModel.ISupportInitialize)reloadcars).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             statistics.ResumeLayout(false);
+            skill.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
             ResumeLayout(false);
         }
 
@@ -827,5 +1092,25 @@
         private Label recievedmoney;
         private Label spentmoney;
         private Button clearData;
+        private TabPage skill;
+        private Label skilltitle;
+        private Label skill0name;
+        private Label label6;
+        private Label label5;
+        private Label label4;
+        private Label label3;
+        private Label label2;
+        private Panel panel1;
+        private PictureBox pictureBox2;
+        private Panel panel6;
+        private PictureBox pictureBox7;
+        private Panel panel5;
+        private PictureBox pictureBox6;
+        private Panel panel4;
+        private PictureBox pictureBox5;
+        private Panel panel3;
+        private PictureBox pictureBox4;
+        private Panel panel2;
+        private PictureBox pictureBox3;
     }
 }

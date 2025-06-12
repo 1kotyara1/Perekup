@@ -10,6 +10,8 @@ namespace ProjectPerekup
         private string[] skillsname = new string[] { "Любовь поторговаться", "Мастер продаж", "Знаток гаджетов", "Ремонтник", "Тюнинговщик", "Хитрец" };
         private int selectedcar = -1;
         private Car[] avitocars;
+        private DateTime lastResize;
+        private (int w, int h) lastsize;
 
         // -- данные пользователя --
         List<Car> cars;
@@ -19,7 +21,6 @@ namespace ProjectPerekup
         private long spent;
         private long recieved;
         private int[] skills;
-        private string test;
 
 
 
@@ -34,20 +35,32 @@ namespace ProjectPerekup
             reLoadGarage();
             updMoney();
 
-            Transform();
+            lastResize = DateTime.Now; // запоминает время последнего изменения размера окна
+            resize();
         }
 
 
         // -- изменение размера окна --
         private void Transform() // вызывается при изменении размера окна
         {
+            DateTime now = DateTime.Now;
+            if (lastResize.Millisecond + lastResize.Second * 1000 - now.Millisecond - now.Second * 1000 < -500 || lastsize.h - Height < -100 || lastsize.h - Height > 100 || lastsize.w - Width < -100 || lastsize.w - Width > 100)
+            {
+                lastResize = DateTime.Now; // запоминает время последнего изменения размера окна
+
+                resize();
+            }
+        }
+        private void resize()
+        {
+            lastsize = (Width, Height);
             // скрыто
             if (garage.Height == 0)
             {
                 return;
             }
             // гараж
-            else if (tabs.SelectedIndex == 0) // гараж
+            else if (tabs.SelectedIndex == 0)
             {
                 if (Convert.ToDouble(garage.Width) > Convert.ToDouble(garage.Height) * 1.4335) // 3x2 сверху
                 {
@@ -293,9 +306,19 @@ namespace ProjectPerekup
 
                 clearData.Location = new Point(Convert.ToInt32((Width - clearData.Width) / 2), Height - 135);
             }
+            // навыки
+            else if (tabs.SelectedIndex == 4)
+            {
+                skilltitle.Height = skill.Height / 10 + 8;
+                skilltitle.Font = new Font("Segoe UI", skilltitle.Height / 2);
+            }
         }
         private void Form1_Resize(object sender, EventArgs e)
         { Transform(); }
+        private void perekup_ResizeEnd(object sender, EventArgs e)
+        {
+            resize();
+        }
         private void tabs_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (tabs.SelectedIndex == 0)
@@ -307,7 +330,7 @@ namespace ProjectPerekup
             {
                 InitializeStatistics();
             }
-            Transform();
+            resize();
         }
 
 

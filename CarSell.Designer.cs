@@ -54,6 +54,7 @@
             // 
             // car0img
             // 
+            car0img.BorderStyle = BorderStyle.FixedSingle;
             car0img.Image = Properties.Resources.car00;
             car0img.Location = new Point(17, 12);
             car0img.Name = "car0img";
@@ -64,6 +65,7 @@
             // 
             // car1img
             // 
+            car1img.BorderStyle = BorderStyle.FixedSingle;
             car1img.Image = Properties.Resources.car00;
             car1img.Location = new Point(143, 12);
             car1img.Name = "car1img";
@@ -74,6 +76,7 @@
             // 
             // car2img
             // 
+            car2img.BorderStyle = BorderStyle.FixedSingle;
             car2img.Image = Properties.Resources.car00;
             car2img.Location = new Point(269, 12);
             car2img.Name = "car2img";
@@ -84,6 +87,7 @@
             // 
             // car3img
             // 
+            car3img.BorderStyle = BorderStyle.FixedSingle;
             car3img.Image = Properties.Resources.car00;
             car3img.Location = new Point(395, 12);
             car3img.Name = "car3img";
@@ -94,6 +98,7 @@
             // 
             // car4img
             // 
+            car4img.BorderStyle = BorderStyle.FixedSingle;
             car4img.Image = Properties.Resources.car00;
             car4img.Location = new Point(521, 12);
             car4img.Name = "car4img";
@@ -104,6 +109,7 @@
             // 
             // car5img
             // 
+            car5img.BorderStyle = BorderStyle.FixedSingle;
             car5img.Image = Properties.Resources.car00;
             car5img.Location = new Point(647, 12);
             car5img.Name = "car5img";
@@ -247,6 +253,7 @@
             MinimumSize = new Size(800, 500);
             Name = "CarSell";
             Text = "CarSell";
+            ResizeEnd += CarSell_ResizeEnd;
             Resize += CarSell_Resize;
             ((System.ComponentModel.ISupportInitialize)car0img).EndInit();
             ((System.ComponentModel.ISupportInitialize)car1img).EndInit();

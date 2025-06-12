@@ -29,6 +29,8 @@ namespace ProjectPerekup
                 return _Instance;
             }
         }
+        private DateTime lastResize;
+        private (int w, int h) lastsize;
 
         static long balance;
         static Car car;
@@ -80,6 +82,21 @@ namespace ProjectPerekup
 
         private void CarEdit_Resize(object sender, EventArgs e)
         {
+            DateTime now = DateTime.Now;
+            if (lastResize.Millisecond + lastResize.Second * 1000 - now.Millisecond - now.Second * 1000 < -500 || lastsize.h - Height < -100 || lastsize.h - Height > 100 || lastsize.w - Width < -100 || lastsize.w - Width > 100)
+            {
+                lastResize = DateTime.Now;
+                resize();
+            }
+        }
+        private void CarEdit_ResizeEnd(object sender, EventArgs e)
+        {
+            resize();
+        }
+        private void resize()
+        {
+            lastsize = (Width, Height);
+
             int width = Width - 16;
             int height = Height - 39;
 
@@ -160,6 +177,9 @@ namespace ProjectPerekup
 
                 if (car.salon <= 0) salonbutton.Text = "Недоступно";
                 else salonbutton.Text = $"Починить - {salonprice}";
+
+                lastResize = DateTime.Now;
+                resize();
             }
 
         }
@@ -313,7 +333,7 @@ namespace ProjectPerekup
         }
         private void confirmbutton_Click(object sender, EventArgs e)
         {
-            if(Convert.ToInt64(balance) - editsum < 0)
+            if (Convert.ToInt64(balance) - editsum < 0)
             {
                 MessageBox.Show($"Ошибка:  не хватает денег");
                 return;

@@ -30,7 +30,9 @@ namespace ProjectPerekup
         {
             InitializeComponent();
         }
-     
+        private DateTime lastResize;
+        private (int w, int h) lastsize;
+
 
         // массив состояний отдельных частей машины
         private string[] conditions = { " нет повреждений", " лёгкие повреждения", " средние повреждения", " тяжелые повреждения" };
@@ -55,9 +57,9 @@ namespace ProjectPerekup
             sendcars = cars;
         }
 
-
         private void InitializeForm() // загрузка данных в окно
         {
+
             selectedcar = cars.FindIndex(c => c.img != 0);
 
             car0img.MouseEnter += (sender, e) => car0text.Visible = true;
@@ -110,9 +112,28 @@ namespace ProjectPerekup
 
             car0text.Visible = true;
             loadStats();
+            lastResize = DateTime.Now;
+            resize();
         }
+
+        // изменение размеров окна
         private void CarSell_Resize(object sender, EventArgs e) // изменение положения объектов
         {
+            DateTime now = DateTime.Now;
+            if (lastResize.Millisecond + lastResize.Second * 1000 - now.Millisecond - now.Second * 1000 < -500 || lastsize.h - Height < -100 || lastsize.h - Height > 100 || lastsize.w - Width < -100 || lastsize.w - Width > 100)
+            {
+                lastResize = DateTime.Now;
+                resize();
+            }
+        }
+        private void CarSell_ResizeEnd(object sender, EventArgs e)
+        {
+            resize();
+        }
+        private void resize()
+        {
+            lastsize = (Width, Height);
+
             int width = Width - 16;
             int height = Height - 39;
 
@@ -153,11 +174,11 @@ namespace ProjectPerekup
             car0img.Location = new Point(car1img.Location.X - car0img.Width - 6, 12);
             car0text.Location = new Point(car0img.Location.X, car3text.Location.Y);
 
-            carstat0.Location = new Point(17, car0text.Location.Y + car0text.Height + Convert.ToInt32((carprice.Location.Y - (car0text.Location.Y + car0text.Height)) / 2) - Convert.ToInt32(carstat0.Height / 2));
-
             cancelbutton.Location = new Point(car2img.Location.X, Height - 98);
             sellbutton.Location = new Point(car3img.Location.X, cancelbutton.Location.Y);
             carprice.Location = new Point(cancelbutton.Location.X, cancelbutton.Location.Y - 38);
+
+            carstat0.Location = new Point(17, car0text.Location.Y + car0text.Height + Convert.ToInt32((carprice.Location.Y - (car0text.Location.Y + car0text.Height)) / 2) - Convert.ToInt32(carstat0.Height / 2));
         }
 
 
@@ -239,21 +260,21 @@ namespace ProjectPerekup
                 return $" {-cond} уровень";
             }
         }
-        private void cancelbutton_Click(object sender, EventArgs e) //
+        private void cancelbutton_Click(object sender, EventArgs e) // кнопка отмены
         {
             Instance.Close();
         }
-        private double getCondMult(int sum) //
-        {
-            return 1.0 - 0.05 * sum;
-        }
-        private void sellbutton_Click(object sender, EventArgs e) //
+        private void sellbutton_Click(object sender, EventArgs e) // продать
         {
             balance += Convert.ToInt64(Convert.ToDouble(cars[selectedcar].price) * getCondMult(cars[selectedcar].getCondSum()));
             cars[selectedcar] = new Car();
 
             Instance.DialogResult = DialogResult.OK;
             Instance.Close();
+        }
+        private double getCondMult(int sum) // возвращает множитель который опирается на состояния деталей
+        {
+            return 1.0 - 0.05 * sum;
         }
     }
 }

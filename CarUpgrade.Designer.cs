@@ -61,6 +61,7 @@
             // 
             // car5img
             // 
+            car5img.BorderStyle = BorderStyle.FixedSingle;
             car5img.Image = Properties.Resources.car00;
             car5img.Location = new Point(651, 12);
             car5img.Name = "car5img";
@@ -71,6 +72,7 @@
             // 
             // car4img
             // 
+            car4img.BorderStyle = BorderStyle.FixedSingle;
             car4img.Image = Properties.Resources.car00;
             car4img.Location = new Point(525, 12);
             car4img.Name = "car4img";
@@ -81,6 +83,7 @@
             // 
             // car3img
             // 
+            car3img.BorderStyle = BorderStyle.FixedSingle;
             car3img.Image = Properties.Resources.car00;
             car3img.Location = new Point(399, 12);
             car3img.Name = "car3img";
@@ -91,6 +94,7 @@
             // 
             // car2img
             // 
+            car2img.BorderStyle = BorderStyle.FixedSingle;
             car2img.Image = Properties.Resources.car00;
             car2img.Location = new Point(273, 12);
             car2img.Name = "car2img";
@@ -101,6 +105,7 @@
             // 
             // car1img
             // 
+            car1img.BorderStyle = BorderStyle.FixedSingle;
             car1img.Image = Properties.Resources.car00;
             car1img.Location = new Point(147, 12);
             car1img.Name = "car1img";
@@ -111,6 +116,7 @@
             // 
             // car0img
             // 
+            car0img.BorderStyle = BorderStyle.FixedSingle;
             car0img.Image = Properties.Resources.car00;
             car0img.Location = new Point(21, 12);
             car0img.Name = "car0img";
@@ -122,9 +128,9 @@
             // editpricesum
             // 
             editpricesum.Font = new Font("Segoe UI", 14F);
-            editpricesum.Location = new Point(273, 499);
+            editpricesum.Location = new Point(273, 507);
             editpricesum.Name = "editpricesum";
-            editpricesum.Size = new Size(246, 27);
+            editpricesum.Size = new Size(246, 24);
             editpricesum.TabIndex = 33;
             editpricesum.Text = "Стоимость ремонта: 5000₽";
             editpricesum.TextAlign = ContentAlignment.BottomCenter;
@@ -145,7 +151,7 @@
             salonlabel.Font = new Font("Segoe UI", 14F);
             salonlabel.Location = new Point(525, 240);
             salonlabel.Name = "salonlabel";
-            salonlabel.Size = new Size(250, 52);
+            salonlabel.Size = new Size(246, 52);
             salonlabel.TabIndex = 28;
             salonlabel.Text = "Салон        Повреждения: тяжелые";
             // 
@@ -154,16 +160,16 @@
             kusovlabel.Font = new Font("Segoe UI", 14F);
             kusovlabel.Location = new Point(525, 138);
             kusovlabel.Name = "kusovlabel";
-            kusovlabel.Size = new Size(250, 52);
+            kusovlabel.Size = new Size(246, 52);
             kusovlabel.TabIndex = 26;
             kusovlabel.Text = "Кузов        Повреждения: тяжелые";
             // 
             // hodlabel
             // 
             hodlabel.Font = new Font("Segoe UI", 14F);
-            hodlabel.Location = new Point(19, 342);
+            hodlabel.Location = new Point(21, 342);
             hodlabel.Name = "hodlabel";
-            hodlabel.Size = new Size(248, 52);
+            hodlabel.Size = new Size(246, 52);
             hodlabel.TabIndex = 24;
             hodlabel.Text = "Ходовая        Повреждения: тяжелые";
             // 
@@ -181,9 +187,9 @@
             // translabel
             // 
             translabel.Font = new Font("Segoe UI", 14F);
-            translabel.Location = new Point(19, 239);
+            translabel.Location = new Point(21, 239);
             translabel.Name = "translabel";
-            translabel.Size = new Size(248, 52);
+            translabel.Size = new Size(246, 52);
             translabel.TabIndex = 22;
             translabel.Text = "Трансмиссия        Повреждения: тяжелые";
             // 
@@ -191,9 +197,9 @@
             // 
             motorlabel.BackColor = SystemColors.Control;
             motorlabel.Font = new Font("Segoe UI", 14F);
-            motorlabel.Location = new Point(19, 138);
+            motorlabel.Location = new Point(21, 138);
             motorlabel.Name = "motorlabel";
-            motorlabel.Size = new Size(248, 52);
+            motorlabel.Size = new Size(246, 52);
             motorlabel.TabIndex = 19;
             motorlabel.Text = "Двигатель        Повреждения: тяжелые";
             // 
@@ -224,7 +230,7 @@
             salonbutton.Font = new Font("Segoe UI", 14F);
             salonbutton.Location = new Point(525, 295);
             salonbutton.Name = "salonbutton";
-            salonbutton.Size = new Size(250, 40);
+            salonbutton.Size = new Size(246, 40);
             salonbutton.TabIndex = 29;
             salonbutton.Text = "Починить - 1000₽";
             salonbutton.UseVisualStyleBackColor = true;
@@ -235,7 +241,7 @@
             kusovbutton.Font = new Font("Segoe UI", 14F);
             kusovbutton.Location = new Point(525, 193);
             kusovbutton.Name = "kusovbutton";
-            kusovbutton.Size = new Size(250, 40);
+            kusovbutton.Size = new Size(246, 40);
             kusovbutton.TabIndex = 27;
             kusovbutton.Text = "Починить - 1000₽";
             kusovbutton.UseVisualStyleBackColor = true;
@@ -244,9 +250,9 @@
             // hodbutton
             // 
             hodbutton.Font = new Font("Segoe UI", 14F);
-            hodbutton.Location = new Point(19, 397);
+            hodbutton.Location = new Point(21, 397);
             hodbutton.Name = "hodbutton";
-            hodbutton.Size = new Size(248, 40);
+            hodbutton.Size = new Size(246, 40);
             hodbutton.TabIndex = 25;
             hodbutton.Text = "Починить - 1000₽";
             hodbutton.UseVisualStyleBackColor = true;
@@ -255,9 +261,9 @@
             // transbutton
             // 
             transbutton.Font = new Font("Segoe UI", 14F);
-            transbutton.Location = new Point(19, 294);
+            transbutton.Location = new Point(21, 294);
             transbutton.Name = "transbutton";
-            transbutton.Size = new Size(248, 40);
+            transbutton.Size = new Size(246, 40);
             transbutton.TabIndex = 23;
             transbutton.Text = "Починить - 1000₽";
             transbutton.UseVisualStyleBackColor = true;
@@ -266,9 +272,9 @@
             // motorbutton
             // 
             motorbutton.Font = new Font("Segoe UI", 14F);
-            motorbutton.Location = new Point(19, 193);
+            motorbutton.Location = new Point(21, 193);
             motorbutton.Name = "motorbutton";
-            motorbutton.Size = new Size(248, 40);
+            motorbutton.Size = new Size(246, 40);
             motorbutton.TabIndex = 21;
             motorbutton.Text = "Починить - 1000₽";
             motorbutton.UseVisualStyleBackColor = true;
@@ -276,6 +282,7 @@
             // 
             // editcarimg
             // 
+            editcarimg.BorderStyle = BorderStyle.FixedSingle;
             editcarimg.Image = Properties.Resources.car00;
             editcarimg.Location = new Point(273, 138);
             editcarimg.Name = "editcarimg";
@@ -314,7 +321,7 @@
             MinimumSize = new Size(805, 630);
             Name = "CarUpgrade";
             Text = "CarUpgrade";
-            Resize += CarUpgrade_Resize;
+            ResizeEnd += CarUpgrade_ResizeEnd;
             ((System.ComponentModel.ISupportInitialize)car5img).EndInit();
             ((System.ComponentModel.ISupportInitialize)car4img).EndInit();
             ((System.ComponentModel.ISupportInitialize)car3img).EndInit();

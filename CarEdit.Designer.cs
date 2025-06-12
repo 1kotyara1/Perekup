@@ -49,6 +49,7 @@
             // 
             // editcarimg
             // 
+            editcarimg.BorderStyle = BorderStyle.FixedSingle;
             editcarimg.Image = Properties.Resources.car00;
             editcarimg.Location = new Point(240, 12);
             editcarimg.Name = "editcarimg";
@@ -236,6 +237,7 @@
             MinimumSize = new Size(800, 600);
             Name = "CarEdit";
             Text = "CarEdit";
+            ResizeEnd += CarEdit_ResizeEnd;
             Resize += CarEdit_Resize;
             ((System.ComponentModel.ISupportInitialize)editcarimg).EndInit();
             ResumeLayout(false);
