@@ -8,10 +8,12 @@ namespace ProjectPerekup
     {
         // -- данные страниц --
         private string[] skillsname = new string[] { "Любовь поторговаться", "Мастер продаж", "Знаток гаджетов", "Ремонтник", "Тюнинговщик", "Хитрец" };
+        private int[] skillPrice = new int[] {15000, 100000, 500000, 5000000, 25000000, 250000000, 0 };
         private int selectedcar = -1;
         private Car[] avitocars;
         private DateTime lastResize;
         private (int w, int h) lastsize;
+        private int maxSizeDifference = 200;
 
         // -- данные пользователя -- 
         List<Car> cars;
@@ -45,7 +47,7 @@ namespace ProjectPerekup
         private void Transform() // вызывается при изменении размера окна
         {
             DateTime now = DateTime.Now;
-            if (lastResize.Millisecond + lastResize.Second * 1000 - now.Millisecond - now.Second * 1000 < -500 || lastsize.h - Height < -100 || lastsize.h - Height > 100 || lastsize.w - Width < -100 || lastsize.w - Width > 100)
+            if (lastResize.Millisecond + lastResize.Second * 1000 - now.Millisecond - now.Second * 1000 < -500 || lastsize.h - Height < -maxSizeDifference || lastsize.h - Height > maxSizeDifference || lastsize.w - Width < -maxSizeDifference || lastsize.w - Width > maxSizeDifference)
             {
                 lastResize = DateTime.Now; // запоминает время последнего изменения размера окна
 
@@ -55,6 +57,7 @@ namespace ProjectPerekup
         private void resize()
         {
             lastsize = (Width, Height);
+
             // скрыто
             if (garage.Height == 0)
             {
@@ -216,6 +219,9 @@ namespace ProjectPerekup
             // мастерские
             else if (tabs.SelectedIndex == 1)
             {
+                citypicture.Height = Height - 76;
+                citypicture.Width = Width - 18;
+
                 Vasiliybutton.Location = new Point(Convert.ToInt32(citypicture.Width * 0.091),
                                                      Convert.ToInt32(citypicture.Height * 0.605));
 
@@ -276,6 +282,8 @@ namespace ProjectPerekup
             {
                 skilltitle.Height = skill.Height / 10 + 8;
                 skilltitle.Font = new Font("Segoe UI", skilltitle.Height / 2);
+
+                skill0name.Location = new Point(Width / 2 - 126 - skill0name.Width, skilltitle.Height + 21);
 
                 panelskillprogress[0].Location = new Point(skill0name.Location.X, skill0up.Location.Y);
                 panelskillprogress[1].Location = new Point(skill1name.Location.X, skill1up.Location.Y);
@@ -343,7 +351,7 @@ namespace ProjectPerekup
 
 
         // -- помощники --
-        private void InitializeGarage()
+        private void InitializeGarage() // загрузка функций в элементы гаража
         {
             car0img.MouseEnter += (sender, e) => car0text.Visible = true;
             car0img.MouseLeave += (sender, e) => hideCarText(0);
@@ -377,7 +385,7 @@ namespace ProjectPerekup
 
 
         }
-        private void InitializeBrowser()
+        private void InitializeBrowser()  // загрузка данных в элементы браузера
         {
             combosort.Items.Clear();
             combosort.Items.AddRange(new string[] {
@@ -398,7 +406,7 @@ namespace ProjectPerekup
 
             combosort.SelectedIndexChanged += reloadcars_Click;
         }
-        private void InitializeStatistics()
+        private void InitializeStatistics()  // загрузка данных в элементы статистики
         {
             spentmoney.Text = $"Потрачено денег: {-1 * spent}₽";
             recievedmoney.Text = $"Получено денег: {recieved}₽";
@@ -413,7 +421,7 @@ namespace ProjectPerekup
             skill4.Text = $"{skillsname[4]}: {skills[4]}";
             skill5.Text = $"{skillsname[5]}: {skills[5]}";
         }
-        private void InitializeSkills()
+        private void InitializeSkills()  // загрузка функций и данных в элементы навыков
         {
             skill0up.Click += (sender, e) => { upgradeSkill(0); };
             skill1up.Click += (sender, e) => { upgradeSkill(1); };
@@ -422,9 +430,16 @@ namespace ProjectPerekup
             skill4up.Click += (sender, e) => { upgradeSkill(4); };
             skill5up.Click += (sender, e) => { upgradeSkill(5); };
 
+            skill0name.Text = getSkillText(0);
+            skill1name.Text = getSkillText(1);
+            skill2name.Text = getSkillText(2);
+            skill3name.Text = getSkillText(3);
+            skill4name.Text = getSkillText(4);
+            skill5name.Text = getSkillText(5);
+
             loadSkillsTab();
         }
-        private void loadSkillsTab()
+        private void loadSkillsTab() // создание элементов в навыках
         {
             panelskillprogress = new Panel[6];
             for (int i = 0; i < panelskillprogress.Length; i++)
@@ -453,7 +468,7 @@ namespace ProjectPerekup
 
             loadSkillsProgress(-1);
         }
-        private void loadSkills()
+        private void loadSkills() // редактирование элементов в навыках
         {
             for (int x = 0; x < 6; x++)
             {
@@ -465,7 +480,7 @@ namespace ProjectPerekup
                 }
             }
         }
-        private void loadSkillsProgress(int i)
+        private void loadSkillsProgress(int i) // загрузка прогресса навыков
         {
             if (i == -1)
             {
@@ -485,7 +500,7 @@ namespace ProjectPerekup
                 }
             }
         }
-        private void DeleteSkills()
+        private void DeleteSkills() // стирание прогресса навыков
         {
 
             for(int x = 0; x < 6; x++)
@@ -496,7 +511,7 @@ namespace ProjectPerekup
                 }
             }
         }
-        private void reLoadGarage()
+        private void reLoadGarage() // обновление данных в гараже
         {
             car0img.Image = cars[0].getImg();
             if (cars[0].img == 0) car0text.Text = "Пусто";
@@ -522,7 +537,7 @@ namespace ProjectPerekup
             if (cars[5].img == 0) car5text.Text = "Пусто";
             else car5text.Text = cars[5].ToString();
         }
-        private void reLoadBrowser()
+        private void reLoadBrowser() // обновление предложений в браузере
         {
             if (combosort.SelectedIndex == 0) //случайное
             {
@@ -539,7 +554,7 @@ namespace ProjectPerekup
                 updBrowser();
             }
         }
-        private void updBrowser()
+        private void updBrowser() // загружает данные предложений в элементы
         {
             avitocar0name.Text = $"{avitocars[0].getName()}\n{avitocars[0].generateDesc()}";
             avitocar0img.Image = avitocars[0].getImg();
@@ -556,7 +571,7 @@ namespace ProjectPerekup
             avitocar2price.Text = avitocars[2].PriceToString();
             avitocar2buy.Text = "Купить";
         }
-        private void updMoney()
+        private void updMoney() // обновляет баланс
         {
             string mone = money.ToString();
 
@@ -572,7 +587,7 @@ namespace ProjectPerekup
 
             labelmoney.Text = $"Баланс: {returnmoney} ₽";
         }
-        private void hideCarText(int carnum)
+        private void hideCarText(int carnum) // прячет текст под машиной в гараже(кроме выбранной)
         {
             if (carnum != selectedcar)
             {
@@ -602,7 +617,7 @@ namespace ProjectPerekup
                 }
             }
         }
-        private void hideOtherCarText()
+        private void hideOtherCarText()  // прячет текст выбранной машины
         {
             if (selectedcar == 0)
             {
@@ -629,17 +644,50 @@ namespace ProjectPerekup
                 car5text.Visible = false;
             }
         }
-        private int findZero()
+        private int findZero() // находит пустое место в гараже
         {
             return cars.FindIndex(c => c.img == 0);
         }
-        private int findCar()
+        private int findCar() // находит не пустое место в гараже
         {
             return cars.FindIndex(c => c.img != 0);
         }
-        private double getCondMult(int sum)
+        private double getCondMult(int sum) // возвращает множитель зависящий от количества повреждений
         {
             return 1.0 - 0.05 * sum;
+        }
+        private string getSkillText(int i) // возвращает текст навыка(имя и цена)
+        {
+            if (skillPrice[skills[i]] == 0)
+            {
+                return $"{skillsname[i]}\nМакс. уровень";
+            }
+            return $"{skillsname[i]}\n{PriceToString(skillPrice[skills[i]])}₽";
+        }
+        private void updateSkillText(int i) // обновляет текст навыка
+        {
+            if (i == 0) skill0name.Text = getSkillText(0);
+            else if (i == 1) skill1name.Text = getSkillText(1);
+            else if (i == 2) skill2name.Text = getSkillText(2);
+            else if (i == 3) skill3name.Text = getSkillText(3);
+            else if (i == 4) skill4name.Text = getSkillText(4);
+            else if (i == 5) skill5name.Text = getSkillText(5);
+        }
+        public string PriceToString(int price) // делит сумму 1234567 -> 1 234 567
+        {
+            string strPrice = price.ToString();
+
+            string returnprice = "";
+            for (int i = 0; i < strPrice.Length; i++)
+            {
+                returnprice += strPrice[i];
+                if ((strPrice.Length - i - 1) % 3 == 0)
+                {
+                    returnprice += " ";
+                }
+            }
+
+            return returnprice;
         }
 
 
@@ -910,9 +958,18 @@ namespace ProjectPerekup
         // -- навыки --
         private void upgradeSkill(int i)
         {
-            skills[i]++;
-            skillprogress[i][skills[i]-1].BackColor = Color.Green;
-            Filework.Save(cars, money, sold, bought, spent, recieved, skills, skillsname);
+            if (skills[i] != 6)
+            {
+                skills[i]++;
+                skillprogress[i][skills[i] - 1].BackColor = Color.Green;
+                Filework.Save(cars, money, sold, bought, spent, recieved, skills, skillsname);
+
+                updateSkillText(i);
+            }
+            else
+            {
+                MessageBox.Show("Навык уже максимального уровня", "Ошибка");
+            }
         }
 
         // -- статистика -- 

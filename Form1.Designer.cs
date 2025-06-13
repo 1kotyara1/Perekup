@@ -50,6 +50,7 @@
             Vasiliybutton = new Button();
             citypicture = new PictureBox();
             browser = new TabPage();
+            label2 = new Label();
             avitocar2price = new Label();
             avitocar1price = new Label();
             avitocar0price = new Label();
@@ -364,7 +365,6 @@
             // 
             // citypicture
             // 
-            citypicture.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             citypicture.Image = Properties.Resources.город;
             citypicture.InitialImage = null;
             citypicture.Location = new Point(0, 0);
@@ -376,6 +376,7 @@
             // 
             // browser
             // 
+            browser.Controls.Add(label2);
             browser.Controls.Add(avitocar2price);
             browser.Controls.Add(avitocar1price);
             browser.Controls.Add(avitocar0price);
@@ -403,6 +404,14 @@
             browser.TabIndex = 2;
             browser.Text = "Браузер";
             browser.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            label2.Location = new Point(483, 69);
+            label2.Name = "label2";
+            label2.Size = new Size(293, 64);
+            label2.TabIndex = 25;
+            label2.Text = "label2";
             // 
             // avitocar2price
             // 
@@ -1047,5 +1056,6 @@
         private Label skillslabel;
         private Label soldcars;
         private Label stattitle;
+        private Label label2;
     }
 }
