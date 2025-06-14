@@ -50,7 +50,7 @@
             Vasiliybutton = new Button();
             citypicture = new PictureBox();
             browser = new TabPage();
-            label2 = new Label();
+            buySellInfo = new Label();
             avitocar2price = new Label();
             avitocar1price = new Label();
             avitocar0price = new Label();
@@ -376,7 +376,7 @@
             // 
             // browser
             // 
-            browser.Controls.Add(label2);
+            browser.Controls.Add(buySellInfo);
             browser.Controls.Add(avitocar2price);
             browser.Controls.Add(avitocar1price);
             browser.Controls.Add(avitocar0price);
@@ -405,13 +405,16 @@
             browser.Text = "Браузер";
             browser.UseVisualStyleBackColor = true;
             // 
-            // label2
+            // buySellInfo
             // 
-            label2.Location = new Point(483, 69);
-            label2.Name = "label2";
-            label2.Size = new Size(293, 64);
-            label2.TabIndex = 25;
-            label2.Text = "label2";
+            buySellInfo.AccessibleDescription = "";
+            buySellInfo.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            buySellInfo.Location = new Point(483, 69);
+            buySellInfo.Name = "buySellInfo";
+            buySellInfo.Size = new Size(293, 64);
+            buySellInfo.TabIndex = 25;
+            buySellInfo.Text = "label2";
+            buySellInfo.Click += buySellInfo_Click;
             // 
             // avitocar2price
             // 
@@ -452,7 +455,6 @@
             avitocar2buy.TabIndex = 21;
             avitocar2buy.Text = "Купить";
             avitocar2buy.UseVisualStyleBackColor = true;
-            avitocar2buy.Click += avitocar2buy_Click;
             // 
             // avitocar1buy
             // 
@@ -463,7 +465,6 @@
             avitocar1buy.TabIndex = 20;
             avitocar1buy.Text = "Купить";
             avitocar1buy.UseVisualStyleBackColor = true;
-            avitocar1buy.Click += avitocar1buy_Click;
             // 
             // avitocar0buy
             // 
@@ -474,7 +475,6 @@
             avitocar0buy.TabIndex = 19;
             avitocar0buy.Text = "Купить";
             avitocar0buy.UseVisualStyleBackColor = true;
-            avitocar0buy.Click += avitocar0buy_Click;
             // 
             // avitocar2name
             // 
@@ -662,7 +662,7 @@
             skill4up.BackColor = Color.FromArgb(200, 200, 200);
             skill4up.BorderStyle = BorderStyle.FixedSingle;
             skill4up.Image = Properties.Resources.plus;
-            skill4up.Location = new Point(695, 256);
+            skill4up.Location = new Point(695, 273);
             skill4up.Name = "skill4up";
             skill4up.Size = new Size(40, 40);
             skill4up.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -674,7 +674,7 @@
             skill5up.BackColor = Color.FromArgb(200, 200, 200);
             skill5up.BorderStyle = BorderStyle.FixedSingle;
             skill5up.Image = Properties.Resources.plus;
-            skill5up.Location = new Point(695, 414);
+            skill5up.Location = new Point(695, 418);
             skill5up.Name = "skill5up";
             skill5up.Size = new Size(40, 40);
             skill5up.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -686,7 +686,7 @@
             skill2up.BackColor = Color.FromArgb(200, 200, 200);
             skill2up.BorderStyle = BorderStyle.FixedSingle;
             skill2up.Image = Properties.Resources.plus;
-            skill2up.Location = new Point(221, 414);
+            skill2up.Location = new Point(221, 418);
             skill2up.Name = "skill2up";
             skill2up.Size = new Size(40, 40);
             skill2up.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -698,7 +698,7 @@
             skill1up.BackColor = Color.FromArgb(200, 200, 200);
             skill1up.BorderStyle = BorderStyle.FixedSingle;
             skill1up.Image = Properties.Resources.plus;
-            skill1up.Location = new Point(221, 256);
+            skill1up.Location = new Point(221, 273);
             skill1up.Name = "skill1up";
             skill1up.Size = new Size(40, 40);
             skill1up.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -719,7 +719,7 @@
             // 
             // skill5name
             // 
-            skill5name.Location = new Point(521, 361);
+            skill5name.Location = new Point(521, 365);
             skill5name.Name = "skill5name";
             skill5name.Size = new Size(214, 50);
             skill5name.TabIndex = 7;
@@ -728,7 +728,7 @@
             // 
             // skill4name
             // 
-            skill4name.Location = new Point(521, 203);
+            skill4name.Location = new Point(521, 220);
             skill4name.Name = "skill4name";
             skill4name.Size = new Size(214, 50);
             skill4name.TabIndex = 6;
@@ -746,7 +746,7 @@
             // 
             // skill2name
             // 
-            skill2name.Location = new Point(47, 361);
+            skill2name.Location = new Point(47, 365);
             skill2name.Name = "skill2name";
             skill2name.Size = new Size(214, 50);
             skill2name.TabIndex = 4;
@@ -755,7 +755,7 @@
             // 
             // skill1name
             // 
-            skill1name.Location = new Point(47, 203);
+            skill1name.Location = new Point(47, 220);
             skill1name.Name = "skill1name";
             skill1name.Size = new Size(214, 50);
             skill1name.TabIndex = 3;
@@ -777,9 +777,9 @@
             skilltitle.Font = new Font("Segoe UI", 25F);
             skilltitle.Location = new Point(3, 0);
             skilltitle.Name = "skilltitle";
-            skilltitle.Size = new Size(776, 50);
+            skilltitle.Size = new Size(783, 50);
             skilltitle.TabIndex = 1;
-            skilltitle.Text = "Ваши навыки";
+            skilltitle.Text = " Ваши навыки";
             skilltitle.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // statistics
@@ -1056,6 +1056,6 @@
         private Label skillslabel;
         private Label soldcars;
         private Label stattitle;
-        private Label label2;
+        private Label buySellInfo;
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace ProjectPerekup
+﻿using ProjectPerekup.Properties;
+
+namespace ProjectPerekup
 {
     partial class CarSell
     {
@@ -44,6 +46,7 @@
             carprice = new Label();
             cancelbutton = new Button();
             sellbutton = new Button();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)car0img).BeginInit();
             ((System.ComponentModel.ISupportInitialize)car1img).BeginInit();
             ((System.ComponentModel.ISupportInitialize)car2img).BeginInit();
@@ -55,7 +58,7 @@
             // car0img
             // 
             car0img.BorderStyle = BorderStyle.FixedSingle;
-            car0img.Image = Properties.Resources.car00;
+            car0img.Image = Resources.car00;
             car0img.Location = new Point(17, 12);
             car0img.Name = "car0img";
             car0img.Size = new Size(120, 120);
@@ -66,7 +69,7 @@
             // car1img
             // 
             car1img.BorderStyle = BorderStyle.FixedSingle;
-            car1img.Image = Properties.Resources.car00;
+            car1img.Image = Resources.car00;
             car1img.Location = new Point(143, 12);
             car1img.Name = "car1img";
             car1img.Size = new Size(120, 120);
@@ -77,7 +80,7 @@
             // car2img
             // 
             car2img.BorderStyle = BorderStyle.FixedSingle;
-            car2img.Image = Properties.Resources.car00;
+            car2img.Image = Resources.car00;
             car2img.Location = new Point(269, 12);
             car2img.Name = "car2img";
             car2img.Size = new Size(120, 120);
@@ -88,7 +91,7 @@
             // car3img
             // 
             car3img.BorderStyle = BorderStyle.FixedSingle;
-            car3img.Image = Properties.Resources.car00;
+            car3img.Image = Resources.car00;
             car3img.Location = new Point(395, 12);
             car3img.Name = "car3img";
             car3img.Size = new Size(120, 120);
@@ -99,7 +102,7 @@
             // car4img
             // 
             car4img.BorderStyle = BorderStyle.FixedSingle;
-            car4img.Image = Properties.Resources.car00;
+            car4img.Image = Resources.car00;
             car4img.Location = new Point(521, 12);
             car4img.Name = "car4img";
             car4img.Size = new Size(120, 120);
@@ -110,7 +113,7 @@
             // car5img
             // 
             car5img.BorderStyle = BorderStyle.FixedSingle;
-            car5img.Image = Properties.Resources.car00;
+            car5img.Image = Resources.car00;
             car5img.Location = new Point(647, 12);
             car5img.Name = "car5img";
             car5img.Size = new Size(120, 120);
@@ -229,11 +232,22 @@
             sellbutton.UseVisualStyleBackColor = true;
             sellbutton.Click += sellbutton_Click;
             // 
+            // button1
+            // 
+            button1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            button1.Location = new Point(647, 402);
+            button1.Name = "button1";
+            button1.Size = new Size(125, 47);
+            button1.TabIndex = 17;
+            button1.Text = "          наврать           (не работает еще)";
+            button1.UseVisualStyleBackColor = true;
+            // 
             // CarSell
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(784, 461);
+            Controls.Add(button1);
             Controls.Add(sellbutton);
             Controls.Add(cancelbutton);
             Controls.Add(carprice);
@@ -282,5 +296,6 @@
         private Label carprice;
         private Button cancelbutton;
         private Button sellbutton;
+        private Button button1;
     }
 }

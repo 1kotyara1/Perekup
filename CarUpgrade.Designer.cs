@@ -1,4 +1,6 @@
-﻿namespace ProjectPerekup
+﻿using ProjectPerekup.Properties;
+
+namespace ProjectPerekup
 {
     partial class CarUpgrade
     {
@@ -28,6 +30,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(perekup));
             car5img = new PictureBox();
             car4img = new PictureBox();
             car3img = new PictureBox();
@@ -295,6 +298,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             ClientSize = new Size(789, 591);
             Controls.Add(editpricesum);
             Controls.Add(editcarlabel);

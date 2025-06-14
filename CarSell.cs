@@ -45,46 +45,56 @@ namespace ProjectPerekup
 
 
         // передача данных между окнами
-        public static void SendData(long editbalance, List<Car> editcars) // идет сюда
+        public static void SendData(long editbalance, List<Car> editcars) // данные идут из основного окна
         {
             balance = editbalance;
             cars = editcars;
             Instance.InitializeForm();
         }
-        public static void RecieveData(out long sendbalance, out List<Car> sendcars) // идет отсюда
+        public static void RecieveData(out long sendbalance, out List<Car> sendcars) // данные идут в основное окно
         {
             sendbalance = balance;
             sendcars = cars;
         }
-
         private void InitializeForm() // загрузка данных в окно
         {
-
             selectedcar = cars.FindIndex(c => c.img != 0);
 
             car0img.MouseEnter += (sender, e) => car0text.Visible = true;
             car0img.MouseLeave += (sender, e) => hideCarText(0);
             car0img.Click += (sender, e) => { if (cars[0].img != 0) { if (selectedcar != 0) hideOtherCarText(); selectedcar = 0; loadStats(); } };
+            if(selectedcar != 0) car0text.Visible = false;
+            else car0text.Visible = true;
 
-            car1img.MouseEnter += (sender, e) => car1text.Visible = true;
+                car1img.MouseEnter += (sender, e) => car1text.Visible = true;
             car1img.MouseLeave += (sender, e) => hideCarText(1);
             car1img.Click += (sender, e) => { if (cars[1].img != 0) { if (selectedcar != 1) hideOtherCarText(); selectedcar = 1; loadStats(); } };
+            if (selectedcar != 1) car1text.Visible = false;
+            else car1text.Visible = true;
 
             car2img.MouseEnter += (sender, e) => car2text.Visible = true;
             car2img.MouseLeave += (sender, e) => hideCarText(2);
             car2img.Click += (sender, e) => { if (cars[2].img != 0) { if (selectedcar != 2) hideOtherCarText(); selectedcar = 2; loadStats(); } };
+            if (selectedcar != 2) car2text.Visible = false;
+            else car2text.Visible = true;
 
             car3img.MouseEnter += (sender, e) => car3text.Visible = true;
             car3img.MouseLeave += (sender, e) => hideCarText(3);
             car3img.Click += (sender, e) => { if (cars[3].img != 0) { if (selectedcar != 3) hideOtherCarText(); selectedcar = 3; loadStats(); } };
+            if (selectedcar != 3) car3text.Visible = false;
+            else car3text.Visible = true;
 
             car4img.MouseEnter += (sender, e) => car4text.Visible = true;
             car4img.MouseLeave += (sender, e) => hideCarText(4);
             car4img.Click += (sender, e) => { if (cars[4].img != 0) { if (selectedcar != 4) hideOtherCarText(); selectedcar = 4; loadStats(); } };
+            if (selectedcar != 4) car4text.Visible = false;
+            else car4text.Visible = true;
 
             car5img.MouseEnter += (sender, e) => car5text.Visible = true;
             car5img.MouseLeave += (sender, e) => hideCarText(5);
             car5img.Click += (sender, e) => { if (cars[5].img != 0) { if (selectedcar != 5) hideOtherCarText(); selectedcar = 5; loadStats(); } };
+            if (selectedcar != 5) car5text.Visible = false;
+            else car5text.Visible = true;
 
             car0img.Image = cars[0].getImg();
             if (cars[0].img == 0) car0text.Text = "Пусто";
@@ -110,14 +120,13 @@ namespace ProjectPerekup
             if (cars[5].img == 0) car5text.Text = "Пусто";
             else car5text.Text = cars[5].ToString(0);
 
-            car0text.Visible = true;
             loadStats();
             lastResize = DateTime.Now;
             resize();
         }
 
-        // изменение размеров окна
-        private void CarSell_Resize(object sender, EventArgs e) // изменение положения объектов
+        // изменение размеров окна 
+        private void CarSell_Resize(object sender, EventArgs e)
         {
             DateTime now = DateTime.Now;
             if (lastResize.Millisecond + lastResize.Second * 1000 - now.Millisecond - now.Second * 1000 < -500 || lastsize.h - Height < -100 || lastsize.h - Height > 100 || lastsize.w - Width < -100 || lastsize.w - Width > 100)
