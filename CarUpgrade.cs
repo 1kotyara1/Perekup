@@ -24,9 +24,11 @@ namespace ProjectPerekup
                 {
                     _Instance = new CarUpgrade();
                 }
+                _Instance.Icon = (Icon)_Instance.resources.GetObject("$this.Icon");
                 return _Instance;
             }
         }
+        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(perekup));
 
 
 

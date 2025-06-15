@@ -23,9 +23,11 @@ namespace ProjectPerekup
                 {
                     _Instance = new LieCalc();
                 }
+                _Instance.Icon = (Icon)_Instance.resources.GetObject("$this.Icon");
                 return _Instance;
             }
         }
+        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(perekup));
 
 
         private (PictureBox minus, Label num, PictureBox plus)[] buttons;
