@@ -30,7 +30,6 @@ namespace ProjectPerekup
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(perekup));
             car5img = new PictureBox();
             car4img = new PictureBox();
             car3img = new PictureBox();
@@ -65,7 +64,7 @@ namespace ProjectPerekup
             // car5img
             // 
             car5img.BorderStyle = BorderStyle.FixedSingle;
-            car5img.Image = Properties.Resources.car00;
+            car5img.Image = Resources.car00;
             car5img.Location = new Point(651, 12);
             car5img.Name = "car5img";
             car5img.Size = new Size(120, 120);
@@ -76,7 +75,7 @@ namespace ProjectPerekup
             // car4img
             // 
             car4img.BorderStyle = BorderStyle.FixedSingle;
-            car4img.Image = Properties.Resources.car00;
+            car4img.Image = Resources.car00;
             car4img.Location = new Point(525, 12);
             car4img.Name = "car4img";
             car4img.Size = new Size(120, 120);
@@ -87,7 +86,7 @@ namespace ProjectPerekup
             // car3img
             // 
             car3img.BorderStyle = BorderStyle.FixedSingle;
-            car3img.Image = Properties.Resources.car00;
+            car3img.Image = Resources.car00;
             car3img.Location = new Point(399, 12);
             car3img.Name = "car3img";
             car3img.Size = new Size(120, 120);
@@ -98,7 +97,7 @@ namespace ProjectPerekup
             // car2img
             // 
             car2img.BorderStyle = BorderStyle.FixedSingle;
-            car2img.Image = Properties.Resources.car00;
+            car2img.Image = Resources.car00;
             car2img.Location = new Point(273, 12);
             car2img.Name = "car2img";
             car2img.Size = new Size(120, 120);
@@ -109,7 +108,7 @@ namespace ProjectPerekup
             // car1img
             // 
             car1img.BorderStyle = BorderStyle.FixedSingle;
-            car1img.Image = Properties.Resources.car00;
+            car1img.Image = Resources.car00;
             car1img.Location = new Point(147, 12);
             car1img.Name = "car1img";
             car1img.Size = new Size(120, 120);
@@ -120,7 +119,7 @@ namespace ProjectPerekup
             // car0img
             // 
             car0img.BorderStyle = BorderStyle.FixedSingle;
-            car0img.Image = Properties.Resources.car00;
+            car0img.Image = Resources.car00;
             car0img.Location = new Point(21, 12);
             car0img.Name = "car0img";
             car0img.Size = new Size(120, 120);
@@ -286,7 +285,7 @@ namespace ProjectPerekup
             // editcarimg
             // 
             editcarimg.BorderStyle = BorderStyle.FixedSingle;
-            editcarimg.Image = Properties.Resources.car00;
+            editcarimg.Image = Resources.car00;
             editcarimg.Location = new Point(273, 138);
             editcarimg.Name = "editcarimg";
             editcarimg.Size = new Size(246, 246);
@@ -298,7 +297,6 @@ namespace ProjectPerekup
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Icon = (Icon)resources.GetObject("$this.Icon");
             ClientSize = new Size(789, 591);
             Controls.Add(editpricesum);
             Controls.Add(editcarlabel);
@@ -324,6 +322,7 @@ namespace ProjectPerekup
             Controls.Add(car0img);
             MinimumSize = new Size(805, 630);
             Name = "CarUpgrade";
+            ShowInTaskbar = false;
             Text = "CarUpgrade";
             ResizeEnd += CarUpgrade_ResizeEnd;
             ((System.ComponentModel.ISupportInitialize)car5img).EndInit();

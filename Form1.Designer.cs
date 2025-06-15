@@ -721,7 +721,7 @@
             // 
             skill5name.Location = new Point(521, 365);
             skill5name.Name = "skill5name";
-            skill5name.Size = new Size(214, 50);
+            skill5name.Size = new Size(215, 50);
             skill5name.TabIndex = 7;
             skill5name.Text = "Хитрец  100₽";
             skill5name.TextAlign = ContentAlignment.TopCenter;
@@ -730,7 +730,7 @@
             // 
             skill4name.Location = new Point(521, 220);
             skill4name.Name = "skill4name";
-            skill4name.Size = new Size(214, 50);
+            skill4name.Size = new Size(215, 50);
             skill4name.TabIndex = 6;
             skill4name.Text = "Тюнинговщик  100₽";
             skill4name.TextAlign = ContentAlignment.TopCenter;
@@ -739,34 +739,34 @@
             // 
             skill3name.Location = new Point(521, 75);
             skill3name.Name = "skill3name";
-            skill3name.Size = new Size(214, 50);
+            skill3name.Size = new Size(215, 50);
             skill3name.TabIndex = 5;
             skill3name.Text = "          Ремонтник            100₽";
             skill3name.TextAlign = ContentAlignment.TopCenter;
             // 
             // skill2name
             // 
-            skill2name.Location = new Point(47, 365);
+            skill2name.Location = new Point(46, 365);
             skill2name.Name = "skill2name";
-            skill2name.Size = new Size(214, 50);
+            skill2name.Size = new Size(215, 50);
             skill2name.TabIndex = 4;
             skill2name.Text = "Знаток гаджетов  100₽";
             skill2name.TextAlign = ContentAlignment.TopCenter;
             // 
             // skill1name
             // 
-            skill1name.Location = new Point(47, 220);
+            skill1name.Location = new Point(46, 220);
             skill1name.Name = "skill1name";
-            skill1name.Size = new Size(214, 50);
+            skill1name.Size = new Size(215, 50);
             skill1name.TabIndex = 3;
             skill1name.Text = "Мастер продаж  100₽";
             skill1name.TextAlign = ContentAlignment.TopCenter;
             // 
             // skill0name
             // 
-            skill0name.Location = new Point(47, 75);
+            skill0name.Location = new Point(46, 75);
             skill0name.Name = "skill0name";
-            skill0name.Size = new Size(214, 50);
+            skill0name.Size = new Size(215, 50);
             skill0name.TabIndex = 2;
             skill0name.Text = "Любовь поторговаться 100₽";
             skill0name.TextAlign = ContentAlignment.TopCenter;
@@ -1029,11 +1029,6 @@
         private Label skill3name;
         private Label skill2name;
         private Label skill1name;
-        private Panel panel6;
-        private Panel panel5;
-        private Panel panel4;
-        private Panel panel3;
-        private Panel panel1;
         private PictureBox skill5up;
         private PictureBox skill4up;
         private PictureBox skill3up;

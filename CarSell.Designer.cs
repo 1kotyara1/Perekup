@@ -235,12 +235,14 @@ namespace ProjectPerekup
             // button1
             // 
             button1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            button1.Font = new Font("Segoe UI", 14F);
             button1.Location = new Point(647, 402);
             button1.Name = "button1";
             button1.Size = new Size(125, 47);
             button1.TabIndex = 17;
-            button1.Text = "          наврать           (не работает еще)";
+            button1.Text = "наврать";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // CarSell
             // 
@@ -266,6 +268,7 @@ namespace ProjectPerekup
             Controls.Add(car0img);
             MinimumSize = new Size(800, 500);
             Name = "CarSell";
+            ShowInTaskbar = false;
             Text = "CarSell";
             ResizeEnd += CarSell_ResizeEnd;
             Resize += CarSell_Resize;

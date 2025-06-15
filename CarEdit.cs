@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -32,33 +33,39 @@ namespace ProjectPerekup
         private DateTime lastResize;
         private (int w, int h) lastsize;
 
-        static long balance;
-        static Car car;
+        private static long balance;
+        private static Car car;
 
+        private int[] skills;
         private int editsum = 0;
-        private int motorprice;
-        private int transprice;
-        private int hodprice;
-        private int kusovprice;
-        private int salonprice;
+        private int motorprice = 0;
+        private int transprice = 0;
+        private int hodprice = 0;
+        private int kusovprice = 0;
+        private int salonprice = 0;
+        private int motorupprice;
+        private int transupprice;
+        private int hodupprice;
+        private int kusovupprice;
+        private int salonupprice;
         private int motorlvl;
         private int translvl;
         private int hodlvl;
         private int kusovlvl;
         private int salonlvl;
-        private bool motoredited = false;
-        private bool transedited = false;
-        private bool hodedited = false;
-        private bool kusovedited = false;
-        private bool salonedited = false;
+        private bool motoredited;
+        private bool transedited;
+        private bool hodedited;
+        private bool kusovedited;
+        private bool salonedited;
 
-        public static void SendData(long editbalance, Car editcar)
+        public static void SendData(in long editbalance, in Car editcar, in int[] skills)
         {
             balance = editbalance;
             car = editcar;
             Instance.reloadForm();
             Instance.Text = car.getName();
-            Instance.InitializeForm();
+            Instance.InitializeForm(skills);
         }
         public static void RecieveData(out long sendbalance, out Car sendcar)
         {
@@ -73,6 +80,13 @@ namespace ProjectPerekup
             hodedited = false;
             kusovedited = false;
             salonedited = false;
+            editsum = 0;
+            motorprice = 0;
+            transprice = 0;
+            hodprice = 0;
+            kusovprice = 0;
+            salonprice = 0;
+
         }
 
         public CarEdit()
@@ -80,6 +94,31 @@ namespace ProjectPerekup
             InitializeComponent();
         }
 
+        private void InitializeForm(int[] sk)
+        {
+            if (balance != 0)
+            {
+                skills = sk;
+
+                motorlvl = car.motor;
+                translvl = car.trans;
+                hodlvl = car.hod;
+                kusovlvl = car.kusov;
+                salonlvl = car.salon;
+
+                labelmoneyedit.Text = $"Баланс: {PriceToString(balance)}₽";
+
+                editcarlabel.Text = $"{car.getName()}\nСтоимость машины: {car.price}₽\nСостояние: {car.getCondText()}";
+                editpricesum.Text = $"Стоимость ремонта: {editsum}₽";
+                editcarimg.Image = car.getImg();
+
+                updateInterface(-1);
+
+                lastResize = DateTime.Now;
+                resize();
+            }
+
+        }
         private void CarEdit_Resize(object sender, EventArgs e)
         {
             DateTime now = DateTime.Now;
@@ -136,53 +175,8 @@ namespace ProjectPerekup
             labelmoneyedit.Width = cancelbutton.Location.X - 14;
             labelmoneyedit.Font = new Font("Segoe UI", 14 + Convert.ToInt32((Height + Width - 1400) / 300));
         }
-        private void InitializeForm()
-        {
-            if (balance != 0)
-            {
-                motorprice = Convert.ToInt32(car.price / 7 * Convert.ToDouble(3 + car.motor) / 10);
-                transprice = Convert.ToInt32(car.price / 7 * Convert.ToDouble(3 + car.trans) / 10);
-                hodprice = Convert.ToInt32(car.price / 7 * Convert.ToDouble(3 + car.hod) / 10);
-                kusovprice = Convert.ToInt32(car.price / 7 * Convert.ToDouble(3 + car.kusov) / 10);
-                salonprice = Convert.ToInt32(car.price / 7 * Convert.ToDouble(3 + car.salon) / 10);
-                motorlvl = car.motor;
-                translvl = car.trans;
-                hodlvl = car.hod;
-                kusovlvl = car.kusov;
-                salonlvl = car.salon;
 
-                labelmoneyedit.Text = $"Баланс: {balance}₽";
 
-                editcarlabel.Text = $"{car.getName()}\nСтоимость машины: {car.price}₽\nСостояние: {car.getCondText()}";
-                editpricesum.Text = $"Стоимость ремонта: {editsum}₽";
-                editcarimg.Image = car.getImg();
-
-                motorlabel.Text = $"Двигатель\n{getCond(car.motor)}";
-                translabel.Text = $"Трансмиссия\n{getCond(car.trans)}";
-                hodlabel.Text = $"Ходовая\n{getCond(car.hod)}";
-                kusovlabel.Text = $"Кузов\n{getCond(car.kusov)}";
-                salonlabel.Text = $"Салон\n{getCond(car.salon)}";
-
-                if (car.motor <= 0) motorbutton.Text = "Недоступно";
-                else motorbutton.Text = $"Починить - {motorprice}";
-
-                if (car.trans <= 0) transbutton.Text = "Недоступно";
-                else transbutton.Text = $"Починить - {transprice}";
-
-                if (car.hod <= 0) hodbutton.Text = "Недоступно";
-                else hodbutton.Text = $"Починить - {hodprice}";
-
-                if (car.kusov <= 0) kusovbutton.Text = "Недоступно";
-                else kusovbutton.Text = $"Починить - {kusovprice}";
-
-                if (car.salon <= 0) salonbutton.Text = "Недоступно";
-                else salonbutton.Text = $"Починить - {salonprice}";
-
-                lastResize = DateTime.Now;
-                resize();
-            }
-
-        }
         private string getCond(int cond)
         {
             if (cond >= 0)
@@ -194,28 +188,185 @@ namespace ProjectPerekup
                 return $"{-cond} уровень";
             }
         }
+        private int getButtonPrice(int cond)
+        {
+            if (cond > 0)
+            {
+                return Convert.ToInt32(car.price / 7 * Convert.ToDouble(3 + cond) * (1.0 - 0.05 * skills[3])) / 10;
+            }
+            else
+            {
+                if (skills[4] > -cond)
+                    return Convert.ToInt32((car.price * (2.2 + Convert.ToDouble(-cond)) * (0.9 - Convert.ToDouble(cond) / 15) / 70) * (1.0 - 0.05 * skills[2]));
+                else
+                    return -1;
+            }
+        }
+        private void updateInterface(int i)
+        {
+            if (i == 0)
+            {
+                motorupprice = getButtonPrice(car.motor);
+
+                if (motorupprice == -1 && !motoredited) motorbutton.Text = "Недоступно";
+                else if (motorupprice == -1 && motoredited) motorbutton.Text = "Отмена";
+                else if (car.motor > 0) motorbutton.Text = $"Починить - {PriceToString(motorupprice)}";
+                else motorbutton.Text = $"Улучшить - {PriceToString(motorupprice)}";
+
+                motorlabel.Text = $"Двигатель\n{getCond(car.motor)}";
+            }
+            else if (i == 1)
+            {
+                transupprice = getButtonPrice(car.trans);
+
+                if (transupprice == -1 && !transedited) transbutton.Text = "Недоступно";
+                else if (transupprice == -1 && transedited) transbutton.Text = "Отмена";
+                else if (car.trans > 0) transbutton.Text = $"Починить - {PriceToString(transupprice)}";
+                else transbutton.Text = $"Улучшить - {PriceToString(transupprice)}";
+
+                translabel.Text = $"Трансмиссия\n{getCond(car.trans)}";
+            }
+            else if (i == 2)
+            {
+                hodupprice = getButtonPrice(car.hod);
+
+                if (hodupprice == -1 && !hodedited) hodbutton.Text = "Недоступно";
+                else if (hodupprice == -1 && hodedited) hodbutton.Text = "Отмена";
+                else if (car.hod > 0) hodbutton.Text = $"Починить - {PriceToString(hodupprice)}";
+                else hodbutton.Text = $"Улучшить - {PriceToString(hodupprice)}";
+
+                hodlabel.Text = $"Ходовая\n{getCond(car.hod)}";
+            }
+            else if (i == 3)
+            {
+                kusovupprice = getButtonPrice(car.kusov);
+
+                if (kusovupprice == -1 && !kusovedited) kusovbutton.Text = "Недоступно";
+                else if (kusovupprice == -1 && kusovedited) kusovbutton.Text = "Отмена";
+                else if (car.kusov > 0) kusovbutton.Text = $"Починить - {PriceToString(kusovupprice)}";
+                else kusovbutton.Text = $"Улучшить - {PriceToString(kusovupprice)}";
+
+                kusovlabel.Text = $"Кузов\n{getCond(car.kusov)}";
+            }
+            else if (i == 4)
+            {
+                salonupprice = getButtonPrice(car.salon);
+
+                if (salonupprice == -1 && !salonedited) salonbutton.Text = "Недоступно";
+                else if (salonupprice == -1 && salonedited) salonbutton.Text = "Отмена";
+                else if (car.salon > 0) salonbutton.Text = $"Починить - {PriceToString(salonupprice)}";
+                else salonbutton.Text = $"Улучшить - {PriceToString(salonupprice)}";
+
+                salonlabel.Text = $"Салон\n{getCond(car.salon)}";
+            }
+            else
+            {
+                motorupprice = getButtonPrice(car.motor);
+                transupprice = getButtonPrice(car.trans);
+                hodupprice = getButtonPrice(car.hod);
+                kusovupprice = getButtonPrice(car.kusov);
+                salonupprice = getButtonPrice(car.salon);
+
+                if (motorupprice == -1 && !motoredited) motorbutton.Text = "Недоступно";
+                else if (motorupprice == -1 && motoredited) motorbutton.Text = "Отмена";
+                else if (car.motor > 0) motorbutton.Text = $"Починить - {PriceToString(motorupprice)}";
+                else motorbutton.Text = $"Улучшить - {PriceToString(motorupprice)}";
+
+                if (transupprice == -1 && !transedited) transbutton.Text = "Недоступно";
+                else if (transupprice == -1 && transedited) transbutton.Text = "Отмена";
+                else if (car.trans > 0) transbutton.Text = $"Починить - {PriceToString(transupprice)}";
+                else transbutton.Text = $"Улучшить - {PriceToString(transupprice)}";
+
+                if (hodupprice == -1 && !hodedited) hodbutton.Text = "Недоступно";
+                else if (hodupprice == -1 && hodedited) hodbutton.Text = "Отмена";
+                else if (car.hod > 0) hodbutton.Text = $"Починить - {PriceToString(hodupprice)}";
+                else hodbutton.Text = $"Улучшить - {PriceToString(hodupprice)}";
+
+                if (kusovupprice == -1 && !kusovedited) kusovbutton.Text = "Недоступно";
+                else if (kusovupprice == -1 && kusovedited) kusovbutton.Text = "Отмена";
+                else if (car.kusov > 0) kusovbutton.Text = $"Починить - {PriceToString(kusovupprice)}";
+                else kusovbutton.Text = $"Улучшить - {PriceToString(kusovupprice)}";
+
+                if (salonupprice == -1 && !salonedited) salonbutton.Text = "Недоступно";
+                else if (salonupprice == -1 && salonedited) salonbutton.Text = "Отмена";
+                else if (car.salon > 0) salonbutton.Text = $"Починить - {PriceToString(salonupprice)}";
+                else salonbutton.Text = $"Улучшить - {PriceToString(salonupprice)}";
+
+                motorlabel.Text = $"Двигатель\n{getCond(car.motor)}";
+                translabel.Text = $"Трансмиссия\n{getCond(car.trans)}";
+                hodlabel.Text = $"Ходовая\n{getCond(car.hod)}";
+                kusovlabel.Text = $"Кузов\n{getCond(car.kusov)}";
+                salonlabel.Text = $"Салон\n{getCond(car.salon)}";
+            }
+        }
+        private void updateCarText()
+        {
+            editpricesum.Text = $"Стоимость ремонта: {PriceToString(editsum)}₽";
+            editcarlabel.Text = $"{car.getName()}\nСтоимость машины: {PriceToString(car.price)}₽\nСостояние: {car.getCondText()}";
+        }
+        public string PriceToString(int price) // делит сумму 1234567 -> 1 234 567
+        {
+            string strPrice = price.ToString();
+
+            string returnprice = "";
+            for (int i = 0; i < strPrice.Length; i++)
+            {
+                returnprice += strPrice[i];
+                if ((strPrice.Length - i - 1) % 3 == 0)
+                {
+                    returnprice += " ";
+                }
+            }
+
+            return returnprice;
+        }
+        public string PriceToString(long price) // делит сумму 1234567 -> 1 234 567
+        {
+            string strPrice = price.ToString();
+
+            string returnprice = "";
+            for (int i = 0; i < strPrice.Length; i++)
+            {
+                returnprice += strPrice[i];
+                if ((strPrice.Length - i - 1) % 3 == 0)
+                {
+                    returnprice += " ";
+                }
+            }
+
+            return returnprice;
+        }
 
         private void motorbutton_Click(object sender, EventArgs e)
         {
             if (motorbutton.Text != "Недоступно")
             {
-                if (!motoredited)
+                if (motorbutton.Text == "Отмена")
                 {
-                    motorbutton.Text = $"Отмена ремонта";
-                    editsum += motorprice;
-                    car.motor = 0;
+                    motoredited = false;
+                    editsum -= motorprice;
+                    motorprice = 0;
+                    car.motor = motorlvl;
+                    updateCarText();
+                    updateInterface(0);
+                }
+                else if (car.motor > 0)
+                {
                     motoredited = true;
-                    editpricesum.Text = $"Стоимость ремонта: {editsum}₽";
-                    editcarlabel.Text = $"{car.getName()}\nСтоимость машины: {car.price}₽\nСостояние: {car.getCondText()}";
+                    editsum += motorupprice;
+                    motorprice += motorupprice;
+                    car.motor = 0;
+                    updateCarText();
+                    updateInterface(0);
                 }
                 else
                 {
-                    motorbutton.Text = $"Починить - {motorprice}";
-                    editsum -= motorprice;
-                    car.motor = motorlvl;
-                    motoredited = false;
-                    editpricesum.Text = $"Стоимость ремонта: {editsum}₽";
-                    editcarlabel.Text = $"{car.getName()}\nСтоимость машины: {car.price}₽\nСостояние: {car.getCondText()}";
+                    motoredited = true;
+                    editsum += motorupprice;
+                    motorprice += motorupprice;
+                    car.motor--;
+                    updateCarText();
+                    updateInterface(0);
                 }
             }
         }
@@ -223,23 +374,32 @@ namespace ProjectPerekup
         {
             if (transbutton.Text != "Недоступно")
             {
-                if (!transedited)
+                if (transbutton.Text == "Отмена")
                 {
-                    transbutton.Text = $"Отмена ремонта";
-                    editsum += transprice;
-                    car.trans = 0;
+                    transedited = false;
+                    editsum -= transprice;
+                    transprice = 0;
+                    car.trans = translvl;
+                    updateCarText();
+                    updateInterface(1);
+                }
+                else if (car.trans > 0)
+                {
                     transedited = true;
-                    editpricesum.Text = $"Стоимость ремонта: {editsum}₽";
-                    editcarlabel.Text = $"{car.getName()}\nСтоимость машины: {car.price}₽\nСостояние: {car.getCondText()}";
+                    editsum += transupprice;
+                    transprice += transupprice;
+                    car.trans = 0;
+                    updateCarText();
+                    updateInterface(1);
                 }
                 else
                 {
-                    transbutton.Text = $"Починить - {transprice}";
-                    editsum -= transprice;
-                    car.trans = translvl;
-                    transedited = false;
-                    editpricesum.Text = $"Стоимость ремонта: {editsum}₽";
-                    editcarlabel.Text = $"{car.getName()}\nСтоимость машины: {car.price}₽\nСостояние: {car.getCondText()}";
+                    transedited = true;
+                    editsum += transupprice;
+                    transprice += transupprice;
+                    car.trans--;
+                    updateCarText();
+                    updateInterface(1);
                 }
             }
         }
@@ -247,23 +407,32 @@ namespace ProjectPerekup
         {
             if (hodbutton.Text != "Недоступно")
             {
-                if (!hodedited)
+                if (hodbutton.Text == "Отмена")
                 {
-                    hodbutton.Text = $"Отмена ремонта";
-                    editsum += hodprice;
-                    car.hod = 0;
+                    hodedited = false;
+                    editsum -= hodprice;
+                    hodprice = 0;
+                    car.hod = hodlvl;
+                    updateCarText();
+                    updateInterface(2);
+                }
+                else if (car.hod > 0)
+                {
                     hodedited = true;
-                    editpricesum.Text = $"Стоимость ремонта: {editsum}₽";
-                    editcarlabel.Text = $"{car.getName()}\nСтоимость машины: {car.price}₽\nСостояние: {car.getCondText()}";
+                    editsum += hodupprice;
+                    hodprice += hodupprice;
+                    car.hod = 0;
+                    updateCarText();
+                    updateInterface(2);
                 }
                 else
                 {
-                    hodbutton.Text = $"Починить - {hodprice}";
-                    editsum -= hodprice;
-                    car.hod = hodlvl;
-                    hodedited = false;
-                    editpricesum.Text = $"Стоимость ремонта: {editsum}₽";
-                    editcarlabel.Text = $"{car.getName()}\nСтоимость машины: {car.price}₽\nСостояние: {car.getCondText()}";
+                    hodedited = true;
+                    editsum += hodupprice;
+                    hodprice += hodupprice;
+                    car.hod--;
+                    updateCarText();
+                    updateInterface(2);
                 }
             }
         }
@@ -271,23 +440,32 @@ namespace ProjectPerekup
         {
             if (kusovbutton.Text != "Недоступно")
             {
-                if (!kusovedited)
+                if (kusovbutton.Text == "Отмена")
                 {
-                    kusovbutton.Text = $"Отмена ремонта";
-                    editsum += kusovprice;
-                    car.kusov = 0;
+                    kusovedited = false;
+                    editsum -= kusovprice;
+                    kusovprice = 0;
+                    car.kusov = kusovlvl;
+                    updateCarText();
+                    updateInterface(3);
+                }
+                else if (car.kusov > 0)
+                {
                     kusovedited = true;
-                    editpricesum.Text = $"Стоимость ремонта: {editsum}₽";
-                    editcarlabel.Text = $"{car.getName()}\nСтоимость машины: {car.price}₽\nСостояние: {car.getCondText()}";
+                    editsum += kusovupprice;
+                    kusovprice += kusovupprice;
+                    car.kusov = 0;
+                    updateCarText();
+                    updateInterface(3);
                 }
                 else
                 {
-                    kusovbutton.Text = $"Починить - {kusovprice}";
-                    editsum -= kusovprice;
-                    car.kusov = kusovlvl;
-                    kusovedited = false;
-                    editpricesum.Text = $"Стоимость ремонта: {editsum}₽";
-                    editcarlabel.Text = $"{car.getName()}\nСтоимость машины: {car.price}₽\nСостояние: {car.getCondText()}";
+                    kusovedited = true;
+                    editsum += kusovupprice;
+                    kusovprice += kusovupprice;
+                    car.kusov--;
+                    updateCarText();
+                    updateInterface(3);
                 }
             }
         }
@@ -295,37 +473,36 @@ namespace ProjectPerekup
         {
             if (salonbutton.Text != "Недоступно")
             {
-                if (!salonedited)
+                if (salonbutton.Text == "Отмена")
                 {
-                    salonbutton.Text = $"Отмена ремонта";
-                    editsum += salonprice;
-                    car.salon = 0;
+                    salonedited = false;
+                    editsum -= salonprice;
+                    salonprice = 0;
+                    car.salon = salonlvl;
+                    updateCarText();
+                    updateInterface(4);
+                }
+                else if (car.salon > 0)
+                {
                     salonedited = true;
-                    editpricesum.Text = $"Стоимость ремонта: {editsum}₽";
-                    editcarlabel.Text = $"{car.getName()}\nСтоимость машины: {car.price}₽\nСостояние: {car.getCondText()}";
+                    editsum += salonupprice;
+                    salonprice += salonupprice;
+                    car.salon = 0;
+                    updateCarText();
+                    updateInterface(4);
                 }
                 else
                 {
-                    salonbutton.Text = $"Починить - {salonprice}";
-                    editsum -= salonprice;
-                    car.salon = salonlvl;
-                    salonedited = false;
-                    editpricesum.Text = $"Стоимость ремонта: {editsum}₽";
-                    editcarlabel.Text = $"{car.getName()}\nСтоимость машины: {car.price}₽\nСостояние: {car.getCondText()}";
+                    salonedited = true;
+                    editsum += salonupprice;
+                    salonprice += salonupprice;
+                    car.salon--;
+                    updateCarText();
+                    updateInterface(4);
                 }
             }
         }
-        private void Nullstats()
-        {
-            if (motoredited || transedited || hodedited || kusovedited || salonedited)
-            {
-                car.motor = motorlvl;
-                car.trans = translvl;
-                car.hod = hodlvl;
-                car.kusov = kusovlvl;
-                car.salon = salonlvl;
-            }
-        }
+
         private void cancelbutton_Click(object sender, EventArgs e)
         {
             Nullstats();
@@ -341,6 +518,18 @@ namespace ProjectPerekup
             balance -= editsum;
             Instance.DialogResult = DialogResult.OK;
             Instance.Close();
+        }
+
+        private void Nullstats()
+        {
+            if (motoredited || transedited || hodedited || kusovedited || salonedited)
+            {
+                car.motor = motorlvl;
+                car.trans = translvl;
+                car.hod = hodlvl;
+                car.kusov = kusovlvl;
+                car.salon = salonlvl;
+            }
         }
     }
 }

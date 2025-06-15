@@ -16,11 +16,11 @@ namespace ProjectPerekup
             "Хитрец" };
         private string[] skillTips = new string[] { 
             "Можно выпросить скидку при покупке авто",                            // +
-            "Можно повысить цены своих машин без риска остаться без покупателей", // +-
-            "Позволяет улучшать машину в своём гараже более выгодно",             // -
-            "Затраты на починку машины в своем гараже становятся ниже",           // -
-            "Позволяет улучшать машину в своём гараже",                           // -
-            "Позволяет наврать о состоянии машины(есть шанс быть пойманным)"      // -
+            "Можно повысить цены своих машин без риска остаться без покупателей", // +
+            "Позволяет улучшать машину в своём гараже более выгодно",             // +
+            "Затраты на починку машины в своем гараже становятся ниже",           // +
+            "Позволяет улучшать машину в своём гараже",                           // +
+            "Позволяет наврать о состоянии машины(есть шанс быть пойманным)"      // ~
         };
         private int[] skillPrice = new int[] { 15000, 100000, 500000, 5000000, 25000000, 250000000, 0 };
         private int selectedcar = -1;
@@ -33,7 +33,7 @@ namespace ProjectPerekup
         private ToolTip infoTip = new ToolTip();
 
         // -- данные пользователя -- 
-        List<Car> cars;
+        private List<Car> cars;
         private long money;
         private int sold;
         private int bought;
@@ -299,11 +299,24 @@ namespace ProjectPerekup
             // навыки
             else if (tabs.SelectedIndex == 3)
             {
-                skilltitle.Height = skill.Height / 10 + 8;
-                skilltitle.Font = new Font("Segoe UI", skilltitle.Height / 2);
-
-                if (Convert.ToDouble(garage.Width) > Convert.ToDouble(garage.Height) * 1.4335)
+                if (Convert.ToDouble(skill.Width) > Convert.ToDouble(skill.Height) * 1.4335)
                 {
+                    skilltitle.Height = skill.Height / 10 + 8;
+                    skilltitle.Font = new Font("Segoe UI", skilltitle.Height / 2);
+
+                    skill0name.Height = Convert.ToInt32(skill.Height * 0.09293);
+                    skill0name.Width = skill0name.Height * 43 / 10;
+                    skill1name.Height = skill0name.Height;
+                    skill1name.Width = skill0name.Width;
+                    skill2name.Height = skill0name.Height;
+                    skill2name.Width = skill0name.Width;
+                    skill3name.Height = skill0name.Height;
+                    skill3name.Width = skill0name.Width;
+                    skill4name.Height = skill0name.Height;
+                    skill4name.Width = skill0name.Width;
+                    skill5name.Height = skill0name.Height;
+                    skill5name.Width = skill0name.Width;
+
                     skill0name.Location = new Point(Width / 2 - 90 - skill0name.Width, skilltitle.Height + 14);
                     skill3name.Location = new Point(Width / 2 + 90, skilltitle.Height + 14);
 
@@ -315,13 +328,57 @@ namespace ProjectPerekup
                 }
                 else
                 {
-                    if (garage.Height - 100 < garage.Width)
+                    if (Height < Width)
                     {
+                        skilltitle.Height = skill.Height / 10 + 8;
+                        skilltitle.Font = new Font("Segoe UI", skilltitle.Height / 2);
 
+                        skill0name.Width = Convert.ToInt32(skill.Width * 0.2749);
+                        skill0name.Height = skill0name.Width / 43 * 10;
+                        skill1name.Height = skill0name.Height;
+                        skill1name.Width = skill0name.Width;
+                        skill2name.Height = skill0name.Height;
+                        skill2name.Width = skill0name.Width;
+                        skill3name.Height = skill0name.Height;
+                        skill3name.Width = skill0name.Width;
+                        skill4name.Height = skill0name.Height;
+                        skill4name.Width = skill0name.Width;
+                        skill5name.Height = skill0name.Height;
+                        skill5name.Width = skill0name.Width;
+
+                        skill0name.Location = new Point(Width / 2 - 90 - skill0name.Width, skilltitle.Height + 14);
+                        skill3name.Location = new Point(Width / 2 + 90, skilltitle.Height + 14);
+
+                        skill1name.Location = new Point(skill0name.Location.X, skill0name.Location.Y + 2 + ((skill0name.Height * 28) / 10));
+                        skill4name.Location = new Point(skill3name.Location.X, skill1name.Location.Y);
+
+                        skill2name.Location = new Point(skill0name.Location.X, skill1name.Location.Y + 2 + ((skill1name.Height * 28) / 10));
+                        skill5name.Location = new Point(skill3name.Location.X, skill2name.Location.Y);
                     }
                     else
                     {
+                        skilltitle.Height = skill.Height / 20 + 8;
+                        skilltitle.Font = new Font("Segoe UI", skilltitle.Height / 2);
 
+                        skill0name.Height = Convert.ToInt32(skill.Height * 0.07);
+                        skill0name.Width = skill.Width / 2;
+                        skill1name.Height = skill0name.Height;
+                        skill1name.Width = skill0name.Width;
+                        skill2name.Height = skill0name.Height;
+                        skill2name.Width = skill0name.Width;
+                        skill3name.Height = skill0name.Height;
+                        skill3name.Width = skill0name.Width;
+                        skill4name.Height = skill0name.Height;
+                        skill4name.Width = skill0name.Width;
+                        skill5name.Height = skill0name.Height;
+                        skill5name.Width = skill0name.Width;
+
+                        skill0name.Location = new Point((Width - skill0name.Width) / 2, 20 + skilltitle.Height);
+                        skill1name.Location = new Point(skill0name.Location.X, skill0name.Location.Y + Convert.ToInt32(skill0name.Location.Y * 1.8));
+                        skill2name.Location = new Point(skill0name.Location.X, skill1name.Location.Y + Convert.ToInt32(skill0name.Location.Y * 1.8));
+                        skill3name.Location = new Point(skill0name.Location.X, skill2name.Location.Y + Convert.ToInt32(skill0name.Location.Y * 1.8));
+                        skill4name.Location = new Point(skill0name.Location.X, skill3name.Location.Y + Convert.ToInt32(skill0name.Location.Y * 1.8));
+                        skill5name.Location = new Point(skill0name.Location.X, skill4name.Location.Y + Convert.ToInt32(skill0name.Location.Y * 1.8));
                     }
                 }
 
@@ -332,6 +389,20 @@ namespace ProjectPerekup
                 panelskillprogress[4].Location = new Point(skill4name.Location.X, skill4name.Location.Y + skill4name.Height + 2);
                 panelskillprogress[5].Location = new Point(skill5name.Location.X, skill5name.Location.Y + skill5name.Height + 2);
 
+                panelskillprogress[0].Height = skill0name.Height * 4 / 5;
+                panelskillprogress[1].Height = panelskillprogress[0].Height;
+                panelskillprogress[2].Height = panelskillprogress[0].Height;
+                panelskillprogress[3].Height = panelskillprogress[0].Height;
+                panelskillprogress[4].Height = panelskillprogress[0].Height;
+                panelskillprogress[5].Height = panelskillprogress[0].Height;
+
+                panelskillprogress[0].Width = skill0name.Width - 5 - skill0name.Height;
+                panelskillprogress[1].Width = panelskillprogress[0].Width;
+                panelskillprogress[2].Width = panelskillprogress[0].Width;
+                panelskillprogress[3].Width = panelskillprogress[0].Width;
+                panelskillprogress[4].Width = panelskillprogress[0].Width;
+                panelskillprogress[5].Width = panelskillprogress[0].Width;
+
                 skill0up.Location = new Point(panelskillprogress[0].Location.X + panelskillprogress[0].Width + 5, panelskillprogress[0].Location.Y);
                 skill1up.Location = new Point(skill0up.Location.X, panelskillprogress[1].Location.Y);
                 skill2up.Location = new Point(skill1up.Location.X, panelskillprogress[2].Location.Y);
@@ -339,6 +410,28 @@ namespace ProjectPerekup
                 skill3up.Location = new Point(panelskillprogress[3].Location.X + panelskillprogress[3].Width + 5, panelskillprogress[3].Location.Y);
                 skill4up.Location = new Point(skill3up.Location.X, panelskillprogress[4].Location.Y);
                 skill5up.Location = new Point(skill4up.Location.X, panelskillprogress[5].Location.Y);
+
+                skill0up.Height = panelskillprogress[0].Height;
+                skill0up.Width = skill0up.Height;
+                skill1up.Height = skill0up.Height;
+                skill1up.Width = skill0up.Width;
+                skill2up.Height = skill0up.Height;
+                skill2up.Width = skill0up.Width;
+                skill3up.Height = skill0up.Height;
+                skill3up.Width = skill0up.Width;
+                skill4up.Height = skill0up.Height;
+                skill4up.Width = skill0up.Width;
+                skill5up.Height = skill0up.Height;
+                skill5up.Width = skill0up.Width;
+
+                skill0name.Font = new Font("Segoe UI", Convert.ToInt32(skill0name.Height * 0.28));
+                skill1name.Font = new Font("Segoe UI", Convert.ToInt32(skill0name.Height * 0.28));
+                skill2name.Font = new Font("Segoe UI", Convert.ToInt32(skill0name.Height * 0.28));
+                skill3name.Font = new Font("Segoe UI", Convert.ToInt32(skill0name.Height * 0.28));
+                skill4name.Font = new Font("Segoe UI", Convert.ToInt32(skill0name.Height * 0.28));
+                skill5name.Font = new Font("Segoe UI", Convert.ToInt32(skill0name.Height * 0.28));
+
+                loadSkills();
             }
             // статистика
             else if (tabs.SelectedIndex == 4)
@@ -346,33 +439,58 @@ namespace ProjectPerekup
                 stattitle.Height = statistics.Height / 10 + 8;
                 stattitle.Font = new Font("Segoe UI", stattitle.Height / 2);
 
+                spentmoney.Width = Convert.ToInt32((statistics.Width - 42) / 2);
+                spentmoney.Height = Convert.ToInt32(25 + spentmoney.Width * 0.018);
+                recievedmoney.Height = spentmoney.Height;
+                recievedmoney.Width = spentmoney.Width;
+                soldcars.Height = spentmoney.Height;
+                soldcars.Width = spentmoney.Width;
+                boughtcars.Height = spentmoney.Height;
+                boughtcars.Width = spentmoney.Width;
+
                 spentmoney.Location = new Point(12, stattitle.Height);
                 recievedmoney.Location = new Point(12, stattitle.Height + spentmoney.Height);
                 soldcars.Location = new Point(12, recievedmoney.Location.Y + recievedmoney.Height + 6);
                 boughtcars.Location = new Point(12, soldcars.Location.Y + soldcars.Height);
 
-                spentmoney.Width = Convert.ToInt32((statistics.Width - 42) / 2);
-                recievedmoney.Width = spentmoney.Width;
-                soldcars.Width = spentmoney.Width;
-                boughtcars.Width = spentmoney.Width;
-
                 clearData.Width = 100 + Convert.ToInt32(Width / 8);
 
                 skillslabel.Location = new Point(32 + spentmoney.Width, spentmoney.Location.Y);
-                skill0.Location = new Point(skillslabel.Location.X, skillslabel.Location.Y + skillslabel.Height + 4);
-                skill1.Location = new Point(skillslabel.Location.X, skill0.Location.Y + skillslabel.Height);
-                skill2.Location = new Point(skillslabel.Location.X, skill1.Location.Y + skillslabel.Height);
-                skill3.Location = new Point(skillslabel.Location.X, skill2.Location.Y + skillslabel.Height);
-                skill4.Location = new Point(skillslabel.Location.X, skill3.Location.Y + skillslabel.Height);
-                skill5.Location = new Point(skillslabel.Location.X, skill4.Location.Y + skillslabel.Height);
+                skill0.Location = new Point(skillslabel.Location.X, skillslabel.Location.Y + skillslabel.Height);
+                skill1.Location = new Point(skillslabel.Location.X, skill0.Location.Y + skill0.Height);
+                skill2.Location = new Point(skillslabel.Location.X, skill1.Location.Y + skill0.Height);
+                skill3.Location = new Point(skillslabel.Location.X, skill2.Location.Y + skill0.Height);
+                skill4.Location = new Point(skillslabel.Location.X, skill3.Location.Y + skill0.Height);
+                skill5.Location = new Point(skillslabel.Location.X, skill4.Location.Y + skill0.Height);
 
+                skillslabel.Height = spentmoney.Height;
                 skillslabel.Width = spentmoney.Width;
+                skill0.Height = spentmoney.Height;
                 skill0.Width = spentmoney.Width;
+                skill1.Height = spentmoney.Height;
                 skill1.Width = spentmoney.Width;
+                skill2.Height = spentmoney.Height; 
                 skill2.Width = spentmoney.Width;
+                skill3.Height = spentmoney.Height; 
                 skill3.Width = spentmoney.Width;
+                skill4.Height = spentmoney.Height; 
                 skill4.Width = spentmoney.Width;
+                skill5.Height = spentmoney.Height; 
                 skill5.Width = spentmoney.Width;
+
+                int fontsize = Convert.ToInt32(14 + (spentmoney.Width + spentmoney.Height - 387) / 75);
+                spentmoney.Font = new Font("Segoe UI", fontsize);
+                recievedmoney.Font = new Font("Segoe UI", fontsize);
+                soldcars.Font = new Font("Segoe UI", fontsize);
+                boughtcars.Font = new Font("Segoe UI", fontsize);
+
+                skillslabel.Font = new Font("Segoe UI", fontsize);
+                skill0.Font = new Font("Segoe UI", fontsize);
+                skill1.Font = new Font("Segoe UI", fontsize);
+                skill2.Font = new Font("Segoe UI", fontsize);
+                skill3.Font = new Font("Segoe UI", fontsize);
+                skill4.Font = new Font("Segoe UI", fontsize);
+                skill5.Font = new Font("Segoe UI", fontsize);
 
                 clearData.Location = new Point(Convert.ToInt32((Width - clearData.Width) / 2), Height - 135);
             }
@@ -465,12 +583,12 @@ namespace ProjectPerekup
             soldcars.Text = $"Продано машин: {sold}";
             boughtcars.Text = $"Куплено машин: {bought}";
 
-            skill0.Text = $"{skillsname[0]}: {skills[0]}";
-            skill1.Text = $"{skillsname[1]}: {skills[1]}";
-            skill2.Text = $"{skillsname[2]}: {skills[2]}";
-            skill3.Text = $"{skillsname[3]}: {skills[3]}";
-            skill4.Text = $"{skillsname[4]}: {skills[4]}";
-            skill5.Text = $"{skillsname[5]}: {skills[5]}";
+            skill0.Text = $"{skillsname[0]}: {skills[0]} уровень";
+            skill1.Text = $"{skillsname[1]}: {skills[1]} уровень";
+            skill2.Text = $"{skillsname[2]}: {skills[2]} уровень";
+            skill3.Text = $"{skillsname[3]}: {skills[3]} уровень";
+            skill4.Text = $"{skillsname[4]}: {skills[4]} уровень";
+            skill5.Text = $"{skillsname[5]}: {skills[5]} уровень";
         }
         private void InitializeSkills()  // загрузка функций и данных в элементы навыков
         {
@@ -501,7 +619,6 @@ namespace ProjectPerekup
                 panelskillprogress[i].Size = new Size(168, 40);
                 panelskillprogress[i].TabIndex = 11;
                 panelskillprogress[i].BorderStyle = BorderStyle.FixedSingle;
-                panelskillprogress[i].Resize += (sender, e) => { loadSkills(); };
                 skill.Controls.Add(panelskillprogress[i]);
             }
 
@@ -525,7 +642,7 @@ namespace ProjectPerekup
             {
                 for (int y = 0; y < 6; y++)
                 {
-                    skillprogress[x][y].Height = 30;
+                    skillprogress[x][y].Height = panelskillprogress[x].Height - 10;
                     skillprogress[x][y].Width = ((panelskillprogress[x].Width - 10) / 6) - 5;
                     skillprogress[x][y].Location = new Point(7 + (5 + skillprogress[x][y].Width) * y, 4);
                 }
@@ -606,7 +723,7 @@ namespace ProjectPerekup
                 updBrowser();
             }
         }
-        private void updBrowser() // загружает данные предложений в элементы
+        private void updBrowser() // загружает данные предложений в элементы браузера
         {
             avitocar0name.Text = $"{avitocars[0].getName()}\n{avitocars[0].generateDesc()}";
             avitocar0img.Image = avitocars[0].getImg();
@@ -778,7 +895,7 @@ namespace ProjectPerekup
         // -- гараж -- {
         private void carimg_DoubleClick() // починка машины в гараже
         {
-            Car editcar;
+            Car editcar = null;
             long editbal;
 
             if (money == 0)
@@ -786,7 +903,7 @@ namespace ProjectPerekup
                 MessageBox.Show("У вас нет денег", "Недостаточно средств", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-            CarEdit.SendData(money, cars[selectedcar]);
+            CarEdit.SendData(in money, new Car(cars[selectedcar]), in skills);
             if (CarEdit.Instance.ShowDialog() == DialogResult.OK)
             {
                 CarEdit.RecieveData(out editbal, out editcar);
@@ -817,7 +934,8 @@ namespace ProjectPerekup
                 MessageBox.Show("У вас нет машин", "ааыаыыыыаыаааа", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-            CarUpgrade.SendData(money, cars, Garage.vasya);
+            List<Car> copyCars = new List<Car>() { new Car(cars[0]), new Car(cars[1]), new Car(cars[2]), new Car(cars[3]), new Car(cars[4]), new Car(cars[5]) };
+            CarUpgrade.SendData(money, copyCars, Garage.vasya);
             if (CarUpgrade.Instance.ShowDialog() == DialogResult.OK)
             {
                 CarUpgrade.RecieveData(out editbal, out editcars);
@@ -844,7 +962,8 @@ namespace ProjectPerekup
                 MessageBox.Show("У вас нет машин", "ааыаыыыыаыаааа", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-            CarUpgrade.SendData(money, cars, Garage.stepa);
+            List<Car> copyCars = new List<Car>() { new Car(cars[0]), new Car(cars[1]), new Car(cars[2]), new Car(cars[3]), new Car(cars[4]), new Car(cars[5]) };
+            CarUpgrade.SendData(money, copyCars, Garage.stepa);
             if (CarUpgrade.Instance.ShowDialog() == DialogResult.OK)
             {
                 CarUpgrade.RecieveData(out editbal, out editcars);
@@ -871,7 +990,8 @@ namespace ProjectPerekup
                 MessageBox.Show("У вас нет машин", "ааыаыыыыаыаааа", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-            CarUpgrade.SendData(money, cars, Garage.fits);
+            List<Car> copyCars = new List<Car>() { new Car(cars[0]), new Car(cars[1]), new Car(cars[2]), new Car(cars[3]), new Car(cars[4]), new Car(cars[5]) };
+            CarUpgrade.SendData(money, copyCars, Garage.fits);
             if (CarUpgrade.Instance.ShowDialog() == DialogResult.OK)
             {
                 CarUpgrade.RecieveData(out editbal, out editcars);
@@ -887,7 +1007,7 @@ namespace ProjectPerekup
         // -- авито --
         private void buttonavitosell_Click(object sender, EventArgs e) // продать машину
         {
-
+            buySellInfo.Visible = false;
             if (findCar() == -1)
             {
                 MessageBox.Show("Нечего продавать", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -896,49 +1016,53 @@ namespace ProjectPerekup
             {
                 List<Car> editcars;
                 long editbal;
-                CarSell.SendData(money, cars);
+                List<Car> copyCars = new List<Car>() { new Car(cars[0]), new Car(cars[1]), new Car(cars[2]), new Car(cars[3]), new Car(cars[4]), new Car(cars[5]) };
+                CarSell.SendData(money, copyCars, skills);
                 if (CarSell.Instance.ShowDialog() == DialogResult.OK)
                 {
-                    CarSell.RecieveData(out editbal, out editcars);
-                    recieved += (editbal - money);
-                    sold++;
-                    money = editbal;
-                    cars = editcars;
-                    Filework.Save(cars, money, sold, bought, spent, recieved, skills, skillsname);
-                    updMoney();
-                    reLoadGarage();
+                    if(CarSell.Instance.shtraf == 0)
+                    {
+                        if (CarSell.lMotor + CarSell.lTrans + CarSell.lHod + CarSell.lKusov + CarSell.lSalon != 0)
+                        {
+                            CarSell.RecieveData(out editbal, out editcars);
+                            recieved += (editbal - money);
+                            sold++;
+                            money = editbal;
+                            cars = editcars;
+                            Filework.Save(cars, money, sold, bought, spent, recieved, skills, skillsname);
+                            updMoney();
+                            reLoadGarage();
+
+                            buySellInfo.Text = $"Вы обманули покупателя на {PriceToString(CarSell.Instance.priceDiff)}₽";
+                            buySellInfo.Visible = true;
+                            return;
+                        }
+                        CarSell.RecieveData(out editbal, out editcars);
+                        recieved += (editbal - money);
+                        sold++;
+                        money = editbal;
+                        cars = editcars;
+                        Filework.Save(cars, money, sold, bought, spent, recieved, skills, skillsname);
+                        updMoney();
+                        reLoadGarage();
+                    }
+                    else
+                    {
+                        CarSell.RecieveData(out editbal, out editcars);
+                        recieved += (editbal - money);
+                        spent -= CarSell.Instance.shtraf;
+                        sold++;
+                        money = editbal - CarSell.Instance.shtraf;
+                        cars = editcars;
+                        Filework.Save(cars, money, sold, bought, spent, recieved, skills, skillsname);
+                        updMoney();
+                        reLoadGarage();
+
+                        buySellInfo.Text = $"Вас поймали на обмане\nОплачен штраф {CarSell.Instance.shtraf}₽";
+                        buySellInfo.Visible = true;
+                    }
                 }
             }
-        }
-        private void reloadcars_Click(object sender, EventArgs e) // обновить список машин
-        {
-            var rand = new Random();
-            if (combosort.SelectedIndex == 0)
-            {
-                avitocars = new Car[] {
-                    new Car(rand.Next(0, 100)),
-                    new Car(rand.Next(0, 100)),
-                    new Car(rand.Next(0, 100))
-                };
-            }
-            else if (combosort.SelectedIndex == 1)
-            {
-                avitocars = new Car[] {
-                    new Car(rand.Next(0, 10)),
-                    new Car(rand.Next(0, 10)),
-                    new Car(rand.Next(0, 10))
-                };
-            }
-            else if (combosort.SelectedIndex == 2)
-            {
-                avitocars = new Car[] {
-                    new Car(99),
-                    new Car(99),
-                    new Car(99)
-                };
-            }
-
-            reLoadBrowser();
         }
         private void avitocarbuy_Click(int i) // купить машину на авито
         {
@@ -977,7 +1101,7 @@ namespace ProjectPerekup
 
                     if (i == 0) avitocar0buy.Text = "Куплено";
                     else if (i == 1) avitocar1buy.Text = "Куплено";
-                    else if (i == 2) avitocar2buy.Text = "Куплено";
+                    else if (i == 2) avitocar2buy.Text = "Куплено";                    
 
                     Filework.Save(cars, money, sold, bought, spent, recieved, skills, skillsname);
                     updMoney();
@@ -992,6 +1116,36 @@ namespace ProjectPerekup
             {
                 MessageBox.Show("Машина уже куплена", "Ошибка", MessageBoxButtons.OK);
             }
+        }
+        private void reloadcars_Click(object sender, EventArgs e) // обновить список машин
+        {
+            var rand = new Random();
+            if (combosort.SelectedIndex == 0)
+            {
+                avitocars = new Car[] {
+                    new Car(rand.Next(0, 100)),
+                    new Car(rand.Next(0, 100)),
+                    new Car(rand.Next(0, 100))
+                };
+            }
+            else if (combosort.SelectedIndex == 1)
+            {
+                avitocars = new Car[] {
+                    new Car(rand.Next(0, 10)),
+                    new Car(rand.Next(0, 10)),
+                    new Car(rand.Next(0, 10))
+                };
+            }
+            else if (combosort.SelectedIndex == 2)
+            {
+                avitocars = new Car[] {
+                    new Car(99),
+                    new Car(99),
+                    new Car(99)
+                };
+            }
+
+            reLoadBrowser();
         }
         private void buySellInfo_Click(object sender, EventArgs e)
         {

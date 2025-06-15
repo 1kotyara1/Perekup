@@ -287,35 +287,35 @@ namespace ProjectPerekup
         private void Inimotor()
         {
             motorlabel.Text = $"Двигатель\n{getCond(cars[selectedcar].motor)}";
-            if (cars[selectedcar].motor == -3 && motoredited == false) motorbutton.Text = "Недоступно";
+            if (cars[selectedcar].motor <= -3 && motoredited == false) motorbutton.Text = "Недоступно";
             else if (cars[selectedcar].motor == -3 && motoredited == true) motorbutton.Text = "Отмена";
             else motorbutton.Text = $"{getButtonText(cars[selectedcar].motor)}";
         }
         private void Initrans()
         {
             translabel.Text = $"Трансмиссия\n{getCond(cars[selectedcar].trans)}";
-            if (cars[selectedcar].trans == -3 && transedited == false) transbutton.Text = "Недоступно";
+            if (cars[selectedcar].trans <= -3 && transedited == false) transbutton.Text = "Недоступно";
             else if (cars[selectedcar].trans == -3 && transedited == true) transbutton.Text = "Отмена";
             else transbutton.Text = $"{getButtonText(cars[selectedcar].trans)}";
         }
         private void Inihod()
         {
             hodlabel.Text = $"Ходовая\n{getCond(cars[selectedcar].hod)}";
-            if (cars[selectedcar].hod == -3 && hodedited == false) hodbutton.Text = "Недоступно";
+            if (cars[selectedcar].hod <= -3 && hodedited == false) hodbutton.Text = "Недоступно";
             else if (cars[selectedcar].hod == -3 && hodedited == true) hodbutton.Text = "Отмена";
             else hodbutton.Text = $"{getButtonText(cars[selectedcar].hod)}";
         }
         private void Inikusov()
         {
             kusovlabel.Text = $"Кузов\n{getCond(cars[selectedcar].kusov)}";
-            if (cars[selectedcar].kusov == -3 && kusovedited == false) kusovbutton.Text = "Недоступно";
+            if (cars[selectedcar].kusov <= -3 && kusovedited == false) kusovbutton.Text = "Недоступно";
             else if (cars[selectedcar].kusov == -3 && kusovedited == true) kusovbutton.Text = "Отмена";
             else kusovbutton.Text = $"{getButtonText(cars[selectedcar].kusov)}";
         }
         private void Inisalon()
         {
             salonlabel.Text = $"Салон\n{getCond(cars[selectedcar].salon)}";
-            if (cars[selectedcar].salon == -3 && salonedited == false) salonbutton.Text = "Недоступно";
+            if (cars[selectedcar].salon <= -3 && salonedited == false) salonbutton.Text = "Недоступно";
             else if (cars[selectedcar].salon == -3 && salonedited == true) salonbutton.Text = "Отмена";
             else salonbutton.Text = $"{getButtonText(cars[selectedcar].salon)}";
         }
@@ -344,11 +344,7 @@ namespace ProjectPerekup
         }
         private int fits() // проверка на мастерскую
         {
-            if (Instance.Text == "FitService")
-            {
-                return 1;
-            }
-            return 0;
+            return Instance.Text == "FitService" ? 1 : 0;
         }
 
 

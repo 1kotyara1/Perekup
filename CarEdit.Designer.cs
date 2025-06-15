@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(perekup));
             editcarimg = new PictureBox();
             motorlabel = new Label();
             labelmoneyedit = new Label();
@@ -219,7 +218,6 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(784, 561);
-            Icon = (Icon)resources.GetObject("$this.Icon");
             Controls.Add(editpricesum);
             Controls.Add(editcarlabel);
             Controls.Add(salonlabel);
@@ -238,6 +236,7 @@
             Controls.Add(editcarimg);
             MinimumSize = new Size(800, 600);
             Name = "CarEdit";
+            ShowInTaskbar = false;
             Text = "CarEdit";
             ResizeEnd += CarEdit_ResizeEnd;
             Resize += CarEdit_Resize;

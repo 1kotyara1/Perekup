@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(perekup));
             label1 = new Label();
             button1 = new Button();
             button2 = new Button();
@@ -73,13 +72,14 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(453, 197);
-            Icon = (Icon)resources.GetObject("$this.Icon");
             Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximumSize = new Size(469, 236);
             MinimumSize = new Size(469, 236);
             Name = "Confirm";
+            ShowInTaskbar = false;
             Text = "Вы уверены?";
             ResumeLayout(false);
         }

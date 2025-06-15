@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -33,6 +34,13 @@ namespace ProjectPerekup
         private DateTime lastResize;
         private (int w, int h) lastsize;
 
+        public static int lMotor;
+        public static int lTrans;
+        public static int lHod;
+        public static int lKusov;
+        public static int lSalon;
+        public int shtraf;
+        public int priceDiff;
 
         // массив состояний отдельных частей машины
         private string[] conditions = { " нет повреждений", " лёгкие повреждения", " средние повреждения", " тяжелые повреждения" };
@@ -42,13 +50,15 @@ namespace ProjectPerekup
         static long balance;
         static List<Car> cars;
         int selectedcar;
+        int[] skills;
 
 
         // передача данных между окнами
-        public static void SendData(long editbalance, List<Car> editcars) // данные идут из основного окна
+        public static void SendData(long editbalance, List<Car> editcars, int[] skills2) // данные идут из основного окна
         {
             balance = editbalance;
             cars = editcars;
+            Instance.skills = skills2;
             Instance.InitializeForm();
         }
         public static void RecieveData(out long sendbalance, out List<Car> sendcars) // данные идут в основное окно
@@ -58,67 +68,82 @@ namespace ProjectPerekup
         }
         private void InitializeForm() // загрузка данных в окно
         {
-            selectedcar = cars.FindIndex(c => c.img != 0);
+            /* добавление функций  */
+            {
+                selectedcar = cars.FindIndex(c => c.img != 0);
 
-            car0img.MouseEnter += (sender, e) => car0text.Visible = true;
-            car0img.MouseLeave += (sender, e) => hideCarText(0);
-            car0img.Click += (sender, e) => { if (cars[0].img != 0) { if (selectedcar != 0) hideOtherCarText(); selectedcar = 0; loadStats(); } };
-            if(selectedcar != 0) car0text.Visible = false;
-            else car0text.Visible = true;
+                car0img.MouseEnter += (sender, e) => car0text.Visible = true;
+                car0img.MouseLeave += (sender, e) => hideCarText(0);
+                car0img.Click += (sender, e) => { if (cars[0].img != 0) { if (selectedcar != 0) hideOtherCarText(); selectedcar = 0; loadStats(); } };
+                if (selectedcar != 0) car0text.Visible = false;
+                else car0text.Visible = true;
 
                 car1img.MouseEnter += (sender, e) => car1text.Visible = true;
-            car1img.MouseLeave += (sender, e) => hideCarText(1);
-            car1img.Click += (sender, e) => { if (cars[1].img != 0) { if (selectedcar != 1) hideOtherCarText(); selectedcar = 1; loadStats(); } };
-            if (selectedcar != 1) car1text.Visible = false;
-            else car1text.Visible = true;
+                car1img.MouseLeave += (sender, e) => hideCarText(1);
+                car1img.Click += (sender, e) => { if (cars[1].img != 0) { if (selectedcar != 1) hideOtherCarText(); selectedcar = 1; loadStats(); } };
+                if (selectedcar != 1) car1text.Visible = false;
+                else car1text.Visible = true;
 
-            car2img.MouseEnter += (sender, e) => car2text.Visible = true;
-            car2img.MouseLeave += (sender, e) => hideCarText(2);
-            car2img.Click += (sender, e) => { if (cars[2].img != 0) { if (selectedcar != 2) hideOtherCarText(); selectedcar = 2; loadStats(); } };
-            if (selectedcar != 2) car2text.Visible = false;
-            else car2text.Visible = true;
+                car2img.MouseEnter += (sender, e) => car2text.Visible = true;
+                car2img.MouseLeave += (sender, e) => hideCarText(2);
+                car2img.Click += (sender, e) => { if (cars[2].img != 0) { if (selectedcar != 2) hideOtherCarText(); selectedcar = 2; loadStats(); } };
+                if (selectedcar != 2) car2text.Visible = false;
+                else car2text.Visible = true;
 
-            car3img.MouseEnter += (sender, e) => car3text.Visible = true;
-            car3img.MouseLeave += (sender, e) => hideCarText(3);
-            car3img.Click += (sender, e) => { if (cars[3].img != 0) { if (selectedcar != 3) hideOtherCarText(); selectedcar = 3; loadStats(); } };
-            if (selectedcar != 3) car3text.Visible = false;
-            else car3text.Visible = true;
+                car3img.MouseEnter += (sender, e) => car3text.Visible = true;
+                car3img.MouseLeave += (sender, e) => hideCarText(3);
+                car3img.Click += (sender, e) => { if (cars[3].img != 0) { if (selectedcar != 3) hideOtherCarText(); selectedcar = 3; loadStats(); } };
+                if (selectedcar != 3) car3text.Visible = false;
+                else car3text.Visible = true;
 
-            car4img.MouseEnter += (sender, e) => car4text.Visible = true;
-            car4img.MouseLeave += (sender, e) => hideCarText(4);
-            car4img.Click += (sender, e) => { if (cars[4].img != 0) { if (selectedcar != 4) hideOtherCarText(); selectedcar = 4; loadStats(); } };
-            if (selectedcar != 4) car4text.Visible = false;
-            else car4text.Visible = true;
+                car4img.MouseEnter += (sender, e) => car4text.Visible = true;
+                car4img.MouseLeave += (sender, e) => hideCarText(4);
+                car4img.Click += (sender, e) => { if (cars[4].img != 0) { if (selectedcar != 4) hideOtherCarText(); selectedcar = 4; loadStats(); } };
+                if (selectedcar != 4) car4text.Visible = false;
+                else car4text.Visible = true;
 
-            car5img.MouseEnter += (sender, e) => car5text.Visible = true;
-            car5img.MouseLeave += (sender, e) => hideCarText(5);
-            car5img.Click += (sender, e) => { if (cars[5].img != 0) { if (selectedcar != 5) hideOtherCarText(); selectedcar = 5; loadStats(); } };
-            if (selectedcar != 5) car5text.Visible = false;
-            else car5text.Visible = true;
+                car5img.MouseEnter += (sender, e) => car5text.Visible = true;
+                car5img.MouseLeave += (sender, e) => hideCarText(5);
+                car5img.Click += (sender, e) => { if (cars[5].img != 0) { if (selectedcar != 5) hideOtherCarText(); selectedcar = 5; loadStats(); } };
+                if (selectedcar != 5) car5text.Visible = false;
+                else car5text.Visible = true;
+            }
+            /* изображения и текст */
+            {
+                car0img.Image = cars[0].getImg();
+                if (cars[0].img == 0) car0text.Text = "Пусто";
+                else car0text.Text = cars[0].ToString(0);
 
-            car0img.Image = cars[0].getImg();
-            if (cars[0].img == 0) car0text.Text = "Пусто";
-            else car0text.Text = cars[0].ToString(0);
+                car1img.Image = cars[1].getImg();
+                if (cars[1].img == 0) car1text.Text = "Пусто";
+                else car1text.Text = cars[1].ToString(0);
 
-            car1img.Image = cars[1].getImg();
-            if (cars[1].img == 0) car1text.Text = "Пусто";
-            else car1text.Text = cars[1].ToString(0);
+                car2img.Image = cars[2].getImg();
+                if (cars[2].img == 0) car2text.Text = "Пусто";
+                else car2text.Text = cars[2].ToString(0);
 
-            car2img.Image = cars[2].getImg();
-            if (cars[2].img == 0) car2text.Text = "Пусто";
-            else car2text.Text = cars[2].ToString(0);
+                car3img.Image = cars[3].getImg();
+                if (cars[3].img == 0) car3text.Text = "Пусто";
+                else car3text.Text = cars[3].ToString(0);
 
-            car3img.Image = cars[3].getImg();
-            if (cars[3].img == 0) car3text.Text = "Пусто";
-            else car3text.Text = cars[3].ToString(0);
+                car4img.Image = cars[4].getImg();
+                if (cars[4].img == 0) car4text.Text = "Пусто";
+                else car4text.Text = cars[4].ToString(0);
 
-            car4img.Image = cars[4].getImg();
-            if (cars[4].img == 0) car4text.Text = "Пусто";
-            else car4text.Text = cars[4].ToString(0);
+                car5img.Image = cars[5].getImg();
+                if (cars[5].img == 0) car5text.Text = "Пусто";
+                else car5text.Text = cars[5].ToString(0);
+            }
 
-            car5img.Image = cars[5].getImg();
-            if (cars[5].img == 0) car5text.Text = "Пусто";
-            else car5text.Text = cars[5].ToString(0);
+            lMotor = 0;
+            lTrans = 0;
+            lHod = 0;
+            lKusov = 0;
+            lSalon = 0;
+            shtraf = 0;
+
+            if (skills[5] == 0) button1.Visible = false;
+            else button1.Visible = true;
 
             loadStats();
             lastResize = DateTime.Now;
@@ -224,6 +249,12 @@ namespace ProjectPerekup
         }
         private void hideOtherCarText() // скрытие описаний(сразу всех кроме выбранной)
         {
+            lMotor = 0;
+            lTrans = 0;
+            lHod = 0;
+            lKusov = 0;
+            lSalon = 0;
+
             if (selectedcar == 0)
             {
                 car0text.Visible = false;
@@ -251,12 +282,12 @@ namespace ProjectPerekup
         }
         private void loadStats() // загрузка данных выбранной машины
         {
-            carstat0.Text = $"Мотор:{getCond(cars[selectedcar].motor)}\n" +
-                            $"Трансмиссия:{getCond(cars[selectedcar].trans)}\n" +
-                            $"Ходовая:{getCond(cars[selectedcar].hod)}\n" +
-                            $"Кузов:{getCond(cars[selectedcar].kusov)}\n" +
-                            $"Салон:{getCond(cars[selectedcar].salon)}\n";
-            carprice.Text = $"Итоговая цена: {Convert.ToInt64(Convert.ToDouble(cars[selectedcar].price) * getCondMult(cars[selectedcar].getCondSum()))}₽";
+            carstat0.Text = $"Мотор:{getCond(cars[selectedcar].motor - lMotor)}\n" +
+                            $"Трансмиссия:{getCond(cars[selectedcar].trans - lTrans)}\n" +
+                            $"Ходовая:{getCond(cars[selectedcar].hod - lHod)}\n" +
+                            $"Кузов:{getCond(cars[selectedcar].kusov - lKusov)}\n" +
+                            $"Салон:{getCond(cars[selectedcar].salon - lSalon)}\n";
+            carprice.Text = $"Итоговая цена: {PriceToString(Convert.ToInt64(Convert.ToDouble(cars[selectedcar].price) * getCondMult(cars[selectedcar].getCondSum() - getLieSum()) * (1.0 + 0.03 * skills[1])))}₽";
         }
         private string getCond(int cond) // вывод состояния частей машины
         {
@@ -275,7 +306,25 @@ namespace ProjectPerekup
         }
         private void sellbutton_Click(object sender, EventArgs e) // продать
         {
-            balance += Convert.ToInt64(Convert.ToDouble(cars[selectedcar].price) * getCondMult(cars[selectedcar].getCondSum()));
+            if (getLieSum() > 0)
+            {
+                Random rand = new Random();
+                for (int i = 0; i < getLieSum(); i++)
+                {
+                    if (rand.Next(0, skills[5] * 2) == 0)
+                    {
+                        shtraf = cars[selectedcar].price * getLieSum() / 5;
+                        balance += Convert.ToInt64(Convert.ToDouble(cars[selectedcar].price) * getCondMult(cars[selectedcar].getCondSum() - getLieSum()) * (1.0 + 0.03 * skills[1]));
+                        cars[selectedcar] = new Car();
+
+                        Instance.DialogResult = DialogResult.OK;
+                        Instance.Close();
+                        return;
+                    }
+                }
+            }
+            balance += Convert.ToInt64(Convert.ToDouble(cars[selectedcar].price) * getCondMult(cars[selectedcar].getCondSum() - getLieSum()) * (1.0 + 0.03 * skills[1]));
+            priceDiff = Convert.ToInt32(Convert.ToDouble(cars[selectedcar].price) * getCondMult(cars[selectedcar].getCondSum() - getLieSum()) * (1.0 + 0.03 * skills[1])) - Convert.ToInt32(Convert.ToDouble(cars[selectedcar].price) * getCondMult(cars[selectedcar].getCondSum()) * (1.0 + 0.03 * skills[1]));
             cars[selectedcar] = new Car();
 
             Instance.DialogResult = DialogResult.OK;
@@ -284,6 +333,40 @@ namespace ProjectPerekup
         private double getCondMult(int sum) // возвращает множитель который опирается на состояния деталей
         {
             return 1.0 - 0.05 * sum;
+        }
+        private int getLieSum()
+        {
+            return lMotor + lTrans + lHod + lKusov + lSalon;
+        }
+        public string PriceToString(long price) // делит сумму 1234567 -> 1 234 567
+        {
+            string strPrice = price.ToString();
+
+            string returnprice = "";
+            for (int i = 0; i < strPrice.Length; i++)
+            {
+                returnprice += strPrice[i];
+                if ((strPrice.Length - i - 1) % 3 == 0)
+                {
+                    returnprice += " ";
+                }
+            }
+
+            return returnprice;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            LieCalc.Instance.LoadForm(cars[selectedcar].motor, cars[selectedcar].trans, cars[selectedcar].hod, cars[selectedcar].kusov, cars[selectedcar].salon);
+            LieCalc.Instance.ShowDialog();
+
+            lMotor = LieCalc.Instance.lies[0];
+            lTrans = LieCalc.Instance.lies[1];
+            lHod = LieCalc.Instance.lies[2];
+            lKusov = LieCalc.Instance.lies[3];
+            lSalon = LieCalc.Instance.lies[4];
+
+            loadStats();
         }
     }
 }
