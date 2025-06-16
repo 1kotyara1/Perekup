@@ -440,7 +440,7 @@ namespace ProjectPerekup
                 stattitle.Font = new Font("Segoe UI", stattitle.Height / 2);
 
                 spentmoney.Width = Convert.ToInt32((statistics.Width - 42) / 2);
-                spentmoney.Height = Convert.ToInt32(25 + spentmoney.Width * 0.018);
+                spentmoney.Height = Convert.ToInt32(20 + spentmoney.Width * 0.030);
                 recievedmoney.Height = spentmoney.Height;
                 recievedmoney.Width = spentmoney.Width;
                 soldcars.Height = spentmoney.Height;
@@ -453,7 +453,6 @@ namespace ProjectPerekup
                 soldcars.Location = new Point(12, recievedmoney.Location.Y + recievedmoney.Height + 6);
                 boughtcars.Location = new Point(12, soldcars.Location.Y + soldcars.Height);
 
-                clearData.Width = 100 + Convert.ToInt32(Width / 8);
 
                 skillslabel.Location = new Point(32 + spentmoney.Width, spentmoney.Location.Y);
                 skill0.Location = new Point(skillslabel.Location.X, skillslabel.Location.Y + skillslabel.Height);
@@ -492,6 +491,7 @@ namespace ProjectPerekup
                 skill4.Font = new Font("Segoe UI", fontsize);
                 skill5.Font = new Font("Segoe UI", fontsize);
 
+                clearData.Width = 100 + Convert.ToInt32(Width / 8);
                 clearData.Location = new Point(Convert.ToInt32((Width - clearData.Width) / 2), Height - 135);
             }
         }
@@ -514,7 +514,7 @@ namespace ProjectPerekup
             {
                 InitializeStatistics();
             }
-            resize();
+            resize();resize();
         }
 
 
@@ -727,17 +727,17 @@ namespace ProjectPerekup
         {
             avitocar0name.Text = $"{avitocars[0].getName()}\n{avitocars[0].generateDesc()}";
             avitocar0img.Image = avitocars[0].getImg();
-            avitocar0price.Text = avitocars[0].PriceToString();
+            avitocar0price.Text = avitocars[0].PriceToString() + "₽";
             avitocar0buy.Text = "Купить";
 
             avitocar1name.Text = $"{avitocars[1].getName()}\n{avitocars[1].generateDesc()}";
             avitocar1img.Image = avitocars[1].getImg();
-            avitocar1price.Text = avitocars[1].PriceToString();
+            avitocar1price.Text = avitocars[1].PriceToString() + "₽";
             avitocar1buy.Text = "Купить";
 
             avitocar2name.Text = $"{avitocars[2].getName()}\n{avitocars[2].generateDesc()}";
             avitocar2img.Image = avitocars[2].getImg();
-            avitocar2price.Text = avitocars[2].PriceToString();
+            avitocar2price.Text = avitocars[2].PriceToString() + "₽";
             avitocar2buy.Text = "Купить";
         }
         private void updMoney() // обновляет баланс

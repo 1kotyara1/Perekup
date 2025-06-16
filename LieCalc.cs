@@ -44,7 +44,8 @@ namespace ProjectPerekup
             lies = new int[5] { CarSell.lMotor, CarSell.lTrans, CarSell.lHod, CarSell.lKusov, CarSell.lSalon };
             details = new int[5] { m, t, h, k, s };
 
-            if (buttons == null) { 
+            if (buttons == null)
+            {
                 buttons = new (PictureBox minus, Label num, PictureBox plus)[6];
 
                 for (int i = 0; i < buttons.Length - 1; i++)
@@ -215,8 +216,8 @@ namespace ProjectPerekup
 
         private void cancel_Click(object sender, EventArgs e)
         {
-            for(int i = 0; i < 5; i++)
-                { lies[i] = 0; }
+            for (int i = 0; i < 5; i++)
+            { lies[i] = 0; }
             Instance.Close();
         }
     }

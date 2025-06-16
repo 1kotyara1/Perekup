@@ -110,7 +110,7 @@ namespace ProjectPerekup
 
                 labelmoneyedit.Text = $"Баланс: {PriceToString(balance)}₽";
 
-                editcarlabel.Text = $"{car.getName()}\nСтоимость машины: {car.price}₽\nСостояние: {car.getCondText()}";
+                editcarlabel.Text = $"{car.getName()}\nСтоимость машины: {PriceToString(car.price)}₽\nСостояние: {car.getCondText()}";
                 editpricesum.Text = $"Стоимость ремонта: {editsum}₽";
                 editcarimg.Image = car.getImg();
 

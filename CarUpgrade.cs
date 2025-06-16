@@ -283,8 +283,8 @@ namespace ProjectPerekup
         // загрузка данных на определенные элементы окна
         private void IniCarText()
         {
-            editcarlabel.Text = $"{cars[selectedcar].getName()}\nСтоимость: {cars[selectedcar].price}₽\nСостояние: {cars[selectedcar].getCondText()}";
-            editpricesum.Text = $"Стоимость: {editsum}₽";
+            editcarlabel.Text = $"{cars[selectedcar].getName()}\nСтоимость: {PriceToString(cars[selectedcar].price)}₽\nСостояние: {cars[selectedcar].getCondText()}";
+            editpricesum.Text = $"Стоимость: {PriceToString(editsum)}₽";
         }
         private void Inimotor()
         {
@@ -326,11 +326,11 @@ namespace ProjectPerekup
         {
             if (lvl > 0)
             {
-                return $"Починить - {Convert.ToInt32(cars[selectedcar].price / 7 * (3.5 + Convert.ToDouble(fits() + lvl)) / 10)}";
+                return $"Починить - {PriceToString(Convert.ToInt32(cars[selectedcar].price / 7 * (3.5 + Convert.ToDouble(fits() + lvl)) / 10))}";
             }
             else
             {
-                return $"Улучшить - {Convert.ToInt32((cars[selectedcar].price / 7 * (2.0 + Convert.ToDouble(fits() - lvl)) / 10) * (0.9 - Convert.ToDouble(lvl) / 15))}";
+                return $"Улучшить - {PriceToString(Convert.ToInt32((cars[selectedcar].price / 7 * (2.0 + Convert.ToDouble(fits() - lvl)) / 10) * (0.9 - Convert.ToDouble(lvl) / 15)))}";
             }
         }
         private string getCond(int cond) // возвращает текст для label в зависимости от состояния определенного элемента машины
@@ -347,6 +347,38 @@ namespace ProjectPerekup
         private int fits() // проверка на мастерскую
         {
             return Instance.Text == "FitService" ? 1 : 0;
+        }
+        public string PriceToString(int price) // делит сумму 1234567 -> 1 234 567
+        {
+            string strPrice = price.ToString();
+
+            string returnprice = "";
+            for (int i = 0; i < strPrice.Length; i++)
+            {
+                returnprice += strPrice[i];
+                if ((strPrice.Length - i - 1) % 3 == 0)
+                {
+                    returnprice += " ";
+                }
+            }
+
+            return returnprice;
+        }
+        public string PriceToString(long price) // делит сумму 1234567 -> 1 234 567
+        {
+            string strPrice = price.ToString();
+
+            string returnprice = "";
+            for (int i = 0; i < strPrice.Length; i++)
+            {
+                returnprice += strPrice[i];
+                if ((strPrice.Length - i - 1) % 3 == 0)
+                {
+                    returnprice += " ";
+                }
+            }
+
+            return returnprice;
         }
 
 
