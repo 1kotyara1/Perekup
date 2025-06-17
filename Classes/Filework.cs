@@ -9,7 +9,8 @@ namespace ProjectPerekup.Classes
 {
     internal class Filework
     {
-        private static string path = ".\\data.txt"; // путь к сохранению
+        private static string folder = "C:\\Users\\admin\\AppData\\Local\\ProjectPerekup";         // папка с сохранением
+        private static string path = "C:\\Users\\admin\\AppData\\Local\\ProjectPerekup\\data.txt"; // путь к сохранению
 
 
         // сохранение
@@ -18,32 +19,65 @@ namespace ProjectPerekup.Classes
             // изменяет сохранение
             // если его нет то создает новое сохранение
 
-            List<string> data = new List<string>();
-
-            foreach (Car car in cars) 
+            if (Directory.Exists(folder))
             {
-                data.Add(car.price.ToString());
-                data.Add(car.img.ToString());
+                List<string> data = new List<string>();
 
-                data.Add(car.motor.ToString());
-                data.Add(car.trans.ToString());
-                data.Add(car.hod.ToString());
-                data.Add(car.kusov.ToString());
-                data.Add(car.salon.ToString());
+                foreach (Car car in cars)
+                {
+                    data.Add(car.price.ToString());
+                    data.Add(car.img.ToString());
+
+                    data.Add(car.motor.ToString());
+                    data.Add(car.trans.ToString());
+                    data.Add(car.hod.ToString());
+                    data.Add(car.kusov.ToString());
+                    data.Add(car.salon.ToString());
+                }
+
+                data.Add(money.ToString());
+                data.Add(sold.ToString());
+                data.Add(bought.ToString());
+                data.Add(spent.ToString());
+                data.Add(recieved.ToString());
+
+                foreach (int i in skills)
+                {
+                    data.Add(i.ToString());
+                }
+
+                File.WriteAllLines(path, data);
             }
-
-            data.Add(money.ToString());
-            data.Add(sold.ToString());
-            data.Add(bought.ToString());
-            data.Add(spent.ToString());
-            data.Add(recieved.ToString());
-
-            foreach (int i in skills)
+            else
             {
-                data.Add(i.ToString());
-            }
+                DirectoryInfo di = Directory.CreateDirectory(folder);
+                List<string> data = new List<string>();
 
-            File.WriteAllLines(path, data);
+                foreach (Car car in cars)
+                {
+                    data.Add(car.price.ToString());
+                    data.Add(car.img.ToString());
+
+                    data.Add(car.motor.ToString());
+                    data.Add(car.trans.ToString());
+                    data.Add(car.hod.ToString());
+                    data.Add(car.kusov.ToString());
+                    data.Add(car.salon.ToString());
+                }
+
+                data.Add(money.ToString());
+                data.Add(sold.ToString());
+                data.Add(bought.ToString());
+                data.Add(spent.ToString());
+                data.Add(recieved.ToString());
+
+                foreach (int i in skills)
+                {
+                    data.Add(i.ToString());
+                }
+
+                File.WriteAllLines(path, data);
+            }
         }
 
 
@@ -53,6 +87,11 @@ namespace ProjectPerekup.Classes
             int carslen = 6;
             cars = new List<Car>();
             skills = new int[skillsname.Length];
+
+            if (!Directory.Exists(folder))
+            {
+                DirectoryInfo di = Directory.CreateDirectory(folder);
+            }
 
             // проверка на существование сохранения
             if (File.Exists(path))
@@ -106,6 +145,11 @@ namespace ProjectPerekup.Classes
         public static void CreateBlankFile(out List<Car> cars, out long money, out int sold, out int bought, out long spent, out long recieved, out int[] skills, string[] skillsname)
         {
             // создает и загружает пустые данные в приложение и в сохранение
+
+            if (!Directory.Exists(folder))
+            {
+                DirectoryInfo di = Directory.CreateDirectory(folder);
+            }
 
             int carslen = 6;
             cars = new List<Car>();
