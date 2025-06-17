@@ -281,40 +281,40 @@ namespace ProjectPerekup
 
 
         // загрузка данных на определенные элементы окна
-        private void IniCarText()
+        private void IniCarText() // загрузка информации о машине в текст
         {
             editcarlabel.Text = $"{cars[selectedcar].getName()}\nСтоимость: {PriceToString(cars[selectedcar].price)}₽\nСостояние: {cars[selectedcar].getCondText()}";
             editpricesum.Text = $"Стоимость: {PriceToString(editsum)}₽";
         }
-        private void Inimotor()
+        private void Inimotor() // загрузка мотора
         {
             motorlabel.Text = $"Двигатель\n{getCond(cars[selectedcar].motor)}";
             if (cars[selectedcar].motor <= -3 && motoredited == false) motorbutton.Text = "Недоступно";
             else if (cars[selectedcar].motor == -3 && motoredited == true) motorbutton.Text = "Отмена";
             else motorbutton.Text = $"{getButtonText(cars[selectedcar].motor)}";
         }
-        private void Initrans()
+        private void Initrans() // загрузка трансмиссии
         {
             translabel.Text = $"Трансмиссия\n{getCond(cars[selectedcar].trans)}";
             if (cars[selectedcar].trans <= -3 && transedited == false) transbutton.Text = "Недоступно";
             else if (cars[selectedcar].trans == -3 && transedited == true) transbutton.Text = "Отмена";
             else transbutton.Text = $"{getButtonText(cars[selectedcar].trans)}";
         }
-        private void Inihod()
+        private void Inihod() // загрузка ходовой
         {
             hodlabel.Text = $"Ходовая\n{getCond(cars[selectedcar].hod)}";
             if (cars[selectedcar].hod <= -3 && hodedited == false) hodbutton.Text = "Недоступно";
             else if (cars[selectedcar].hod == -3 && hodedited == true) hodbutton.Text = "Отмена";
             else hodbutton.Text = $"{getButtonText(cars[selectedcar].hod)}";
         }
-        private void Inikusov()
+        private void Inikusov() // загрузка кузова
         {
             kusovlabel.Text = $"Кузов\n{getCond(cars[selectedcar].kusov)}";
             if (cars[selectedcar].kusov <= -3 && kusovedited == false) kusovbutton.Text = "Недоступно";
             else if (cars[selectedcar].kusov == -3 && kusovedited == true) kusovbutton.Text = "Отмена";
             else kusovbutton.Text = $"{getButtonText(cars[selectedcar].kusov)}";
         }
-        private void Inisalon()
+        private void Inisalon() // загрузка салона
         {
             salonlabel.Text = $"Салон\n{getCond(cars[selectedcar].salon)}";
             if (cars[selectedcar].salon <= -3 && salonedited == false) salonbutton.Text = "Недоступно";
@@ -383,7 +383,7 @@ namespace ProjectPerekup
 
 
         // нажатие кнопок
-        private void motorbutton_Click(object sender, EventArgs e)
+        private void motorbutton_Click(object sender, EventArgs e) // кнопка мотора
         {
             if (motorbutton.Text != "Недоступно")
             {
@@ -418,7 +418,7 @@ namespace ProjectPerekup
                 }
             }
         }
-        private void transbutton_Click(object sender, EventArgs e)
+        private void transbutton_Click(object sender, EventArgs e) // кнопка трансмиссии
         {
             if (transbutton.Text != "Недоступно")
             {
@@ -453,7 +453,7 @@ namespace ProjectPerekup
                 }
             }
         }
-        private void hodbutton_Click(object sender, EventArgs e)
+        private void hodbutton_Click(object sender, EventArgs e) // кнопка ходовой
         {
             if (hodbutton.Text != "Недоступно")
             {
@@ -488,7 +488,7 @@ namespace ProjectPerekup
                 }
             }
         }
-        private void kusovbutton_Click(object sender, EventArgs e)
+        private void kusovbutton_Click(object sender, EventArgs e) // кнопка кузова
         {
             if (kusovbutton.Text != "Недоступно")
             {
@@ -523,7 +523,7 @@ namespace ProjectPerekup
                 }
             }
         }
-        private void salonbutton_Click(object sender, EventArgs e)
+        private void salonbutton_Click(object sender, EventArgs e) // кнопка салона
         {
             if (salonbutton.Text != "Недоступно")
             {
@@ -559,12 +559,12 @@ namespace ProjectPerekup
             }
         }
 
-        private void cancelbutton_Click(object sender, EventArgs e)
+        private void cancelbutton_Click(object sender, EventArgs e) // кнопка отмена
         {
             Nullstats();
             Instance.Close();
         }
-        private void confirmbutton_Click(object sender, EventArgs e)
+        private void confirmbutton_Click(object sender, EventArgs e) // кнопка подтвердить
         {
             if (Convert.ToInt64(balance) - editsum < 0)
             {

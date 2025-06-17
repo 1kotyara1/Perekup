@@ -12,6 +12,7 @@ namespace ProjectPerekup
 {
     public partial class Confirm : Form
     {
+        // создание окна
         private static Confirm _Instance = new Confirm();
         public static Confirm Instance
         {
@@ -33,13 +34,13 @@ namespace ProjectPerekup
             InitializeComponent();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e) // удалить
         {
             DialogResult = DialogResult.OK;
             Instance.Close();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e) // отмена
         {
             DialogResult = DialogResult.Cancel;
             Instance.Close();

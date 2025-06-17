@@ -96,7 +96,7 @@ namespace ProjectPerekup.Classes
             this.kusov = kusov;
             this.salon = salon;
         }
-        public Car(Car c)
+        public Car(Car c) // передача машины
         {
             this.price = c.price;
             this.img = c.img;

@@ -30,16 +30,16 @@ namespace ProjectPerekup
         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(perekup));
 
 
-        private (PictureBox minus, Label num, PictureBox plus)[] buttons;
-        public int[] lies;
-        private int[] details;
+        private (PictureBox minus, Label num, PictureBox plus)[] buttons; // массив кнопок
+        public int[] lies;  // массив вранья
+        private int[] details;  // массив улучшений
 
         public LieCalc()
         {
             InitializeComponent();
         }
 
-        public void LoadForm(int m, int t, int h, int k, int s)
+        public void LoadForm(int m, int t, int h, int k, int s) // загрузка окна и данных машины
         {
             lies = new int[5] { CarSell.lMotor, CarSell.lTrans, CarSell.lHod, CarSell.lKusov, CarSell.lSalon };
             details = new int[5] { m, t, h, k, s };
@@ -120,7 +120,7 @@ namespace ProjectPerekup
             updButton(-1);
         }
 
-        private void resize()
+        private void resize() // запускаем один раз при создании окна
         {
             buttons[0].minus.Location = new Point(14, 67);
             buttons[0].num.Location = new Point(72, 67);
@@ -147,7 +147,7 @@ namespace ProjectPerekup
         }
 
 
-        private void updButton(int i)
+        private void updButton(int i) // обновить или определенные кнопки или все
         {
             if (i == -1)
             {
@@ -165,7 +165,7 @@ namespace ProjectPerekup
                 else buttons[i].num.ForeColor = Color.Red;
             }
         }
-        private void minusClick(int i)
+        private void minusClick(int i) // нажать на минус
         {
             if (i == -1)
             {
@@ -181,7 +181,7 @@ namespace ProjectPerekup
                 updButton(i);
             }
         }
-        private void plusClick(int i)
+        private void plusClick(int i) // нажать на плюс
         {
             if (i == -1)
             {
@@ -209,12 +209,11 @@ namespace ProjectPerekup
             }
         }
 
-        private void confirm_Click(object sender, EventArgs e)
+        private void confirm_Click(object sender, EventArgs e) // подтвердить
         {
             Instance.Close();
         }
-
-        private void cancel_Click(object sender, EventArgs e)
+        private void cancel_Click(object sender, EventArgs e) // отменить
         {
             for (int i = 0; i < 5; i++)
             { lies[i] = 0; }

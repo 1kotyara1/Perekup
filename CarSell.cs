@@ -36,6 +36,7 @@ namespace ProjectPerekup
         private DateTime lastResize;
         private (int w, int h) lastsize;
 
+
         public static int lMotor;
         public static int lTrans;
         public static int lHod;
@@ -48,11 +49,13 @@ namespace ProjectPerekup
         private string[] conditions = { " нет повреждений", " лёгкие повреждения", " средние повреждения", " тяжелые повреждения" };
 
 
+
         // баланс, машины, выбранная машина
         static long balance;
         static List<Car> cars;
         int selectedcar;
         int[] skills;
+
 
 
         // передача данных между окнами
@@ -151,6 +154,7 @@ namespace ProjectPerekup
             lastResize = DateTime.Now;
             resize();
         }
+
 
         // изменение размеров окна 
         private void CarSell_Resize(object sender, EventArgs e)
@@ -336,7 +340,7 @@ namespace ProjectPerekup
         {
             return 1.0 - 0.05 * sum;
         }
-        private int getLieSum()
+        private int getLieSum() // сумма обмана
         {
             return lMotor + lTrans + lHod + lKusov + lSalon;
         }
@@ -356,8 +360,7 @@ namespace ProjectPerekup
 
             return returnprice;
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e) // создать окно обмана
         {
             LieCalc.Instance.LoadForm(cars[selectedcar].motor, cars[selectedcar].trans, cars[selectedcar].hod, cars[selectedcar].kusov, cars[selectedcar].salon);
             LieCalc.Instance.ShowDialog();

@@ -17,7 +17,8 @@ namespace ProjectPerekup
     public partial class CarEdit : Form
     {
         private string[] conditions = { " нулевые", " лёгкие", " средние", " тяжелые" };
-
+        
+        // важное для окна
         private static CarEdit _Instance = new CarEdit();
         public static CarEdit Instance
         {
@@ -35,9 +36,11 @@ namespace ProjectPerekup
         private DateTime lastResize;
         private (int w, int h) lastsize;
 
+        // данные о машине
         private static long balance;
         private static Car car;
 
+        // данные об изменениях машины(да знаю это выглядит так себе)
         private int[] skills;
         private int editsum = 0;
         private int motorprice = 0;
@@ -61,7 +64,8 @@ namespace ProjectPerekup
         private bool kusovedited;
         private bool salonedited;
 
-        public static void SendData(in long editbalance, in Car editcar, in int[] skills)
+        // отправка и получение информации
+        public static void SendData(in long editbalance, in Car editcar, in int[] skills) 
         {
             balance = editbalance;
             car = editcar;
@@ -69,12 +73,14 @@ namespace ProjectPerekup
             Instance.Text = car.getName();
             Instance.InitializeForm(skills);
         }
-        public static void RecieveData(out long sendbalance, out Car sendcar)
+        public static void RecieveData(out long sendbalance, out Car sendcar) 
         {
             sendbalance = balance;
             sendcar = car;
         }
-        private void reloadForm()
+        
+        
+        private void reloadForm() // удаление временных данных
         {
             Instance.editsum = 0;
             motoredited = false;
@@ -91,12 +97,12 @@ namespace ProjectPerekup
 
         }
 
-        public CarEdit()
+        public CarEdit() // хз чё
         {
             InitializeComponent();
         }
 
-        private void InitializeForm(int[] sk)
+        private void InitializeForm(int[] sk) // создание окна
         {
             if (balance != 0)
             {
@@ -121,7 +127,7 @@ namespace ProjectPerekup
             }
 
         }
-        private void CarEdit_Resize(object sender, EventArgs e)
+        private void CarEdit_Resize(object sender, EventArgs e) // вызывает функцию при изменении размера окна не больше 2 раз в сек
         {
             DateTime now = DateTime.Now;
             if (lastResize.Millisecond + lastResize.Second * 1000 - now.Millisecond - now.Second * 1000 < -500 || lastsize.h - Height < -100 || lastsize.h - Height > 100 || lastsize.w - Width < -100 || lastsize.w - Width > 100)
@@ -130,11 +136,11 @@ namespace ProjectPerekup
                 resize();
             }
         }
-        private void CarEdit_ResizeEnd(object sender, EventArgs e)
+        private void CarEdit_ResizeEnd(object sender, EventArgs e) // вызывает функцию при окончании изменении размера окна
         {
             resize();
         }
-        private void resize()
+        private void resize() // изменяем положение каждого элемента
         {
             lastsize = (Width, Height);
 
@@ -179,7 +185,7 @@ namespace ProjectPerekup
         }
 
 
-        private string getCond(int cond)
+        private string getCond(int cond) // возвращает текст информации о состоянии детали
         {
             if (cond >= 0)
             {
@@ -190,7 +196,7 @@ namespace ProjectPerekup
                 return $"{-cond} уровень";
             }
         }
-        private int getButtonPrice(int cond)
+        private int getButtonPrice(int cond) // возвращает текст для кнопок деталей
         {
             if (cond > 0)
             {
@@ -204,7 +210,7 @@ namespace ProjectPerekup
                     return -1;
             }
         }
-        private void updateInterface(int i)
+        private void updateInterface(int i) // обновляет кнопки деталей
         {
             if (i == 0)
             {
@@ -301,7 +307,7 @@ namespace ProjectPerekup
                 salonlabel.Text = $"Салон\n{getCond(car.salon)}";
             }
         }
-        private void updateCarText()
+        private void updateCarText() // обновляет данные о машине
         {
             editpricesum.Text = $"Стоимость ремонта: {PriceToString(editsum)}₽";
             editcarlabel.Text = $"{car.getName()}\nСтоимость машины: {PriceToString(car.price)}₽\nСостояние: {car.getCondText()}";
@@ -339,7 +345,7 @@ namespace ProjectPerekup
             return returnprice;
         }
 
-        private void motorbutton_Click(object sender, EventArgs e)
+        private void motorbutton_Click(object sender, EventArgs e) // нажатие на кнопку мотора
         {
             if (motorbutton.Text != "Недоступно")
             {
@@ -372,7 +378,7 @@ namespace ProjectPerekup
                 }
             }
         }
-        private void transbutton_Click(object sender, EventArgs e)
+        private void transbutton_Click(object sender, EventArgs e) // нажатие на кнопку  трансмиссии
         {
             if (transbutton.Text != "Недоступно")
             {
@@ -405,7 +411,7 @@ namespace ProjectPerekup
                 }
             }
         }
-        private void hodbutton_Click(object sender, EventArgs e)
+        private void hodbutton_Click(object sender, EventArgs e) // нажатие на кнопку ходовой
         {
             if (hodbutton.Text != "Недоступно")
             {
@@ -438,7 +444,7 @@ namespace ProjectPerekup
                 }
             }
         }
-        private void kusovbutton_Click(object sender, EventArgs e)
+        private void kusovbutton_Click(object sender, EventArgs e) // нажатие на кнопку кузова
         {
             if (kusovbutton.Text != "Недоступно")
             {
@@ -471,7 +477,7 @@ namespace ProjectPerekup
                 }
             }
         }
-        private void salonbutton_Click(object sender, EventArgs e)
+        private void salonbutton_Click(object sender, EventArgs e) // нажатие на кнопку салона
         {
             if (salonbutton.Text != "Недоступно")
             {
@@ -505,12 +511,12 @@ namespace ProjectPerekup
             }
         }
 
-        private void cancelbutton_Click(object sender, EventArgs e)
+        private void cancelbutton_Click(object sender, EventArgs e) // нажатие на кнопку отмены
         {
             Nullstats();
             Instance.Close();
         }
-        private void confirmbutton_Click(object sender, EventArgs e)
+        private void confirmbutton_Click(object sender, EventArgs e) // нажатие на кнопку подтверждения
         {
             if (Convert.ToInt64(balance) - editsum < 0)
             {
@@ -522,7 +528,7 @@ namespace ProjectPerekup
             Instance.Close();
         }
 
-        private void Nullstats()
+        private void Nullstats() // обнуляет изменения машины которые ты сделал
         {
             if (motoredited || transedited || hodedited || kusovedited || salonedited)
             {

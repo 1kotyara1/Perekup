@@ -9,11 +9,15 @@ namespace ProjectPerekup.Classes
 {
     internal class Filework
     {
-        private static string path = ".\\data.txt";
+        private static string path = ".\\data.txt"; // путь к сохранению
+
 
         // сохранение
         public static void Save(in List<Car> cars, in long money, in int sold, in int bought, in long spent, in long recieved, in int[] skills, string[] skillsname)
         {
+            // изменяет сохранение
+            // если его нет то создает новое сохранение
+
             List<string> data = new List<string>();
 
             foreach (Car car in cars) 
@@ -42,6 +46,7 @@ namespace ProjectPerekup.Classes
             File.WriteAllLines(path, data);
         }
 
+
         // чтение
         public static void Load(out List<Car> cars, out long money, out int sold, out int bought, out long spent, out long recieved, out int[] skills, string[] skillsname)
         {
@@ -49,8 +54,12 @@ namespace ProjectPerekup.Classes
             cars = new List<Car>();
             skills = new int[skillsname.Length];
 
+            // проверка на существование сохранения
             if (File.Exists(path))
             {
+                // если читает и происходит ошибка - удаляет сохранение
+                // не придумал что делать с плохим сохранением
+                // ну вроде как оно должно ломаться только если человек плохо изменил вручную сови данные
                 try
                 {
                     string[] data = File.ReadAllLines(path);
@@ -79,19 +88,25 @@ namespace ProjectPerekup.Classes
             }
             else
             {
+                // создание и загрузка пустых данных в приложение
                 CreateBlankFile(out cars, out money, out sold, out bought, out spent, out recieved, out skills, skillsname);
             }
         }
 
+
         // удаление
         public static void DeleteFile()
         {
+            // удалить
             File.Delete(path);
         }
+
 
         // создание
         public static void CreateBlankFile(out List<Car> cars, out long money, out int sold, out int bought, out long spent, out long recieved, out int[] skills, string[] skillsname)
         {
+            // создает и загружает пустые данные в приложение и в сохранение
+
             int carslen = 6;
             cars = new List<Car>();
             skills = new int[skillsname.Length];
