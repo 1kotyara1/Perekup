@@ -37,8 +37,8 @@ namespace ProjectPerekup
         private long money;
         private int sold;
         private int bought;
-        private long spent;
-        private long recieved;
+        private ulong spent;
+        private ulong recieved;
         private int[] skills;
 
 
@@ -577,7 +577,7 @@ namespace ProjectPerekup
         }
         private void InitializeStatistics()  // загрузка данных в элементы статистики
         {
-            spentmoney.Text = $"Потрачено денег: {-1 * spent}₽";
+            spentmoney.Text = $"Потрачено денег: {spent}₽";
             recievedmoney.Text = $"Получено денег: {recieved}₽";
 
             soldcars.Text = $"Продано машин: {sold}";
@@ -858,6 +858,22 @@ namespace ProjectPerekup
 
             return returnprice;
         }
+        public string PriceToString(long price) // делит сумму 1234567 -> 1 234 567
+        {
+            string strPrice = price.ToString();
+
+            string returnprice = "";
+            for (int i = 0; i < strPrice.Length; i++)
+            {
+                returnprice += strPrice[i];
+                if ((strPrice.Length - i - 1) % 3 == 0)
+                {
+                    returnprice += " ";
+                }
+            }
+
+            return returnprice;
+        }
         public void updTips() // обновить подсказки
         {
             infoTip.RemoveAll();
@@ -907,7 +923,7 @@ namespace ProjectPerekup
             if (CarEdit.Instance.ShowDialog() == DialogResult.OK)
             {
                 CarEdit.RecieveData(out editbal, out editcar);
-                spent -= (money - editbal);
+                spent += (ulong)(money - editbal);
                 money = editbal;
                 cars[selectedcar] = editcar;
                 Filework.Save(cars, money, sold, bought, spent, recieved, skills, skillsname);
@@ -939,7 +955,7 @@ namespace ProjectPerekup
             if (CarUpgrade.Instance.ShowDialog() == DialogResult.OK)
             {
                 CarUpgrade.RecieveData(out editbal, out editcars);
-                spent -= (money - editbal);
+                spent += Convert.ToUInt64(money - editbal);
                 money = editbal;
                 cars = editcars;
                 Filework.Save(cars, money, sold, bought, spent, recieved, skills, skillsname);
@@ -967,7 +983,7 @@ namespace ProjectPerekup
             if (CarUpgrade.Instance.ShowDialog() == DialogResult.OK)
             {
                 CarUpgrade.RecieveData(out editbal, out editcars);
-                spent -= (money - editbal);
+                spent += Convert.ToUInt64(money - editbal);
                 money = editbal;
                 cars = editcars;
                 Filework.Save(cars, money, sold, bought, spent, recieved, skills, skillsname);
@@ -995,7 +1011,7 @@ namespace ProjectPerekup
             if (CarUpgrade.Instance.ShowDialog() == DialogResult.OK)
             {
                 CarUpgrade.RecieveData(out editbal, out editcars);
-                spent -= (money - editbal);
+                spent += Convert.ToUInt64(money - editbal);
                 money = editbal;
                 cars = editcars;
                 Filework.Save(cars, money, sold, bought, spent, recieved, skills, skillsname);
@@ -1025,7 +1041,7 @@ namespace ProjectPerekup
                         if (CarSell.lMotor + CarSell.lTrans + CarSell.lHod + CarSell.lKusov + CarSell.lSalon != 0)
                         {
                             CarSell.RecieveData(out editbal, out editcars);
-                            recieved += (editbal - money);
+                            recieved += Convert.ToUInt64(editbal - money);
                             sold++;
                             money = editbal;
                             cars = editcars;
@@ -1038,7 +1054,7 @@ namespace ProjectPerekup
                             return;
                         }
                         CarSell.RecieveData(out editbal, out editcars);
-                        recieved += (editbal - money);
+                        recieved += Convert.ToUInt64(editbal - money);
                         sold++;
                         money = editbal;
                         cars = editcars;
@@ -1049,8 +1065,8 @@ namespace ProjectPerekup
                     else
                     {
                         CarSell.RecieveData(out editbal, out editcars);
-                        recieved += (editbal - money);
-                        spent -= CarSell.Instance.shtraf;
+                        recieved += Convert.ToUInt64(editbal - money);
+                        spent += Convert.ToUInt64(CarSell.Instance.shtraf);
                         sold++;
                         money = editbal - CarSell.Instance.shtraf;
                         cars = editcars;
@@ -1088,14 +1104,14 @@ namespace ProjectPerekup
                 {
                     if (Sum != finalSum)
                     {
-                        buySellInfo.Text = $"Удалось сэкономить {-finalSum + Sum} с помощью навыка";
+                        buySellInfo.Text = $"Удалось сэкономить {PriceToString(-finalSum + Sum)} с помощью навыка";
                         buySellInfo.Visible = true;
                     }
                     else buySellInfo.Visible = false;
 
                     cars[zero] = avitocars[i];
                     money -= finalSum;
-                    spent -= finalSum;
+                    spent += Convert.ToUInt64(finalSum);
                     bought++;
                     avitocars[i] = null;
 
@@ -1160,7 +1176,7 @@ namespace ProjectPerekup
                 if (money - skillPrice[skills[i]] >= 0)
                 {
                     money -= skillPrice[skills[i]];
-                    spent -= skillPrice[skills[i]];
+                    spent += Convert.ToUInt64(skillPrice[skills[i]]);
                     skills[i]++;
                     skillprogress[i][skills[i] - 1].BackColor = Color.Green;
                     Filework.Save(cars, money, sold, bought, spent, recieved, skills, skillsname);

@@ -14,7 +14,7 @@ namespace ProjectPerekup.Classes
 
 
         // сохранение
-        public static void Save(in List<Car> cars, in long money, in int sold, in int bought, in long spent, in long recieved, in int[] skills, string[] skillsname)
+        public static void Save(in List<Car> cars, in long money, in int sold, in int bought, in ulong spent, in ulong recieved, in int[] skills, string[] skillsname)
         {
             // изменяет сохранение
             // если его нет то создает новое сохранение
@@ -82,7 +82,7 @@ namespace ProjectPerekup.Classes
 
 
         // чтение
-        public static void Load(out List<Car> cars, out long money, out int sold, out int bought, out long spent, out long recieved, out int[] skills, string[] skillsname)
+        public static void Load(out List<Car> cars, out long money, out int sold, out int bought, out ulong spent, out ulong recieved, out int[] skills, string[] skillsname)
         {
             int carslen = 6;
             cars = new List<Car>();
@@ -112,8 +112,8 @@ namespace ProjectPerekup.Classes
                     money = (long)Convert.ToDouble(data[i++]);
                     sold = Convert.ToInt32(data[i++]);
                     bought = Convert.ToInt32(data[i++]);
-                    spent = Convert.ToInt32(data[i++]);
-                    recieved = Convert.ToInt32(data[i++]);
+                    spent = Convert.ToUInt64(data[i++]);
+                    recieved = Convert.ToUInt64(data[i++]);
 
                     for (int j = 0; j < skillsname.Length; j++)
                     {
@@ -142,7 +142,7 @@ namespace ProjectPerekup.Classes
 
 
         // создание
-        public static void CreateBlankFile(out List<Car> cars, out long money, out int sold, out int bought, out long spent, out long recieved, out int[] skills, string[] skillsname)
+        public static void CreateBlankFile(out List<Car> cars, out long money, out int sold, out int bought, out ulong spent, out ulong recieved, out int[] skills, string[] skillsname)
         {
             // создает и загружает пустые данные в приложение и в сохранение
 
